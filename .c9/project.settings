@@ -17,6 +17,9 @@
             }
         }
     },
+    "python": {
+        "@version": "python3"
+    },
     "run": {
         "configs": {
             "@inited": "true",
