@@ -16,6 +16,16 @@ mongo = PyMongo(app) #constructor method
 def get_tasks():
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
+@app.route('/add_recipe')
+def add_recipe():
+    return render_template('add_recipe.html', categories=mongo.db.categories.find())
+
+@app.route('/create_recipe', methods=['POST'])
+def create_recipe():
+    recipes = mongo.db.recipes
+    recipes.insert_one(request.form.to_dict()) #insert request oject which is our form
+    return redirect(url_for('get_recipes'))  # redirect to the get_recipes page to see the new entry
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
