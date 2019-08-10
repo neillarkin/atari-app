@@ -2,22 +2,64 @@
 
 <h5>Add Recipe</h5>
 <div class="row">
-  <form action="{{ url_for('create_recipe')}}" method="POST" class="col s12">
+  <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12">
 
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input id="input_text" name="recipe_name" type="text" data-length="15" class="validate">
+        <input id="input_text" name="recipe_name" type="text" data-length="20" class="validate">
         <label for="input_text">Title</label>
       </div>
     </div>
+
     <div class="row">
       <div class="input-field col s12">
-        <i class="material-icons prefix">subject</i>
-        <textarea id="textarea2" class="materialize-textarea" data-length="30"></textarea>
-        <label for="textarea2">Description</label>
+        <i class="material-icons prefix">filter_list</i>
+        <select id="ingredient" name="ingredient_name">
+          <option value="" disabled selected>Choose the type</option>
+          {% for item in ingredients %}
+            <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
+          {% endfor %}
+        </select>
+        <label>Ingredient</label>
       </div>
     </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">filter_list</i>
+        <select id="ingredient2" name="ingredient_name2">
+          <option value="" disabled selected>Choose the type</option>
+          {% for item in ingredients2 %}
+            <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
+          {% endfor %}
+        </select>
+        <label>Ingredient 2</label>
+      </div>
+    </div>
+
+    <!--<div class="row">-->
+    <!--  <div class="input-field col s12">-->
+    <!--    <i class="material-icons prefix">poll</i>-->
+    <!--    <select id="category" name="category_name">-->
+    <!--              <option value="" disabled selected>Choose Category</option>-->
+    <!--              {% for cat in categories %}-->
+    <!--                  <option value="{{cat.category_name}}">{{cat.category_name}}</option>-->
+    <!--              {% endfor %}-->
+    <!--            </select>-->
+    <!--    <label>Task Category</label>-->
+    <!--  </div>-->
+    <!--</div>-->
+
+
+    <!--<div class="row">-->
+    <!--  <div class="input-field col s12">-->
+    <!--    <i class="material-icons prefix">subject</i>-->
+    <!--    <textarea id="textarea2" class="materialize-textarea" name="description" data-length="40"></textarea>-->
+    <!--    <label for="textarea2">Description</label>-->
+    <!--  </div>-->
+    <!--</div>-->
+
     <!--<div class="row">-->
     <!--  <div class="input-field col s12">-->
     <!--    <i class="material-icons prefix">filter_list</i>-->
@@ -30,12 +72,12 @@
     <!--    <label>Type of Dish</label>-->
     <!--  </div>-->
     <!--</div>-->
-    <!--</div>-->
+
+
     <div class="row">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit recipe
-    <i class="material-icons right">send</i>
-    </button>
+      <button class="btn waves-effect waves-light" type="submit">Submit</button>
     </div>
   </form>
+
 </div>
 {% endblock %}

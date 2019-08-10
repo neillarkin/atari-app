@@ -22,9 +22,9 @@ def get_recipes():
 def add_recipe():
     return render_template('add_recipe.html', 
     ingredients=mongo.db.ingredients.find(), 
-    ingredients2=mongo.db.ingredients.find(), 
     categories=mongo.db.categories.find())
     
+        # return render_template('add_recipe.html', categories=mongo.db.categories.find())
 
 @app.route('/create_recipe', methods=['POST'])
 def create_recipe():
