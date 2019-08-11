@@ -15,63 +15,15 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">filter_list</i>
-        <select id="ingredient" name="ingredient_name">
-          <option value="" disabled selected>Choose the type</option>
+        <select id="ingredient" name="ingredient_name" multiple>
+          <!--<option value="" disabled selected>Choose the type</option>-->
           {% for item in ingredients %}
-            <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
-          {% endfor %}
+            <option>{{item.ingredient_name}}</option>
+           {% endfor %}
         </select>
         <label>Ingredient</label>
       </div>
     </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">filter_list</i>
-        <select id="ingredient2" name="ingredient_name2">
-          <option value="" disabled selected>Choose the type</option>
-          {% for item in ingredients2 %}
-            <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
-          {% endfor %}
-        </select>
-        <label>Ingredient 2</label>
-      </div>
-    </div>
-
-    <!--<div class="row">-->
-    <!--  <div class="input-field col s12">-->
-    <!--    <i class="material-icons prefix">poll</i>-->
-    <!--    <select id="category" name="category_name">-->
-    <!--              <option value="" disabled selected>Choose Category</option>-->
-    <!--              {% for cat in categories %}-->
-    <!--                  <option value="{{cat.category_name}}">{{cat.category_name}}</option>-->
-    <!--              {% endfor %}-->
-    <!--            </select>-->
-    <!--    <label>Task Category</label>-->
-    <!--  </div>-->
-    <!--</div>-->
-
-
-    <!--<div class="row">-->
-    <!--  <div class="input-field col s12">-->
-    <!--    <i class="material-icons prefix">subject</i>-->
-    <!--    <textarea id="textarea2" class="materialize-textarea" name="description" data-length="40"></textarea>-->
-    <!--    <label for="textarea2">Description</label>-->
-    <!--  </div>-->
-    <!--</div>-->
-
-    <!--<div class="row">-->
-    <!--  <div class="input-field col s12">-->
-    <!--    <i class="material-icons prefix">filter_list</i>-->
-    <!--    <select id="category" name="category_name">-->
-    <!--      <option value="" disabled selected>Choose the type</option>-->
-    <!--      {% for category in categories %}-->
-    <!--        <option value="{{category.category_name}}">{{category.category_name}}</option>-->
-    <!--      {% endfor %}-->
-    <!--    </select>-->
-    <!--    <label>Type of Dish</label>-->
-    <!--  </div>-->
-    <!--</div>-->
 
 
     <div class="row">
