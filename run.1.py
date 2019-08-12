@@ -33,7 +33,9 @@ def create_recipe():
     ingredient_list = request.form.getlist('ingredient_name')
     recipes.insert_one({
     'recipe_name': recipe_name, 
-    'ingredients' : ingredient_list})
+    'ingredient_name' : ingredient_list[0], 
+    'ingredient_name2' : ingredient_list[1], 
+    'ingredient_name3' : ingredient_list[2]})
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
     # return redirect(url_for('get_recipes'))
 
