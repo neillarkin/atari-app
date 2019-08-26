@@ -1,7 +1,8 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId 
+from bson.objectid import ObjectId
+from bson.objectid import ObjectId
     
 app = Flask(__name__)
 
@@ -30,15 +31,37 @@ def add_recipe():
 def create_recipe():
     recipes = mongo.db.recipes
     recipe_name = request.form.get('recipe_name')
+    category_name = request.form.get('category_name')
     ingredient_list = request.form.getlist('ingredient_name')
     recipes.insert_one({
-    'recipe_name': recipe_name, 
+    'recipe_name': recipe_name,
+    'category_name': category_name,
     'ingredients' : ingredient_list})
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
     # return redirect(url_for('get_recipes'))
 
 # recipes.insert_one(request.form.to_dict())
 # request.form.getlist('ingredient_name') 
+
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    all_ingredients = mongo.db.ingredients.find()
+    all_categories = mongo.db.categories.find()
+    return render_template('edit_recipe.html', recipe=the_recipe, ingredients=all_ingredients, categories=all_categories)
+
+@app.route('/update/<recipe_id>', methods=["POST"])
+def update_recipe(recipe_id):
+    recipes = mongo.db.recipes
+    recipes.update( {'_id': ObjectId(recipe_id)},
+    {
+        'recipe_name':request.form.get('recipe_name'),
+        'category_name':request.form.get('category_name'),
+        'ingredient_name': request.form.get('ingredient_name')
+     })
+    return render_template("recipes.html", recipes=mongo.db.recipes.find())
+    # return redirect(url_for('get_recipes'))
+ 
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

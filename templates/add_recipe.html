@@ -7,7 +7,7 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input id="input_text" name="recipe_name" type="text" data-length="20" class="validate">
+        <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate">
         <label for="input_text">Title</label>
       </div>
     </div>
@@ -29,7 +29,7 @@
       <div class="input-field col s12">
         <i class="material-icons prefix">filter_list</i>
         <select id="ingredient" name="ingredient_name" multiple>
-          <!--<option value="" disabled selected>Choose ingedients</option>-->
+          <option value="" disabled selected>Choose ingedients</option>
           {% for item in ingredients %}
             <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
            {% endfor %}
