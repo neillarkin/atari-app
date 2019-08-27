@@ -44,10 +44,10 @@ def create_recipe():
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
-    this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     all_ingredients = mongo.db.ingredients.find()
     all_categories = mongo.db.categories.find()
-    return render_template('edit_recipe.html', recipe=this_recipe, ingredients=all_ingredients, categories=all_categories)
+    return render_template('edit_recipe.html', recipe=the_recipe, ingredients=all_ingredients, categories=all_categories)
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
