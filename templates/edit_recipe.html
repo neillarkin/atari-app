@@ -35,7 +35,7 @@
         <select id="ingredient" name="ingredient_name" multiple>
           <!--<option value="" disabled selected>Choose ingedients</option>-->
           {% for item in ingredients %}
-              {% if item.ingredient_name in recipe.ingredients %}
+              {% if item.ingredient_name in recipe.ingredient_name %}
                 <option value="{{item.ingredient_name}}" selected>{{item.ingredient_name}}</option>
                 {% else %}
                 <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>

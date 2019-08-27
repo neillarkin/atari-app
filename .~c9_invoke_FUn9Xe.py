@@ -61,12 +61,7 @@ def update_recipe(recipe_id):
      })
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
     # return redirect(url_for('get_recipes'))
-
-@app.route('/delete_recipe/<recipe_id>')
-def delete_recipe(recipe_id):
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    return render_template("recipes.html", recipes=mongo.db.recipes.find())
-    # return redirect(url_for('get_recipes')) 
+ 
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
