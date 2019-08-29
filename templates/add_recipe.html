@@ -11,6 +11,13 @@
         <label for="input_text">Title</label>
       </div>
     </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <input id="description_field" name="description" type="text" data-length="100" class="validate">
+        <label for="description_field">Short Description</label>
+      </div>
+    </div>
 
     <div class="row">
       <div class="input-field col s12">
@@ -38,11 +45,19 @@
       </div>
     </div>
 
-
     <div class="row">
-      <button class="btn waves-effect waves-light" type="submit">Submit</button>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <textarea id="textarea2" name="method" class="materialize-textarea" data-length="500"></textarea>
+        <label for="textarea2">Method</label>
+      </div>
     </div>
-  </form>
+</div>
+
+<div class="row">
+  <button class="btn waves-effect waves-light" type="submit">Submit</button>
+</div>
+</form>
 
 </div>
 {% endblock %}

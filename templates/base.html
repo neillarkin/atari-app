@@ -4,16 +4,14 @@
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel=stylesheet href="/static/css/style.css">
-
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
 
 <body>
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="{{url_for('get_recipes')}}" class="brand-logo">foodbook</a>
+                <a href="{{url_for('get_recipes')}}" class="brand-logo">My CookBook</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{url_for('get_recipes')}}">Home</a></li>

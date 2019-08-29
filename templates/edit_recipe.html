@@ -10,13 +10,20 @@
         <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate" value="{{recipe.recipe_name}}">
         <label for="input_text">Title</label>
       </div>
+      
     </div>
-
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <input id="input_text" name="description" type="text" data-length="100" class="validate" value="{{recipe.description}}">
+        <label for="input_text">Description</label>
+      </div>
+    </div>
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">filter_list</i>
         <select id="category" name="category_name">
-              <option value="" disabled selected>Choose dish type</option>
+              <!--<option value="" disabled selected>Choose dish type</option>-->
               {% for cat in categories %}
                     {% if cat.category_name == recipe.category_name%}
                     <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
@@ -46,6 +53,13 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <input id="input_text" name="method" type="text" data-length="500" class="validate" value="{{recipe.method}}">
+        <label for="input_text">Method</label>
+      </div>
+    </div>
 
     <div class="row">
       <button class="btn waves-effect waves-light red" type="submit">Update Recipe</button>
