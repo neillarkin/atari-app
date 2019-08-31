@@ -1,18 +1,30 @@
 /*body{*/
+
 /*     background-color: blue;*/
+
 /*}*/
 
-.btn_small{
-    height:24px;
-    width:60px;
+.btn_small {
+    height: 24px;
+    width: 60px;
     line-height: 24px;
     margin: 5px;
     padding: 0 0.5em;
 }
 
+.sub-button {
+    /*width: auto;*/
+    /*margin-top: 15px;*/
+    /*font-size: 11px;*/
+}
+
+.modal{
+   
+}
 /*.recipe_header{*/
+
 /*    margin-top: 5px;*/
+
 /*      background-color: yellow !important*/
+
 /*}*/
-
-

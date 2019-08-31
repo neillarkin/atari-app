@@ -18,33 +18,17 @@ mongo = PyMongo(app) #constructor method
 def get_recipes():
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
-
-@app.route('/add_recipe')
-def add_recipe():
-    return render_template('add_recipe.html', ingredients=mongo.db.ingredients.find(), categories=mongo.db.categories.find())
+@app.route('/new_recipe')
+def new_recipe():
+    return render_template('new_recipe.html', ingredients=mongo.db.ingredients.find(), categories=mongo.db.categories.find())
     
 
 @app.route('/create_recipe', methods=['POST'])
 def create_recipe():
     recipes = mongo.db.recipes
-    recipe_name = request.form.get('recipe_name')
-    description= request.form.get('description')
-    category_name = request.form.get('category_name')
-    ingredient_list = request.form.getlist('ingredient_name')
-    method = request.form.get('method')
-    recipes.insert_one
-    ({
-        'recipe_name': recipe_name,
-        'description': description,
-        'category_name': category_name,
-        'ingredient_name' : ingredient_list,
-        'method' : method
-    })
+    recipes.insert_one(request.form.to_dict())
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
-    # return redirect(url_for('get_recipes'))
 
-# recipes.insert_one(request.form.to_dict())
-# request.form.getlist('ingredient_name') 
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
@@ -72,6 +56,17 @@ def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
     # return redirect(url_for('get_recipes')) 
+
+
+@app.route('/get_ingredients')
+def get_ingredients():
+    return render_template("ingredients.html", ingredients=mongo.db.ingredients.find())
+
+@app.route('/create_ingredient', methods=['POST'])
+def create_ingredient():
+    ingredients = mongo.db.ingredients
+    ingredients.insert_one(request.form.to_dict())
+    return render_template("ingredients.html", ingredients=mongo.db.ingredients.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
