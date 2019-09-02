@@ -11,7 +11,7 @@
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="{{url_for('get_recipes')}}" class="brand-logo">My CookBook</a>
+                <a href="{{url_for('get_recipes')}}" class="brand-logo">My Recipes</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{url_for('get_recipes')}}">Home</a></li>
@@ -39,6 +39,7 @@
             $('select').formSelect();
             $('.sidenav').sidenav();
             $('.modal').modal();
+            $('.tooltipped').tooltip();
             //   $('select').material_select();
         });
     </script>

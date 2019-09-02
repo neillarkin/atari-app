@@ -2,20 +2,23 @@
 
 <h5>New Recipe</h5>
 <div class="row">
-  <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12">
+  <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12" enctype="multipart/form-data" >
 
     <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">create</i>
-        <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate">
-        <label for="input_text">Title</label>
+      <div class="input-field col s11">
+        <i class="material-icons prefix">filter_list</i>
+        <select id="ingredient" name="ingredient_name" multiple>
+          <option value="" disabled selected>Choose ingedients</option>
+          {% for item in ingredients %}
+            <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
+           {% endfor %}
+        </select>
+        <label>Choose Ingredients</label>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">create</i>
-        <input id="description_field" name="description" type="text" data-length="100" class="validate">
-        <label for="description_field">Short Description</label>
+
+      <div class="input-field col s1">
+        <a href="{{url_for('get_ingredients')}}" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top" data-tooltip="Add new ingredient">
+        <i class="material-icons">add</i></a>
       </div>
     </div>
 
@@ -34,30 +37,43 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <i class="material-icons prefix">filter_list</i>
-        <select id="ingredient" name="ingredient_name" multiple>
-          <option value="" disabled selected>Choose ingedients</option>
-          {% for item in ingredients %}
-            <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
-           {% endfor %}
-        </select>
-        <label>Choose Ingredients</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
         <textarea id="textarea2" name="method" class="materialize-textarea" data-length="500"></textarea>
         <label for="textarea2">Method</label>
       </div>
     </div>
 
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <input id="description_field" name="description" type="text" data-length="100" class="validate">
+        <label for="description_field">Short Description</label>
+      </div>
+    </div>
 
-<div class="row">
-  <button class="btn waves-effect waves-light" type="submit" >Submit</button>
-</div>
-</form>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate">
+        <label for="input_text">Title</label>
+      </div>
+    </div>
+
+    <div class="file-field input-field col s12">
+      <i class="material-icons prefix">image</i>
+      <div class="file-path-wrapper col s10">
+        <input class="file-path validate" type="text">
+      </div>
+      <div class="btn col s2">
+        <span>File</span>
+        <input type="file" name="profile_image">
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn waves-effect waves-light" type="submit">Submit</button>
+    </div>
+  </form>
 
 </div>
 {% endblock %}
