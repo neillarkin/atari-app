@@ -12,6 +12,11 @@
     padding: 0 0.5em;
 }
 
+.recipe_photo{
+    height: 400px;
+    width:600px;
+}
+
 .sub-button {
     /*width: auto;*/
     /*margin-top: 15px;*/

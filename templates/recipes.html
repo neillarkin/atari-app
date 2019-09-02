@@ -12,15 +12,7 @@
             </div>
         </div>
         <div class="collapsible-body">
-            <span><strong>Image:</strong>
-            {% for file in files %}
-            {% if file.recipe_id == recipe._id %}
-                <img src ="{{ url_for('file', filename=file.filename) }}">
-                {% else %}
-                <span>No image uploaded</span>
-                {% endif %}
-            {% endfor %}
-            </span><br>
+            <img src ="{{ url_for('file', filename=recipe.image_name) }}" class="recipe_photo" > </span><br>
             <span><strong>Description: </strong>{{recipe.description}}</span><br>
             <span><strong>Dish: </strong>{{recipe.category_name}}</span><br>
             <span><strong>Ingredients: </strong>{{recipe.ingredient_name}}</span><br>

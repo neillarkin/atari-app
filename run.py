@@ -35,16 +35,17 @@ def create_recipe():
     recipe_id = this_recipe.inserted_id
     profile_image = request.files['profile_image']
     mongo.save_file(profile_image.filename, profile_image, base='fs', content_type = 'image', recipe_id = recipe_id )
-    return render_template("recipes.html", recipes=mongo.db.recipes.find(), files=mongo.db.fs.files.find())
-
-# @app.route('/create_image', methods=['POST'])
-# def create_image():
-#     recipes = mongo.db.recipes
-#     if 'profile_image' in request.files:
-#         profile_image = request.files['profile_image']
-#         mongo.save_file(profile_image.filename, profile_image)
-#         mongo.db.recipes.insert({'profile_image_name' : profile_image_name})
-#         return render_template("recipes.html", recipes=mongo.db.recipes.find())
+    this_image = mongo.db.fs.files.find_one({"recipe_id": ObjectId(recipe_id)})
+    image_id = this_image.get('_id')
+    image_name = this_image.get('filename')
+    recipes.update( {'_id': ObjectId(recipe_id)},
+    {
+        "$set":{
+            'image_id' :image_id,
+            'image_name' : image_name 
+            }
+     })
+    return render_template("recipes.html", recipes=mongo.db.recipes.find())
 
 
 @app.route('/edit_recipe/<recipe_id>')
