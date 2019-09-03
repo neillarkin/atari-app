@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="collapsible-body">
-            <img src ="{{ url_for('file', filename=recipe.image_name) }}" class="recipe_photo" > </span><br>
+            <img src ="{{ url_for('file', filename=recipe.image_name) }}" class="recipe_photo" width="400px"> </span><br>
             <span><strong>Description: </strong>{{recipe.description}}</span><br>
             <span><strong>Dish: </strong>{{recipe.category_name}}</span><br>
             <span><strong>Ingredients: </strong>{{recipe.ingredient_name}}</span><br>
