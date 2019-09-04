@@ -2,8 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from bson.objectid import ObjectId
-    
+
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = 'recipe_db'
@@ -34,8 +33,8 @@ def create_recipe():
     this_recipe = recipes.insert_one(request.form.to_dict())
     recipe_id = this_recipe.inserted_id
     recipe_image = request.files['recipe_image']
-    mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = recipe_id )
-    this_image = mongo.db.fs.files.find_one({"recipe_id": recipe_id})
+    mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = ObjectId(recipe_id) )
+    this_image = mongo.db.fs.files.find_one({"recipe_id": ObjectId(recipe_id)})
     recipes.update( {'_id': ObjectId(recipe_id)},
     {
         "$set":{
@@ -55,10 +54,10 @@ def edit_recipe(recipe_id):
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    mongo.db.fs.files.remove({'recipe_id':recipe_id})
+    mongo.db.fs.files.remove({'recipe_id': ObjectId(recipe_id)})
     recipe_image = request.files['recipe_image']
-    mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = recipe_id )
-    new_image = mongo.db.fs.files.find_one({"recipe_id": recipe_id})
+    mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = ObjectId(recipe_id) )
+    new_image = mongo.db.fs.files.find_one({"recipe_id": ObjectId(recipe_id)})
     recipes = mongo.db.recipes
     recipes.update( {'_id': ObjectId(recipe_id)},
     {

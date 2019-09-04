@@ -2,10 +2,10 @@
 
 <h5>New Recipe</h5>
 <div class="row">
-  <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12" enctype="multipart/form-data" >
+  <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12" enctype="multipart/form-data">
 
     <div class="row">
-      <div class="input-field col s11">
+      <div class="input-field col s10">
         <i class="material-icons prefix">filter_list</i>
         <select id="ingredient" name="ingredient_name" multiple>
           <option value="" disabled selected>Choose ingedients</option>
@@ -17,10 +17,27 @@
       </div>
 
       <div class="input-field col s1">
-        <a href="{{url_for('get_ingredients')}}" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="top" data-tooltip="Add new ingredient">
+        <a href="#myModal" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="top" data-tooltip="Add new ingredient">
         <i class="material-icons">add</i></a>
       </div>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <h6>Enter ingredient:</h6>
+            <div class="input-field col s9">
+              <i class="material-icons prefix">create</i>
+              <input id="ingredient_name" name="ingredient_name" type="text" data-length="50" class="validate">
+              <label for="ingredient_name">Ingredient</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" type="submit">Add</button>
+          </div>
+        </div>
+
     </div>
+
+
+
 
     <div class="row">
       <div class="input-field col s12">
