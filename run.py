@@ -30,7 +30,12 @@ def new_recipe():
 @app.route('/create_recipe', methods=['POST'])
 def create_recipe():
     recipes = mongo.db.recipes
-    this_recipe = recipes.insert_one(request.form.to_dict())
+    recipe_name = request.form.get('recipe_name') 
+    description= request.form.get('description')	
+    category_name = request.form.get('category_name')	
+    ingredient_list = request.form.getlist('ingredient_name')	
+    method = request.form.get('method')	
+    this_recipe = recipes.insert_one({'recipe_name': recipe_name, 'description': description, 'category_name': category_name, 'ingredient_name' : ingredient_list,	'method' : method})
     recipe_id = this_recipe.inserted_id
     recipe_image = request.files['recipe_image']
     mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = ObjectId(recipe_id) )
