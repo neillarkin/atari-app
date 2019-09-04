@@ -36,13 +36,11 @@ def create_recipe():
     recipe_image = request.files['recipe_image']
     mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = recipe_id )
     this_image = mongo.db.fs.files.find_one({"recipe_id": recipe_id})
-    image_id = this_image.get('_id')
-    image_name = this_image.get('filename')
     recipes.update( {'_id': ObjectId(recipe_id)},
     {
         "$set":{
-            'image_id' :image_id,
-            'image_name' : image_name 
+            'image_id' :this_image.get('_id'),
+            'image_name' : this_image.get('filename')
             }
      })
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
@@ -57,12 +55,10 @@ def edit_recipe(recipe_id):
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    mongo.db.fs.files.remove({'recipe_id':ObjectId(recipe_id)})
+    mongo.db.fs.files.remove({'recipe_id':recipe_id})
     recipe_image = request.files['recipe_image']
     mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = recipe_id )
     new_image = mongo.db.fs.files.find_one({"recipe_id": recipe_id})
-    image_id = new_image.get('_id')
-    image_name = new_image.get('filename')
     recipes = mongo.db.recipes
     recipes.update( {'_id': ObjectId(recipe_id)},
     {
@@ -71,8 +67,8 @@ def update_recipe(recipe_id):
         'category_name':request.form.get('category_name'),
         'ingredient_name': request.form.getlist('ingredient_name'),
         'method': request.form.get('method'),
-        'image_id' : image_id,
-        'image_name' : image_name
+        'image_id' : new_image.get('_id'),
+        'image_name' : new_image.get('filename')
      })
 
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
