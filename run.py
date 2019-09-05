@@ -96,6 +96,11 @@ def create_ingredient():
     ingredients.insert_one(request.form.to_dict())
     return render_template("ingredients.html", ingredients=mongo.db.ingredients.find())
 
+@app.route('/modal_create_ingredient', methods=['POST'])
+def modal_create_ingredient():
+    ingredients = mongo.db.ingredients
+    ingredients.insert_one(request.form.to_dict())
+    return '', 204
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
