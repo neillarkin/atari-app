@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
@@ -31,8 +32,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.collapsible').collapsible();
@@ -52,9 +53,21 @@
         // });
 
         function refreshList() {
-            // $("#myModal#ingredient_menu").append(`${"input#ingredient_name_modal"}`)
+            console.log("hello world")
+            
+            $.ajax({
+                url: "/modal_create_ingredient",
+                type: "post",
+                data: $("#ingredient_name_modal"),
+                success: function() {
+        
+                     $('#ingredient_menu').load('/new_recipe #ingredient_name_modal');
+                },
+            });
 
-            $("#ingredient_menu").selectmenu("refresh");
+            // $("#ingredient_menu").remove();
+            // $("#myinput").load('/new_recipe #ingredient_menu');
+            //  $("#ingredient_menu").html('<option>' + response.result.toString() + '</option>');
         }
     </script>
 </body>
