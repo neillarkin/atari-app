@@ -54,21 +54,24 @@
 
         function refreshList() {
             console.log("hello world")
-            
-            $.ajax({
+
+           req =  $.ajax({
                 url: "/modal_create_ingredient",
-                type: "post",
+                type: "POST",
                 data: $("#ingredient_name_modal"),
-                success: function() {
-        
-                     $('#ingredient_menu').load('/new_recipe #ingredient_name_modal');
-                },
+            });
+            
+            req.done(function(data){
+                console.log(data)
+                $('.mysection').html(data)
+                $('select').formSelect();
+      
             });
 
             // $("#ingredient_menu").remove();
             // $("#myinput").load('/new_recipe #ingredient_menu');
             //  $("#ingredient_menu").html('<option>' + response.result.toString() + '</option>');
-        }
+        };
     </script>
 </body>
 

@@ -1,7 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
 <h5>New Recipe</h5>
-<div class="neil"></div>
 <div class="row">
   <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12" enctype="multipart/form-data">
 
@@ -35,7 +34,7 @@
     </div>
 
     <div class="row">
-      <div class="input-field col s10">
+      <div class="input-field col s10 mysection">
         <i class="material-icons prefix">filter_list</i>
         <select id="ingredient_menu" name="ingredient_name" multiple>
           <option value="" disabled selected>Choose ingredients</option>
@@ -78,7 +77,7 @@
     </div>
   </form>
 
-  <form id="myForm" action="{{ url_for('modal_create_ingredient') }}" method="POST" class="col s12">
+  <!--<form id="myForm" action="{{ url_for('modal_create_ingredient') }}" method="POST" class="col s12">-->
     <div id="myModal" class="modal">
       <div class="modal-content">
         <h6>Enter ingredient:</h6>
@@ -94,7 +93,7 @@
         </div>
       </div>
     </div>
-  </form>
+  <!--</form>-->
   <div class="row">
     <button class="mybutton btn waves-effect waves-light" onclick="refreshList()">Refresh</button>
   </div>

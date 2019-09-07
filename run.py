@@ -100,7 +100,7 @@ def create_ingredient():
 def modal_create_ingredient():
     ingredients = mongo.db.ingredients
     ingredients.insert_one(request.form.to_dict())
-    return '', 204
+    return render_template("section.html", ingredients=mongo.db.ingredients.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
