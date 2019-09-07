@@ -10,7 +10,7 @@
             <a href="#myModal" class="btn waves-effect waves-light modal-trigger">
                 <i class="material-icons right"></i>Add
             </a>
-            
+
             <form action="{{ url_for('create_ingredient') }}" method="POST" class="col s12">
                 <div id="myModal" class="modal">
                     <div class="modal-content">
@@ -29,11 +29,13 @@
         </div>
     </div>
     <ul class="collapsible" data-collapsible="accordion">
-        {% for item in ingredients %}
+        {% for ingredient in ingredients %}
         <li>
             <div class="collapsible-header">
                 <div class="ingredient_header">
-                    <strong>{{item.ingredient_name}}</strong>
+                    <strong>{{ingredient.ingredient_name}}</strong>
+                    <a href="{{url_for('delete_ingredient', ingredient_id=ingredient._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
+                    <a href="{{url_for('edit_ingredient', ingredient_id=ingredient._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
                 </div>
             </div>
         </li>

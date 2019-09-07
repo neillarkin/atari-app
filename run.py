@@ -102,6 +102,27 @@ def modal_create_ingredient():
     ingredients.insert_one(request.form.to_dict())
     return render_template("section.html", ingredients=mongo.db.ingredients.find())
 
+@app.route('/delete_ingredient/<ingredient_id>')
+def delete_ingredient(ingredient_id):
+    mongo.db.ingredients.remove({"_id": ObjectId(ingredient_id)})
+    return render_template("ingredients.html", ingredients=mongo.db.ingredients.find())
+
+@app.route('/edit_ingredient/<ingredient_id>')
+def edit_ingredient(ingredient_id):
+    this_ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(ingredient_id)})
+    all_ingredients = mongo.db.ingredients.find()
+    return render_template('edit_ingredient.html', ingredient=this_ingredient, ingredients=all_ingredients)
+
+@app.route('/update_ingredient/<ingredient_id>', methods=["POST"])
+def update_ingredient(ingredient_id):
+    ingredients = mongo.db.ingredients
+    ingredients.update( {'_id': ObjectId(ingredient_id)},
+    {
+        'ingredient_name':request.form.get('ingredient_name')
+    })
+    return render_template("ingredients.html", ingredients=mongo.db.ingredients.find())
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

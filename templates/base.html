@@ -53,19 +53,27 @@
         // });
 
         function refreshList() {
-            console.log("hello world")
+            // console.log("hello world")
 
-           req =  $.ajax({
+            request = $.ajax({
                 url: "/modal_create_ingredient",
                 type: "POST",
                 data: $("#ingredient_name_modal"),
             });
-            
-            req.done(function(data){
-                console.log(data)
+
+            request.done(function(data) {
+                
+                $('.mysection').css("background-color", "#FFFF9C").effect("pulsate", { times:6 }, 2000).animate({ backgroundColor: "#FFFFFF" }, 6500);
+                
+                //  $('.mysection').css("background-color", "#FFFF9C").animate({ backgroundColor: "#FFFFFF" }, 6500)
+                
+                // $('.mysection').stop().css("background-color", "#FFFF9C").animate({ backgroundColor: "#FFFFFF" }, 6500);
+                
+                // $('.mysection').effect("pulsate", { times:6 }, 2000);
+                // $('.ingredient_menu').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
                 $('.mysection').html(data)
                 $('select').formSelect();
-      
+
             });
 
             // $("#ingredient_menu").remove();
