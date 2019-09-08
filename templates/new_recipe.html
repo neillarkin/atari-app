@@ -73,26 +73,28 @@
     </div>
 
     <div class="row">
+      <button class="btn waves-effect waves-light red" type="reset" onclick="goBack()" value="Cancel">Cancel</button>
       <button class="btn waves-effect waves-light" type="submit">Submit</button>
+
     </div>
   </form>
 
   <!--<form id="myForm" action="{{ url_for('modal_create_ingredient') }}" method="POST" class="col s12">-->
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <h6>Enter ingredient:</h6>
-        <div class="input-field col s9">
-          <i class="material-icons prefix">create</i>
-          <input id="ingredient_name_modal" name="ingredient_name" type="text" data-length="50" class="validate">
-          <label for="ingredient_name_modal">Ingredient</label>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <div class="row">
-          <button class="modal-close btn waves-effect waves-light" type="submit" onclick="refreshList()">Submit</button>
-        </div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <h6>Enter ingredient:</h6>
+      <div class="input-field col s9">
+        <i class="material-icons prefix">create</i>
+        <input id="ingredient_name_modal" name="ingredient_name" type="text" data-length="50" class="validate">
+        <label for="ingredient_name_modal">Ingredient</label>
       </div>
     </div>
+    <div class="modal-footer">
+      <div class="row">
+        <button class="modal-close btn waves-effect waves-light" type="submit" onclick="refreshList()">Submit</button>
+      </div>
+    </div>
+  </div>
   <!--</form>-->
 </div>
 {% endblock %}

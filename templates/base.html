@@ -45,16 +45,7 @@
             //   $('select').material_select();
         });
 
-        // $('form #myForm').on({
-        //     click: function(event) {
-        //         event.preventDefault();
-        //         $(this).closest('form').submit();
-        //     }
-        // });
-
         function refreshList() {
-            // console.log("hello world")
-
             request = $.ajax({
                 url: "/modal_create_ingredient",
                 type: "POST",
@@ -62,24 +53,15 @@
             });
 
             request.done(function(data) {
-                
-                $('.mysection').css("background-color", "#FFFF9C").effect("pulsate", { times:6 }, 2000).animate({ backgroundColor: "#FFFFFF" }, 6500);
-                
-                //  $('.mysection').css("background-color", "#FFFF9C").animate({ backgroundColor: "#FFFFFF" }, 6500)
-                
-                // $('.mysection').stop().css("background-color", "#FFFF9C").animate({ backgroundColor: "#FFFFFF" }, 6500);
-                
-                // $('.mysection').effect("pulsate", { times:6 }, 2000);
-                // $('.ingredient_menu').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
+                $('.mysection').css("background-color", "#FFFF9C").effect("pulsate", { times: 6 }, 2000).animate({ backgroundColor: "#FFFFFF" }, 6500);
                 $('.mysection').html(data)
                 $('select').formSelect();
-
             });
-
-            // $("#ingredient_menu").remove();
-            // $("#myinput").load('/new_recipe #ingredient_menu');
-            //  $("#ingredient_menu").html('<option>' + response.result.toString() + '</option>');
         };
+
+        function goBack() {
+            window.history.back();
+        }
     </script>
 </body>
 

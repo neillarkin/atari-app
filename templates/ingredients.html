@@ -22,6 +22,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button class="btn waves-effect waves-light red modal-close" type="reset" value="Cancel">Cancel</button>
                         <button class="btn waves-effect waves-light modal-close" type="submit">Add</button>
                     </div>
                 </div>
@@ -30,15 +31,21 @@
     </div>
     <ul class="collapsible" data-collapsible="accordion">
         {% for ingredient in ingredients %}
-        <li>
+        <li class="col-s12 ingredient-list">
             <div class="collapsible-header">
-                <div class="ingredient_header">
-                    <strong>{{ingredient.ingredient_name}}</strong>
-                    <a href="{{url_for('delete_ingredient', ingredient_id=ingredient._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
-                    <a href="{{url_for('edit_ingredient', ingredient_id=ingredient._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                <a href="{{url_for('edit_ingredient', ingredient_id=ingredient._id)}}" >
+                    <div class="col s10">
+                        <div class="ingredient_header">
+                            <strong>{{ingredient.ingredient_name}}</strong>
+                        </div>
+                    </div>
+                </a>
+                <div class="col s2">
+                    <a href="{{url_for('delete_ingredient', ingredient_id=ingredient._id)}}" class="waves-effect waves-light"><i class="material-icons tooltipped" data-position="top" data-tooltip="Delete ingredient">delete_forever</i></a>
                 </div>
             </div>
         </li>
+
         {% endfor %}
     </ul>
 </div>

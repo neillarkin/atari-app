@@ -12,6 +12,12 @@
     padding: 0 0.5em;
 }
 
+.ingredient-list a{
+    display: block;
+    height:100%;
+    width:100%;
+
+}
 .recipe_photo{
     /*height: 400px;*/
     /*width:600px;*/
