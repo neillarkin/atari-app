@@ -12,23 +12,34 @@
             </div>
         </div>
         <div class="collapsible-body">
-            <img src ="{{ url_for('file', filename=recipe.image_name) }}" class="recipe_photo" width="400px"> </span><br>
+            <img src="{{ url_for('file', filename=recipe.image_name) }}" class="recipe_photo" width="400px"> </span><br>
             <span><strong>Description: </strong>{{recipe.description}}</span><br>
             <span><strong>Dish: </strong>{{recipe.category_name}}</span><br>
             <span><strong>Ingredients: </strong>{{recipe.ingredient_name}}</span><br>
             <span><strong>Method: </strong>{{recipe.method}}</span><br>
 
             <div class="col s12">
-                <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
+                <a href="#myDeleteModal" class="waves-effect waves-light btn btn_small modal-trigger">Delete</a>
+
                 <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
             </div>
         </div>
     </li>
+    <div id="myDeleteModal" class="modal">
+        <div class="modal-content">
+            <h6>Are you sure?</h6>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="waves-effect waves-light btn btn_small modal-close">Cancel</a>
+            <a href="{{url_for( 'delete_recipe', recipe_id=recipe._id)}} " class="waves-effect waves-light btn btn_small red ">Delete</a>
+
+        </div>
+    </div>
     {% endfor %}
 </ul>
-<div class="row">
-    <a href="{{url_for('new_recipe')}}" class="btn-floating btn-small waves-effect waves-light red">
-    <i class="material-icons">add</i>Add a recipe</a>
+<div class="row ">
+    <a href="{{url_for( 'new_recipe')}} " class="btn-floating btn-small waves-effect waves-light red ">
+    <i class="material-icons ">add</i>Add a recipe</a>
 </div>
 
 {% endblock %}
