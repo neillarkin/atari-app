@@ -14,6 +14,14 @@
 
     <div class="row">
       <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <input id="description_field" name="description" type="text" data-length="100" class="validate">
+        <label for="description_field">Short Description</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
         <i class="material-icons prefix">filter_list</i>
         <select id="category" name="category_name">
               <option value="" disabled selected>Choose dish type</option>
@@ -26,15 +34,7 @@
     </div>
 
     <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">create</i>
-        <input id="description_field" name="description" type="text" data-length="100" class="validate">
-        <label for="description_field">Short Description</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s10 mysection">
+      <div class="input-field col s11 mysection">
         <i class="material-icons prefix">filter_list</i>
         <select id="ingredient_menu" name="ingredient_name" multiple>
           <option value="" disabled selected>Choose ingredients</option>
@@ -44,12 +44,11 @@
         </select>
         <label>Choose Ingredients</label>
       </div>
-
+  
       <div class="input-field col s1">
         <a href="#myModal" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="top" data-tooltip="Add new ingredient">
         <i class="material-icons">add</i></a>
       </div>
-
 
     </div>
 
