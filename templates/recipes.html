@@ -17,21 +17,27 @@
             <span><strong>Dish: </strong>{{recipe.category_name}}</span><br>
             <span><strong>Ingredients: </strong>{{recipe.ingredient_name}}</span><br>
             <span><strong>Method: </strong>{{recipe.method}}</span><br>
+            <span><strong>ID:</strong><div id="myID">{{recipe._id}}</div></span><br>
 
             <div class="col s12">
-                <a href="#myDeleteModal" class="waves-effect waves-light btn btn_small modal-trigger">Delete</a>
+                <!--{% if recipe %}-->
+                <!--{ % set my_recipe_id = {{recipe._id}} %}-->
+                <!--{% endif %}-->
+                <!--<a href="#" onclick="promptUser('{{recipe._id}}', '{{recipe.recipe_name}}')" class="waves-effect waves-light btn btn_small modal-trigger">Delete</a>-->
 
+                <a href="#" onclick="promptUser('{{recipe.recipe_name}}')" class="waves-effect waves-light btn btn_small modal-trigger">Delete</a>
                 <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
             </div>
         </div>
     </li>
     <div id="myDeleteModal" class="modal">
         <div class="modal-content">
-            <h6>Are you sure?</h6>
+            <h6>Do you want to delete <strong><div id="delete_name"></div></strong>?</h6>
         </div>
         <div class="modal-footer">
             <a href="#" class="waves-effect waves-light btn btn_small modal-close">Cancel</a>
-            <a href="{{url_for( 'delete_recipe', recipe_id=recipe._id)}} " class="waves-effect waves-light btn btn_small red ">Delete</a>
+            <a href="#" onclick="deleteRecipe('{{recipe._id}}')" class="waves-effect waves-light btn btn_small red ">Delete</a>
+            <!--<a href="{{url_for( 'delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small red ">Delete</a>-->
 
         </div>
     </div>

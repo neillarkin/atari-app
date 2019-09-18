@@ -22,7 +22,7 @@
                 <ul class="sidenav" id="mobile-demo">
                     <li><a href="{{url_for('new_recipe')}}">New Recipe</a></li>
                     <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-B                   <li><a href="{{url_for('get_ingredients')}}">Ingredients</a></li>
+                    <li><a href="{{url_for('get_ingredients')}}">Ingredients</a></li>
                 </ul>
             </div>
         </nav>
@@ -49,7 +49,8 @@ B                   <li><a href="{{url_for('get_ingredients')}}">Ingredients</a>
             request = $.ajax({
                 url: "/modal_create_ingredient",
                 type: "POST",
-                data: $("#ingredient_name_modal"),
+                data: $("#ingredient_field_modal"),
+
             });
 
             request.done(function(data) {
@@ -59,8 +60,74 @@ B                   <li><a href="{{url_for('get_ingredients')}}">Ingredients</a>
             });
         };
 
+        function callModal() {
+            $.ajax({
+                url: "/get_ingredients",
+                type: "GET",
+                data: "ingredient_id",
+            });
+        }
+
         function goBack() {
             window.history.back();
+        }
+
+        function confirmModal() {
+            $.ajax({
+                url: "/get_this_recipe",
+                type: "GET",
+                data: $("#myDeleteModal")
+            });
+        }
+
+
+        function deleteRecipe(recipe_id) {
+            $.ajax({
+                url: "/delete_recipe",
+                type: "GET",
+                data: recipe_id
+            });
+        }
+
+        function promptUser(recipe_name) {
+
+            $('#myDeleteModal').modal('open')
+            //   $('#myDeleteModal').openModal()
+            $("#delete_name").empty();
+            $("#delete_name").append(recipe_name);
+
+
+
+
+            // var request  = $.ajax({
+            //     url: "/get_this_recipe",
+            //     type: "GET",
+            //     data: recipe_id
+            // });
+
+            //   request.done(function(data){
+            //       select("#delete_name").val(recipe_name);
+            //   })
+
+
+            // select("#delete_name").val(name);
+
+
+
+            // if (confirm("Do you want to delete " + name + " ?")) {
+
+            //     // $.ajax({
+            //     //     url: "/get_this_recipe",
+            //     //     type: "GET",
+            //     //     data: $("#myDeleteModal")
+            //     // });
+            // }
+            // else {
+
+            //     return;
+
+            // }
+
         }
     </script>
 </body>

@@ -1,0 +1,14 @@
+{% if submission_successful %}
+{% for recipe in recipes %}
+    <div id="myDeleteModal" class="modal">
+        <div class="modal-content">
+            <h6>Do you want to delete <strong>{{recipe.recipe_name}}</strong>?</h6>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="waves-effect waves-light btn btn_small modal-close">Cancel</a>
+            <a href="{{url_for( 'delete_recipe', recipe_id=recipe._id)}} " class="waves-effect waves-light btn btn_small red ">Delete</a>
+
+        </div>
+    </div>
+{% endfor %}
+{% endif %}

@@ -57,6 +57,15 @@ def edit_recipe(recipe_id):
     all_categories = mongo.db.categories.find()
     return render_template('edit_recipe.html', recipe=this_recipe, ingredients=all_ingredients, categories=all_categories)
 
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    mongo.db.fs.files.remove({"recipe_id": ObjectId(recipe_id)})
+    return render_template("recipes.html", recipes=mongo.db.recipes.find())
+    # return redirect(url_for('get_recipes')) 
+
+
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     mongo.db.fs.files.remove({'recipe_id': ObjectId(recipe_id)})
@@ -78,21 +87,17 @@ def update_recipe(recipe_id):
     return render_template("recipes.html", recipes=mongo.db.recipes.find())
     # return redirect(url_for('get_recipes'))
 
-@app.route('/delete_recipe/<recipe_id>')
-def delete_recipe(recipe_id):
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    mongo.db.fs.files.remove({"recipe_id": ObjectId(recipe_id)})
-    return render_template("recipes.html", recipes=mongo.db.recipes.find())
-    # return redirect(url_for('get_recipes')) 
+
 
 
 @app.route('/get_ingredients')
 def get_ingredients():
     return render_template("ingredients.html", ingredients=mongo.db.ingredients.find())
-
+    
 @app.route('/create_ingredient', methods=['POST'])
 def create_ingredient():
     ingredients = mongo.db.ingredients
+    print (ingredients)
     ingredients.insert_one(request.form.to_dict())
     return render_template("ingredients.html", ingredients=mongo.db.ingredients.find())
 
@@ -101,6 +106,24 @@ def modal_create_ingredient():
     ingredients = mongo.db.ingredients
     ingredients.insert_one(request.form.to_dict())
     return render_template("section.html", ingredients=mongo.db.ingredients.find())
+
+@app.route('/call_modal')
+def call_modal():
+    return ('#myDeleteModal')
+
+# @app.route('/get_this_recipe/<recipe_id>')
+# def get_this_recipe(recipe_id):
+#     this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+#     return this_recipe.recipe_name
+    
+    # return render_template('recipes.html' + '#myDeleteModal', recipe=this_recipe)
+    
+
+#  return redirect(url_for('get_recipes') + '#myDeleteModal')
+#   return render_template('recipes.html', recipe=this_recipe, submission_successful=submission_successful)
+    # return render_template(url_for('get_recipes') + '#myDeleteModal', recipe=this_recipe)
+    # redirect(url_for('index') + '#myModal')
+
 
 @app.route('/delete_ingredient/<ingredient_id>')
 def delete_ingredient(ingredient_id):

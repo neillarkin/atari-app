@@ -41,14 +41,17 @@
                     </div>
                 </a>
                 <div class="col s2">
-                    <a href="#myDeleteModal" class="modal-trigger"><i class="material-icons tooltipped" data-position="top" data-tooltip="Delete ingredient">delete_forever</i></a>
+                    <a href="#" onclick="callModal()" class="modal-trigger">
+                        <i class="material-icons tooltipped" data-position="top" data-tooltip="Delete ingredient">
+                            delete_forever</i></a>
 
                 </div>
             </div>
         </li>
         <div id="myDeleteModal" class="modal">
+            
             <div class="modal-content">
-                <h6>Are you sure?</h6>
+            <h6>Do you want to delete <strong>{{ingredient.ingredient_name}}</strong>?</h6>
             </div>
             <div class="modal-footer">
                 <a href="#" class="waves-effect waves-light btn btn_small modal-close">Cancel</a>
