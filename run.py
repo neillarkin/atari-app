@@ -111,10 +111,10 @@ def modal_create_ingredient():
 def call_modal():
     return ('#myDeleteModal')
 
-# @app.route('/get_this_recipe/<recipe_id>')
-# def get_this_recipe(recipe_id):
-#     this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-#     return this_recipe.recipe_name
+@app.route('/get_this_recipe/<recipe_id>')
+def get_this_recipe(recipe_id):
+    this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return this_recipe.recipe_id
     
     # return render_template('recipes.html' + '#myDeleteModal', recipe=this_recipe)
     

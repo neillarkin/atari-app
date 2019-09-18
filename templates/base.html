@@ -82,21 +82,68 @@
 
 
         function deleteRecipe(recipe_id) {
-            $.ajax({
-                url: "/delete_recipe",
-                type: "GET",
-                data: recipe_id
-            });
+            // var request;
+            // if (recipe_id) {
+                request = $.ajax({
+                    url: "/delete_recipe" + "/" + recipe_id,
+                    type: "GET",
+                    data: $('#myDeleteModal').modal('close')
+                });
+                // recipe_id = "";
+                request.done(
+                    $.ajax({
+                        url: "/get_recipes",
+                        type: "GET",
+                        data: "recipe_id"
+                    })
+                )
+            // }
+            // else {
+            //     request = "";
+            //     return;
+            // }
+
+
+
         }
 
-        function promptUser(recipe_name) {
-
-            $('#myDeleteModal').modal('open')
-            //   $('#myDeleteModal').openModal()
+        function promptUser(recipe_id, recipe_name) {
+            // var recipe_id = recipe_id;
+            $('#myDeleteModal').modal('open');
             $("#delete_name").empty();
             $("#delete_name").append(recipe_name);
 
+            // request = $.ajax({
+            //     url: "/get_this_recipe",
+            //     type: "GET",
+            //     data: recipe_id
+            // });
 
+            $("#neilsBtn").click(function() {
+                $(this).data('clicked', true);
+                deleteRecipe(recipe_id);
+            });
+
+
+            // if ($("#neilsBtn").data('clicked')) {
+            //     console.log("if state")
+            //       $.ajax({
+            //         url: "/delete_recipe",
+            //         type: "GET",
+            //         data: recipe_id
+            //     });
+            // } else {
+            //     return;
+            // }
+
+            // $('#neilsBtn').click(function(recipe_id) {
+            //     $.ajax({
+            //         url: "/delete_recipe",
+            //         type: "GET",
+            //         data: "5d825d2323e869645445123c"
+            //     });
+
+            // })
 
 
             // var request  = $.ajax({
@@ -109,10 +156,7 @@
             //       select("#delete_name").val(recipe_name);
             //   })
 
-
             // select("#delete_name").val(name);
-
-
 
             // if (confirm("Do you want to delete " + name + " ?")) {
 
@@ -128,6 +172,7 @@
 
             // }
 
+            //   $('#myDeleteModal').openModal()
         }
     </script>
 </body>
