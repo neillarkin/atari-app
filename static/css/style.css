@@ -16,8 +16,24 @@
     display: block;
     height:100%;
     width:100%;
+    
 
 }
+
+.ingredient-list a:hover{
+    font-size: larger;
+}
+
+
+.file-field .file-path-wrapper{
+    padding-left: 40px;
+}
+
+.file-field .btn, .file-field .btn-large, .file-field .btn-small {
+    /*float: right;*/
+}
+
+
 .recipe_photo{
     /*height: 400px;*/
     /*width:600px;*/

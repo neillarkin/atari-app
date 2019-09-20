@@ -7,7 +7,7 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate">
+        <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate" autofocus>
         <label for="input_text">Title</label>
       </div>
     </div>
@@ -44,9 +44,9 @@
         </select>
         <label>Choose Ingredients</label>
       </div>
-  
+
       <div class="input-field col s1">
-        <a href="#myModal" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="top" data-tooltip="Add new ingredient">
+        <a href="#ingredient_modal" onclick="getFocus()" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="top" data-tooltip="Add new ingredient">
         <i class="material-icons">add</i></a>
       </div>
 
@@ -60,15 +60,36 @@
       </div>
     </div>
 
-    <div class="file-field input-field col s12">
-      <i class="material-icons prefix">image</i>
-      <div class="file-path-wrapper col s10">
-        <input class="file-path validate" type="text">
+    <div class="row">
+      <!--<form action="#">-->
+
+      <div class="file-field input-field col s12">
+        <div class="row">
+          <div class="col s11">
+
+            <i class="material-icons prefix">image</i>
+
+            <!--<div class="col s12">-->
+
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+
+
+          </div>
+
+
+          <div class="btn col s1">
+            <span>File</span>
+            <input type="file" name="recipe_image">
+          </div>
+
+          <!--</div>-->
+        </div>
+
       </div>
-      <div class="btn col s2">
-        <span>File</span>
-        <input type="file" name="recipe_image">
-      </div>
+
+      <!--</form>-->
     </div>
 
     <div class="row">
@@ -79,12 +100,12 @@
   </form>
 
   <!--<form id="myForm" action="{{ url_for('modal_create_ingredient') }}" method="POST" class="col s12">-->
-  <div id="myModal" class="modal">
+  <div id="ingredient_modal" class="modal">
     <div class="modal-content">
       <h6>Enter ingredient:</h6>
       <div class="input-field col s9">
         <i class="material-icons prefix">create</i>
-        <input id="ingredient_field_modal" name="ingredient_name" type="text" data-length="50" class="validate">
+        <input id="ingredient_field_modal" name="ingredient_name" type="text" data-length="50" class="validate" autofocus>
         <label for="ingredient_field_modal">Ingredient</label>
       </div>
     </div>

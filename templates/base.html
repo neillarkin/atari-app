@@ -43,14 +43,20 @@
             $('.modal').modal();
             $('.tooltipped').tooltip();
             //   $('select').material_select();
+
         });
+
+        function getFocus() {
+            setTimeout(function() {
+                $('#ingredient_field_modal').focus();
+            }, 500);
+        }
 
         function refreshList() {
             request = $.ajax({
                 url: "/modal_create_ingredient",
                 type: "POST",
                 data: $("#ingredient_field_modal"),
-
             });
 
             request.done(function(data) {
@@ -72,107 +78,50 @@
             window.history.back();
         }
 
-        function confirmModal() {
-            $.ajax({
-                url: "/get_this_recipe",
+
+        function deleteRecipe(id) {
+            request = $.ajax({
+                url: "/delete_recipe" + "/" + id,
                 type: "GET",
-                data: $("#myDeleteModal")
+                data: $('#myDeleteModal').modal('close')
             });
-        }
-
-
-        function deleteRecipe(recipe_id) {
-            // var request;
-            // if (recipe_id) {
-                request = $.ajax({
-                    url: "/delete_recipe" + "/" + recipe_id,
+            request.done(
+                $.ajax({
+                    url: "/get_recipes",
                     type: "GET",
-                    data: $('#myDeleteModal').modal('close')
-                });
-                // recipe_id = "";
-                request.done(
-                    $.ajax({
-                        url: "/get_recipes",
-                        type: "GET",
-                        data: "recipe_id"
-                    })
-                )
-            // }
-            // else {
-            //     request = "";
-            //     return;
-            // }
-
-
-
+                    data: "recipe_id"
+                })
+            )
         }
 
-        function promptUser(recipe_id, recipe_name) {
-            // var recipe_id = recipe_id;
-            $('#myDeleteModal').modal('open');
-            $("#delete_name").empty();
-            $("#delete_name").append(recipe_name);
-
-            // request = $.ajax({
-            //     url: "/get_this_recipe",
-            //     type: "GET",
-            //     data: recipe_id
-            // });
-
-            $("#neilsBtn").click(function() {
-                $(this).data('clicked', true);
-                deleteRecipe(recipe_id);
+        function deleteIngredient(id) {
+            request = $.ajax({
+                url: "/delete_ingredient" + "/" + id,
+                type: "GET",
+                data: $('#myDeleteModal').modal('close')
             });
+            request.done(
+                $.ajax({
+                    url: "/get_ingredients",
+                    type: "GET",
+                    data: "ingredient_id"
+                })
+            )
+        }
 
+        function promptUser(id, name) {
+            $("#myDeleteModal").modal('open');
+            $("#delete_name").empty();
+            $("#delete_name").append(name);
 
-            // if ($("#neilsBtn").data('clicked')) {
-            //     console.log("if state")
-            //       $.ajax({
-            //         url: "/delete_recipe",
-            //         type: "GET",
-            //         data: recipe_id
-            //     });
-            // } else {
-            //     return;
-            // }
-
-            // $('#neilsBtn').click(function(recipe_id) {
-            //     $.ajax({
-            //         url: "/delete_recipe",
-            //         type: "GET",
-            //         data: "5d825d2323e869645445123c"
-            //     });
-
-            // })
-
-
-            // var request  = $.ajax({
-            //     url: "/get_this_recipe",
-            //     type: "GET",
-            //     data: recipe_id
-            // });
-
-            //   request.done(function(data){
-            //       select("#delete_name").val(recipe_name);
-            //   })
-
-            // select("#delete_name").val(name);
-
-            // if (confirm("Do you want to delete " + name + " ?")) {
-
-            //     // $.ajax({
-            //     //     url: "/get_this_recipe",
-            //     //     type: "GET",
-            //     //     data: $("#myDeleteModal")
-            //     // });
-            // }
-            // else {
-
-            //     return;
-
-            // }
-
-            //   $('#myDeleteModal').openModal()
+            $("#delete_recipe_btn").click(function() {
+                $(this).data('clicked', true);
+                deleteRecipe(id);
+            });
+            $("#delete_ingredient_btn").click(function() {
+                $(this).data('clicked', true);
+                deleteIngredient(id);
+            });
         }
     </script>
 </body>

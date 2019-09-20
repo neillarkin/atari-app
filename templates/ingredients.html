@@ -5,19 +5,18 @@
         <div class="col s10">
             <h5>Ingredients</h5>
         </div>
-
         <div class="col s2">
-            <a href="#myModal" class="btn waves-effect waves-light modal-trigger">
+            <a href="#ingredient_modal" class="btn waves-effect waves-light modal-trigger">
                 <i class="material-icons right"></i>Add
             </a>
 
-            <form action="{{ url_for('create_ingredient') }}" method="POST" class="col s12">
-                <div id="myModal" class="modal">
+            <form action="{{ url_for('create_ingredient')}}" method="POST" class="col s12">
+                <div id="ingredient_modal" class="modal">
                     <div class="modal-content">
                         <h6>Enter ingredient:</h6>
                         <div class="input-field col s9">
                             <i class="material-icons prefix">create</i>
-                            <input id="input_text" name="ingredient_name" type="text" data-length="50" class="validate">
+                            <input id="input_text" name="ingredient_name" type="text" data-length="50" class="validate" autofocus>
                             <label for="input_text">Ingredient</label>
                         </div>
                     </div>
@@ -41,7 +40,7 @@
                     </div>
                 </a>
                 <div class="col s2">
-                    <a href="#" onclick="callModal()" class="modal-trigger">
+                    <a href="#myDeleteModal" onclick="promptUser('{{ingredient._id}}', '{{ingredient.ingredient_name}}')" class="modal-trigger">
                         <i class="material-icons tooltipped" data-position="top" data-tooltip="Delete ingredient">
                             delete_forever</i></a>
 
@@ -49,14 +48,13 @@
             </div>
         </li>
         <div id="myDeleteModal" class="modal">
-            
             <div class="modal-content">
-            <h6>Do you want to delete <strong>{{ingredient.ingredient_name}}</strong>?</h6>
+            <h6>Do you want to delete <strong><span id="delete_name"></span>?</h6>
             </div>
             <div class="modal-footer">
                 <a href="#" class="waves-effect waves-light btn btn_small modal-close">Cancel</a>
-                <a href="{{url_for('delete_ingredient', ingredient_id=ingredient._id)}}" class="waves-effect waves-light btn btn_small red ">Delete</a>
-
+                <a href="" id="delete_ingredient_btn"  class="waves-effect waves-light btn btn_small red">Delete</a>      
+                <!--<a href="{{url_for('delete_ingredient', ingredient_id=ingredient._id)}}" class="waves-effect waves-light btn btn_small red ">Delete</a>-->
             </div>
         </div>
         {% endfor %}

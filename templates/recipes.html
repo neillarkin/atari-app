@@ -17,7 +17,7 @@
             <span><strong>Dish: </strong>{{recipe.category_name}}</span><br>
             <span><strong>Ingredients: </strong>{{recipe.ingredient_name}}</span><br>
             <span><strong>Method: </strong>{{recipe.method}}</span><br>
-            <span><strong>ID:</strong><div id="myID">{{recipe._id}}</div></span><br>
+            <!--<span><strong>ID:</strong><div id="myID">{{recipe._id}}</div></span><br>-->
 
             <div class="col s12">
                 <!--{% if recipe %}-->
@@ -33,11 +33,11 @@
         <!--<div id="myDeleteModal{{ recipe.recipe_id }}" class="modal">-->
     <div id="myDeleteModal" class="modal">
         <div class="modal-content">
-            <h6>Do you want to delete <strong><div id="delete_name"></div></strong>?</h6>
+            <h6>Do you want to delete <strong><span id="delete_name"></span></strong>?</h6>
         </div>
         <div class="modal-footer">
             <a href="" class="waves-effect waves-light btn btn_small modal-close">Cancel</a>
-           <a href="" id="neilsBtn"  class="waves-effect waves-light btn btn_small red">Delete</a>            
+           <a href="" id="delete_recipe_btn"  class="waves-effect waves-light btn btn_small red">Delete</a>            
             
             <!--<a href="#" id="neilsBtn" onclick="deleteRecipe('{{recipe._id}}')" class="waves-effect waves-light btn btn_small red">Delete</a>-->
             <!--<a href="{{url_for( 'delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small red ">Delete</a>-->
