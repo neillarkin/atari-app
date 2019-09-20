@@ -63,6 +63,7 @@
                 $('.mysection').css("background-color", "#FFFF9C").effect("pulsate", { times: 6 }, 2000).animate({ backgroundColor: "#FFFFFF" }, 6500);
                 $('.mysection').html(data)
                 $('select').formSelect();
+                displayToast("Ingredient", "Added!");
             });
         };
 
@@ -92,6 +93,7 @@
                     data: "recipe_id"
                 })
             )
+
         }
 
         function deleteIngredient(id) {
@@ -117,11 +119,23 @@
             $("#delete_recipe_btn").click(function() {
                 $(this).data('clicked', true);
                 deleteRecipe(id);
+                displayToast("Recipe", "Deleted!");
             });
+
             $("#delete_ingredient_btn").click(function() {
                 $(this).data('clicked', true);
                 deleteIngredient(id);
+                displayToast("Ingredient", "Deleted");
             });
+
+
+        }
+
+        function displayToast(myString, myString2) {
+            // setTimeout(function() {}, 50000);
+            var str = myString; var str2 = myString2
+            str.valueOf()
+            M.toast({ html: str.valueOf()+ ' ' + str2.valueOf(), displayLength: 5000})
         }
     </script>
 </body>

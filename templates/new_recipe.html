@@ -61,40 +61,25 @@
     </div>
 
     <div class="row">
-      <!--<form action="#">-->
-
       <div class="file-field input-field col s12">
         <div class="row">
           <div class="col s11">
-
             <i class="material-icons prefix">image</i>
-
-            <!--<div class="col s12">-->
-
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
             </div>
-
-
           </div>
-
-
           <div class="btn col s1">
             <span>File</span>
             <input type="file" name="recipe_image">
           </div>
-
-          <!--</div>-->
         </div>
-
       </div>
-
-      <!--</form>-->
     </div>
 
     <div class="row">
       <button class="btn waves-effect waves-light red" type="reset" onclick="goBack()" value="Cancel">Cancel</button>
-      <button class="btn waves-effect waves-light" type="submit">Save</button>
+      <button class="btn waves-effect waves-light" type="submit" onclick="displayToast('Recipe','Saved!')">Save</button>
 
     </div>
   </form>
@@ -105,13 +90,14 @@
       <h6>Enter ingredient:</h6>
       <div class="input-field col s9">
         <i class="material-icons prefix">create</i>
-        <input id="ingredient_field_modal" name="ingredient_name" type="text" data-length="50" class="validate" autofocus>
+        <input id="ingredient_field_modal" name="ingredient_name" type="text" data-length="50" class="validate">
         <label for="ingredient_field_modal">Ingredient</label>
       </div>
     </div>
     <div class="modal-footer">
       <div class="row">
-        <button class="modal-close btn waves-effect waves-light" type="submit" onclick="refreshList()">Submit</button>
+          <button class="modal-close btn waves-effect waves-light" type="submit">Cancel</button>      
+        <button class="modal-close btn waves-effect waves-light red" type="submit" onclick="refreshList()">Save</button>
       </div>
     </div>
   </div>

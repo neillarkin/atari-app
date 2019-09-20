@@ -1,15 +1,14 @@
 {% extends 'base.html'%} {% block content %}
 
 <div class="row">
+
     <div class="row">
         <div class="col s10">
             <h5>Ingredients</h5>
         </div>
         <div class="col s2">
-            <a href="#ingredient_modal" class="btn waves-effect waves-light modal-trigger">
-                <i class="material-icons right"></i>Add
-            </a>
-
+            <a href="#ingredient_modal" onclick="getFocus()" class="btn waves-effect waves-light modal-trigger btn_add_ingredient">
+                <i class="material-icons right"></i>Add</a>
             <form action="{{ url_for('create_ingredient')}}" method="POST" class="col s12">
                 <div id="ingredient_modal" class="modal">
                     <div class="modal-content">
@@ -22,43 +21,45 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn waves-effect waves-light red modal-close" type="reset" value="Cancel">Cancel</button>
-                        <button class="btn waves-effect waves-light modal-close" type="submit">Add</button>
+                        <button class="btn waves-effect waves-light modal-close" type="submit">Save</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <ul class="collapsible" data-collapsible="accordion">
-        {% for ingredient in ingredients %}
-        <li class="col-s12 ingredient-list">
-            <div class="collapsible-header">
-                <a href="{{url_for('edit_ingredient', ingredient_id=ingredient._id)}}">
-                    <div class="col s10">
-                        <div class="ingredient_header">
-                            <strong>{{ingredient.ingredient_name}}</strong>
+
+    <div class="row">
+        <ul class="collapsible" data-collapsible="accordion">
+            {% for ingredient in ingredients %}
+            <li class="col-s12 ingredient-list">
+                <div class="collapsible-header">
+                    <a href="{{url_for('edit_ingredient', ingredient_id=ingredient._id)}}">
+                        <div class="col s10">
+                            <div class="ingredient_header">
+                                <strong>{{ingredient.ingredient_name}}</strong>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <div class="col s2">
-                    <a href="#myDeleteModal" onclick="promptUser('{{ingredient._id}}', '{{ingredient.ingredient_name}}')" class="modal-trigger">
+                    </a>
+                    <div class="col s2">
+                        <a href="#myDeleteModal" onclick="promptUser('{{ingredient._id}}', '{{ingredient.ingredient_name}}')" class="modal-trigger">
                         <i class="material-icons tooltipped" data-position="top" data-tooltip="Delete ingredient">
                             delete_forever</i></a>
 
+                    </div>
                 </div>
-            </div>
-        </li>
-        <div id="myDeleteModal" class="modal">
-            <div class="modal-content">
-            <h6>Do you want to delete <strong><span id="delete_name"></span>?</h6>
+            </li>
+            <div id="myDeleteModal" class="modal">
+                <div class="modal-content">
+                    <h6>Do you want to delete <strong><span id="delete_name"></span>?</h6>
             </div>
             <div class="modal-footer">
-                <a href="#" class="waves-effect waves-light btn btn_small modal-close">Cancel</a>
-                <a href="" id="delete_ingredient_btn"  class="waves-effect waves-light btn btn_small red">Delete</a>      
-                <!--<a href="{{url_for('delete_ingredient', ingredient_id=ingredient._id)}}" class="waves-effect waves-light btn btn_small red ">Delete</a>-->
+                   <a href="" class="waves-effect waves-light btn btn_large modal-close ">Cancel</a>
+                <a href="" id="delete_ingredient_btn"  class="waves-effect waves-light btn btn_large red ">Delete</a>      
             </div>
-        </div>
+            </div>
         {% endfor %}
     </ul>
+  </div>
 </div>
 
 {% endblock %}

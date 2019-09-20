@@ -16,7 +16,6 @@
     display: block;
     height:100%;
     width:100%;
-    
 
 }
 
@@ -24,6 +23,9 @@
     font-size: larger;
 }
 
+.btn_add_ingredient{
+    margin-top:10px;
+}
 
 .file-field .file-path-wrapper{
     padding-left: 40px;
@@ -33,6 +35,9 @@
     /*float: right;*/
 }
 
+.btn_my_modal{
+    
+}
 
 .recipe_photo{
     /*height: 400px;*/
@@ -55,3 +60,10 @@
 /*      background-color: yellow !important*/
 
 /*}*/
+
+#toast-container {
+    min-width: 10%;
+    top: 10%;
+    right: 50%;
+    transform: translateX(50%) translateY(50%);
+}
