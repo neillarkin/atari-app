@@ -1,8 +1,111 @@
+
 /*body{*/
 
 /*     background-color: blue;*/
 
 /*}*/
+
+/* ############################# ICONMOON ##################################### */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/static/fontz/icomoon.eot?pbuto5');
+  src:  url('/static/fontz/icomoon.eot?pbuto5#iefix') format('embedded-opentype'),
+    url('/static/fontz/icomoon.ttf?pbuto5') format('truetype'),
+    url('/static/fontz/icomoon.woff?pbuto5') format('woff'),
+    url('/static/fontz/icomoon.svg?pbuto5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-atari_new_font:before {
+  content: "\e900";
+  font-size:60px;
+}
+
+
+
+@font-face {
+  font-family: 'atari-logo';
+  src:  url('/static/fonts/atari-logo.eot?jd33wn');
+  src:  url('/static/fonts/atari-logo.eot?jd33wn#iefix') format('embedded-opentype'),
+    url('/static/fonts/atari-logo.ttf?jd33wn') format('truetype'),
+    url('/static/fonts/atari-logo.woff?jd33wn') format('woff'),
+    url('/static/fonts/atari-logo.svg?jd33wn#atari-logo') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'atari-logo' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-atari_flaicon:before {
+  content: "\e900";
+   font-size:60px;
+}
+
+
+
+
+@font-face {
+  font-family: 'AtarianSystem';
+  src: url('/static/fonts/SFAtarianSystemV2V2.eot'); /* IE9 Compat Modes */
+  src: url('/static/fonts/SFAtarianSystemV2V2.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/static/fonts/SFAtarianSystemV2V2.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/static/fonts/SFAtarianSystemV2V2.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/static/fonts/SFAtarianSystemV2V2.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/static/fonts/SFAtarianSystemV2V2.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+
+
+
+/* ############################# END ICONMOON ##################################### */
+
+.nav_atari_title{
+  font-family: 'AtarianSystem', Fallback, sans-serif;
+  font-weight: normal;
+  font-size: 70px;
+  text-transform: uppercase;
+}
+
+.card-title {
+    /*color:#fff;*/
+}
+
+nav .brand-logo .atari_logo {
+    width: 50%;
+    height: 50%;
+}
 
 .btn_small {
     height: 24px;
@@ -12,34 +115,60 @@
     padding: 0 0.5em;
 }
 
-.ingredient-list a{
-    display: block;
-    height:100%;
-    width:100%;
-
+.btn_add_developer {
+    margin-top: 10px;
 }
 
-.ingredient-list a:hover{
+.developer-list a {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.developer-list a:hover {
     font-size: larger;
 }
 
-.btn_add_ingredient{
-    margin-top:10px;
+
+
+
+/* ############################################################################ */
+
+/* ############################################################################ */
+
+/* ############################################################################ */
+
+/* ############################################################################ */
+
+.ingredient-list a {
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 
-.file-field .file-path-wrapper{
+.ingredient-list a:hover {
+    font-size: larger;
+}
+
+.btn_add_ingredient {
+    margin-top: 10px;
+}
+
+
+
+.file-field .file-path-wrapper {
     padding-left: 40px;
 }
 
-.file-field .btn, .file-field .btn-large, .file-field .btn-small {
+.file-field .btn,
+.file-field .btn-large,
+.file-field .btn-small {
     /*float: right;*/
 }
 
-.btn_my_modal{
-    
-}
+.btn_my_modal {}
 
-.recipe_photo{
+.recipe_photo {
     /*height: 400px;*/
     /*width:600px;*/
 }
@@ -50,9 +179,8 @@
     /*font-size: 11px;*/
 }
 
-.modal{
-   
-}
+.modal {}
+
 /*.recipe_header{*/
 
 /*    margin-top: 5px;*/
@@ -63,6 +191,12 @@
 
 #toast-container {
     min-width: 10%;
+    top: 10%;
+    right: 50%;
+    transform: translateX(50%) translateY(50%);
+}
+
+#myloader {
     top: 10%;
     right: 50%;
     transform: translateX(50%) translateY(50%);

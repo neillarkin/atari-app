@@ -11,12 +11,118 @@ app.config['MONGO_URI'] = 'mongodb+srv://root:r00tUser@myfirstcluster-tbkzy.mong
 
 mongo = PyMongo(app) #constructor method
 
+
+# GAME PAGES
+@app.route('/')
+@app.route('/get_games')
+def get_games():
+    return render_template("games.html", games=mongo.db.games.find())
+
+@app.route('/new_game')
+def new_game():
+    return render_template('new_game.html', developers=mongo.db.developers.find())
+
+# @app.route('/create_game', methods=['POST'])
+# def create_game():
+#     games = mongo.db.games
+#     games.insert_one(request.form.to_dict())
+#     return redirect(url_for('get_games')) 
+  
+  
+@app.route('/create_game', methods=['POST'])
+def create_game():
+    games = mongo.db.games
+    game_title = request.form.get('game_title') 
+    game_year = request.form.get('game_year') 
+    description= request.form.get('description')	
+    developer_list = request.form.getlist('developer_name')
+    this_game = games.insert_one({'game_title': game_title, 'game_year': game_year, 'developer_name' : developer_list, 'description': description, })
+    game_id = this_game.inserted_id
+    screenshot = request.files['screenshot']
+    mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id = ObjectId(game_id) )
+    this_screenshot_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id), "_id": ObjectId()})
+    this_screenshot_image_id = this_screenshot_image._id
+    this_screenshot_name = this_screenshot_image.filename
+    cover_image = request.files['cover_image']
+    mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id = ObjectId(game_id), screenshot_id = this_screenshot_image_id, screenshot_name = this_screenshot_name )
+    this_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id)})
+    games.update( {'_id': ObjectId(game_id)},
+    {
+        "$set":{
+            'cover_id' : this_image.get('_id'),
+            'cover_image' : this_image.get('filename'),
+            'screenshot_id' : this_image.get('screenshot_id'),
+            'screenshot_name' : this_image.get('screenshot_name'),
+            }
+     }) 
+    return redirect(url_for('get_games')) 
+
 @app.route('/file/<filename>')
 def file(filename):
     return mongo.send_file(filename)
 
+@app.route('/delete_game/<game_id>')
+def delete_game(game_id):
+    mongo.db.games.remove({"_id": ObjectId(game_id)})
+    mongo.db.fs.files.remove({"game_id": ObjectId(game_id)})
+    # return redirect(url_for('get_recipes')) 
+    # return redirect(url_for('get_recipes'))  
+    
+@app.route('/modal_create_developer', methods=['POST'])
+def modal_create_developer():
+    developers = mongo.db.developers
+    developers.insert_one(request.form.to_dict())
+    return render_template("list_section.html", developers=mongo.db.developers.find())
+
+
+# DEVELOPERS PAGES
+
+@app.route('/get_developers')
+def get_developers():
+    return render_template("developers.html", developers=mongo.db.developers.find())
+
+@app.route('/create_developer', methods=['POST'])
+def create_developer():
+    developers = mongo.db.developers
+    developers.insert_one(request.form.to_dict())
+    return redirect(url_for('get_developers')) 
+    
+@app.route('/edit_developer/<developer_id>')
+def edit_developer(developer_id):
+    this_developer= mongo.db.developers.find_one({"_id": ObjectId(developer_id)})
+    all_developers = mongo.db.developers.find()
+    return render_template('edit_developer.html', developer=this_developer, developers=all_developers)
+
+@app.route('/delete_developer/<developer_id>')
+def delete_developer(developer_id):
+    mongo.db.developers.remove({"_id": ObjectId(developer_id)})
+    return redirect(url_for('get_developers')) 
+
+@app.route('/update_developer/<developer_id>', methods=["POST"])
+def update_developer(developer_id):
+    developers = mongo.db.developers
+    developers.update( {'_id': ObjectId(developer_id)},
+    {
+        'developer_name':request.form.get('developer_name')
+    })
+    return redirect(url_for('get_developers')) 
+
+
+
+# ###########################################################################################
+# ###########################################################################################
+# ###########################################################################################
+# ###########################################################################################
+# ###########################################################################################
+# ###########################################################################################
+
+# ###########################################################################################
+# ###########################################################################################
+# ###########################################################################################
+
+
 #route decorator is a URL that redirects to a Python function
-@app.route('/')
+
 @app.route('/get_recipes')
 def get_recipes():
     return render_template("recipes.html", recipes=mongo.db.recipes.find(), files=mongo.db.fs.files.find())
@@ -62,7 +168,7 @@ def edit_recipe(recipe_id):
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     mongo.db.fs.files.remove({"recipe_id": ObjectId(recipe_id)})
-    return redirect(url_for('get_recipes')) 
+    # return redirect(url_for('get_recipes')) 
     # return redirect(url_for('get_recipes')) 
 
 
@@ -150,5 +256,4 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)
-            
             

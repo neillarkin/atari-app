@@ -1,0 +1,111 @@
+{% extends 'base.html' %} {% block content %}
+
+<h5>New Game</h5>
+<div class="row">
+  <form action="{{ url_for('create_game') }}" method="POST" class="col s12" enctype="multipart/form-data">
+<!--TITLE-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <input id="input_text" name="game_name" type="text" data-length="50" class="validate" autofocus>
+        <label for="input_text">Title</label>
+      </div>
+    </div>
+    
+<!--DESCRIPTION-->
+    <!--<div class="row">-->
+    <!--  <div class="input-field col s12">-->
+    <!--    <i class="material-icons prefix">create</i>-->
+    <!--    <input id="description_field" name="description" type="text" data-length="100" class="validate">-->
+    <!--    <label for="description_field">Short Description</label>-->
+    <!--  </div>-->
+    <!--</div>-->
+    
+<!--CATEGORY-->
+    <!--<div class="row">-->
+    <!--  <div class="input-field col s12">-->
+    <!--    <i class="material-icons prefix">filter_list</i>-->
+    <!--    <select id="category" name="category_name">-->
+    <!--          <option value="" disabled selected>Choose dish type</option>-->
+    <!--          {% for cat in categories %}-->
+    <!--              <option value="{{cat.category_name}}">{{cat.category_name}}</option>-->
+    <!--          {% endfor %}-->
+    <!--        </select>-->
+    <!--    <label>Choose category</label>-->
+    <!--  </div>-->
+    <!--</div>-->
+    
+<!--DEVELOPER-->
+    <div class="row">
+      <div class="input-field col s11 developer_section">
+        <i class="material-icons prefix">filter_list</i>
+        <select id="developer_menu" name="developer_name" multiple>
+          <option value="" disabled selected>Choose developers</option>
+          {% for developer in developers %}
+            <option id="myoption" value="{{developer.developer_name}}">{{developer.developer_name}}</option>
+           {% endfor %}
+        </select>
+        <label>Choose a developer</label>
+      </div>
+
+      <div class="input-field col s1">
+        <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="top" data-tooltip="Add a developer">
+        <i class="material-icons">add</i></a>
+      </div>
+    </div>
+    
+<!--METHOD-->
+    <!--<div class="row">-->
+    <!--  <div class="input-field col s12">-->
+    <!--    <i class="material-icons prefix">create</i>-->
+    <!--    <textarea id="textarea2" name="method" class="materialize-textarea" data-length="500"></textarea>-->
+    <!--    <label for="textarea2">Method</label>-->
+    <!--  </div>-->
+    <!--</div>-->
+    
+<!--IMAGE-->
+    <!--<div class="row">-->
+    <!--  <div class="file-field input-field col s12">-->
+    <!--    <div class="row">-->
+    <!--      <div class="col s11">-->
+    <!--        <i class="material-icons prefix">image</i>-->
+    <!--        <div class="file-path-wrapper">-->
+    <!--          <input class="file-path validate" type="text">-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div class="btn col s1">-->
+    <!--        <span>File</span>-->
+    <!--        <input type="file" name="game_image">-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</div>-->
+    
+<!--BUTTONS-->
+    <div class="row">
+      <button class="btn waves-effect waves-light red" type="reset" onclick="goBack()" value="Cancel">Cancel</button>
+      <button class="btn waves-effect waves-light" type="submit" onclick="displayToast('Game','Saved!')">Save</button>
+
+    </div>
+  </form>
+<!--developers MODAL-->
+  <!--<form id="myForm" action="{{ url_for('modal_create_ingredient') }}" method="POST" class="col s12">-->
+  <div id="developer_modal" class="modal">
+    <div class="modal-content">
+      <h6>Enter developer:</h6>
+      <div class="input-field col s9">
+        <i class="material-icons prefix">create</i>
+        <input id="developer_field_modal" name="developer_name" type="text" data-length="50" class="validate">
+        <label for="developer_field_modal">Developer</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+          <button class="modal-close btn waves-effect waves-light" type="submit">Cancel</button>      
+        <button class="modal-close btn waves-effect waves-light red" type="submit" onclick="refreshList()">Save</button>
+      </div>
+    </div>
+  </div>
+  <!--</form>-->
+</div>
+{% endblock %}

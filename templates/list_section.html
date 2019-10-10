@@ -1,0 +1,8 @@
+<i class="material-icons prefix">filter_list</i>
+<select id="developer_menu" name="developer_name" multiple>
+          <option value="" disabled selected>Choose developers</option>
+          {% for dev in developers  %}
+            <option id="myoption" value="{{dev.developer_name}}">{{dev.developer_name}}</option>
+           {% endfor %}
+</select>
+<label>Choose Developer</label>

@@ -1,32 +1,35 @@
 {% extends 'base.html' %} {% block content %}
 
-<h5>New Recipe</h5>
+<h5>Edit Recipe</h5>
 <div class="row">
-  <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12" enctype="multipart/form-data">
-
+  <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12">
+  <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12" enctype="multipart/form-data">
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate" autofocus>
+        <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate" value="{{recipe.recipe_name}}" autofocus>
         <label for="input_text">Title</label>
       </div>
-    </div>
 
+    </div>
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input id="description_field" name="description" type="text" data-length="100" class="validate">
-        <label for="description_field">Short Description</label>
+        <input id="input_text" name="description" type="text" data-length="100" class="validate" value="{{recipe.description}}">
+        <label for="input_text">Short Description</label>
       </div>
     </div>
-
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">filter_list</i>
         <select id="category" name="category_name">
               <option value="" disabled selected>Choose dish type</option>
               {% for cat in categories %}
-                  <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                    {% if cat.category_name == recipe.category_name%}
+                    <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
+                    {% else %}
+                    <option value="{{cat.category_name}}" >{{cat.category_name}}</option>
+                {% endif %}
               {% endfor %}
             </select>
         <label>Choose dish type</label>
@@ -54,13 +57,31 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <i class="material-icons prefix">create</i>
-        <textarea id="textarea2" name="method" class="materialize-textarea" data-length="500"></textarea>
-        <label for="textarea2">Method</label>
+        <i class="material-icons prefix">filter_list</i>
+        <select id="ingredient" name="ingredient_name" multiple>
+          <option value="" disabled selected>Choose ingedients</option>
+          {% for item in ingredients %}
+              {% if item.ingredient_name in recipe.ingredient_name %}
+                <option value="{{item.ingredient_name}}" selected>{{item.ingredient_name}}</option>
+                {% else %}
+                <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
+                {% endif %}
+           {% endfor %}
+        </select>
+        <label>Choose Ingredients</label>
       </div>
     </div>
 
-<!--FILE UPLOAD-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <input id="input_text" name="method" type="text" data-length="500" class="validate" value="{{recipe.method}}">
+        <label for="input_text">Method</label>
+      </div>
+    </div>
+
+    <img src="{{ url_for('file', filename=recipe.image_name) }}" class="recipe_photo" width="100px"> </span><br> {{recipe.image_name}}
+
     <div class="row">
       <div class="file-field input-field col s12">
         <div class="row">
@@ -77,15 +98,14 @@
         </div>
       </div>
     </div>
-
+    
+    
     <div class="row">
-      <button class="btn waves-effect waves-light red" type="reset" onclick="goBack()" value="Cancel">Cancel</button>
-      <button class="btn waves-effect waves-light" type="submit" onclick="displayToast('Recipe','Saved!')">Save</button>
-
+      <button class="btn waves-effect waves-light blue" type="reset" onclick="goBack()" value="Cancel">Cancel</button>
+      <button class="btn waves-effect waves-light red" type="submit" onclick="displayToast('Recipe','Saved!')">Save</button>
     </div>
   </form>
 
-  <!--<form id="myForm" action="{{ url_for('modal_create_ingredient') }}" method="POST" class="col s12">-->
   <div id="ingredient_modal" class="modal">
     <div class="modal-content">
       <h6>Enter ingredient:</h6>
@@ -97,11 +117,10 @@
     </div>
     <div class="modal-footer">
       <div class="row">
-          <button class="modal-close btn waves-effect waves-light" type="submit">Cancel</button>      
-        <button class="modal-close btn waves-effect waves-light red" type="submit" onclick="refreshList()">Save</button>
+        <button class="modal-close btn waves-effect waves-light" type="submit" onclick="refreshList()">Submit</button>
       </div>
     </div>
   </div>
-  <!--</form>-->
+
 </div>
 {% endblock %}
