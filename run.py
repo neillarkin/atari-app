@@ -40,12 +40,12 @@ def create_game():
     game_id = this_game.inserted_id
     screenshot = request.files['screenshot']
     mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id = ObjectId(game_id) )
-    this_screenshot_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id), "_id": ObjectId()})
-    this_screenshot_image_id = this_screenshot_image._id
-    this_screenshot_name = this_screenshot_image.filename
+    this_screenshot_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id)})
+    this_screenshot_image_id = this_screenshot_image['_id']
+    this_screenshot_name = this_screenshot_image['filename']
     cover_image = request.files['cover_image']
     mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id = ObjectId(game_id), screenshot_id = this_screenshot_image_id, screenshot_name = this_screenshot_name )
-    this_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id)})
+    this_image = mongo.db.fs.files.find_one({"screenshot_id": ObjectId(this_screenshot_image_id)})
     games.update( {'_id': ObjectId(game_id)},
     {
         "$set":{

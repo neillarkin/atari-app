@@ -24,7 +24,7 @@
             <div id="myloader"></div>
             <span class="card-title grey-text text-darken-4">{{game.game_title}}<i class="material-icons right">close</i></span>
             <span>({{game.game_year}})</span>
-           
+            <span><img src="{{ url_for('file', filename=game.screenshot_name) }}" width="200px"> </span><br>
             <strong>Developers: </strong>{{game.developer_name}}
             <span><p>{{game.description}}</p></span>
 
