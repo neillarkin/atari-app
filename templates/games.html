@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="row ">
-    <a href="{{url_for( 'new_game')}} " class="btn-floating btn-small waves-effect waves-light red ">
-    <i class="material-icons ">add</i>Add a game</a>
-</div>
+<!--<div class="row right">-->
+<!--    <a href="{{url_for( 'new_game')}} " class="btn waves-effect waves-light">-->
+<!--        <i class="material-icons right"></i>Add</a>-->
+<!--</div>-->
 
 {% for game in games %}
 <div class="row">
@@ -15,7 +15,7 @@
             <!--<span class="card-title activator white-text text-darken-4"></span>-->
         </div>
         <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4"><h3>{{game.game_title}}</h3><i class="material-icons right">more_vert</i></span>
+            <span class="card-title activator grey-text text-darken-4"><h3>{{game.game_title}}</h3><i class="medium material-icons right">more_vert</i></span>
             <span><h5>({{game.game_year}})</h5></span>
             <p><a href="https://store.steampowered.com/app/400020/Atari_Vault/">Play Now!</a></p>
         </div>
@@ -28,9 +28,9 @@
             <span><p>{{game.description}}</p></span>
 
             <!--BUTTONS-->
-            <div class="col s12">
+            <div class="row col s12 ">
                 <a href="#myDeleteModal" onclick="userPrompt('{{game._id}}', '{{game.game_title}}')" class="waves-effect waves-light btn btn_small red modal-trigger">Delete</a>
-                <a href="{{url_for('edit_game', game_id=game._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
+                <a href="{{url_for('edit_game', game_id=game._id)}}" class="waves-effect waves-light btn btn_small ">Edit</a>
             </div>
         </div>
 
