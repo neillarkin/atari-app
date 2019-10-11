@@ -6,7 +6,6 @@
 </div>
 
 {% for game in games %}
-
 <div class="row">
 
     <div class="card col s10">
@@ -49,55 +48,5 @@
 </div>
 
 {% endfor %}
-
-
-
-<!--<ul class="collapsible" data-collapsible="accordion">-->
-<!--    {% for game in games %}-->
-<!--    <li>-->
-<!--        <div class="collapsible-header col s12">-->
-<!--            {% if loop.index % 2 != 0 %}-->
-<!--            <div class="col s1">-->
-<!--                <i class="material-icons">expand_more</i>-->
-<!--            </div>-->
-<!--            <div class="game_header col s11">-->
-<!--                <h4><span><strong>{{game.game_title}}</strong></span></h4><br>-->
-<!--                <span><strong>Description: </strong>{{game.description}}</span><br>-->
-<!--                <span><strong>Developer(s): </strong>{{game.developer_name}}</span><br>-->
-<!--            </div>-->
-<!--            <div class="game_header col s6">-->
-<!--                <span><img src="{{ url_for('file', filename=game.cover_image) }}" width="400px"> </span><br>-->
-<!--            </div>-->
-<!--            {% else %}-->
-<!--            <div class="game_header col s6">-->
-<!--                <span><img src="{{ url_for('file', filename=game.cover_image) }}" width="400px"> </span><br>-->
-<!--            </div>-->
-<!--            <div class="col s1">-->
-<!--                <i class="material-icons">expand_more</i>-->
-<!--            </div>-->
-<!--            <div class="game_header col s11">-->
-<!--                <h4><span><strong>{{game.game_title}}</strong></span></h4><br>-->
-<!--                <span><strong>Description: </strong>{{game.description}}</span><br>-->
-<!--                <span><strong>Developer(s): </strong>{{game.developer_name}}</span><br>-->
-<!--            </div>-->
-<!--            {% endif %}-->
-<!--        </div>-->
-
-<!--        <div class="collapsible-body">-->
-
-
-<!--BUTTONS-->
-<!--            <div class="col s12">-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </li>-->
-
-
-
-<!--    {% endfor %}-->
-<!--</ul>-->
-
-
 
 {% endblock %}

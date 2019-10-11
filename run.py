@@ -21,7 +21,7 @@ def get_games():
 
 @app.route('/new_game')
 def new_game():
-    return render_template('new_game.html', developers=mongo.db.developers.find())
+    return render_template('new_game.html', years=mongo.db.years.find(), developers=mongo.db.developers.find())
 
 
 # Create a Game in to the games docuemnt. Then create a screenshot in to the files document. 
@@ -135,6 +135,9 @@ def update_developer(developer_id):
         'developer_name':request.form.get('developer_name')
     })
     return redirect(url_for('get_developers')) 
+
+
+# YEARS
 
 
 

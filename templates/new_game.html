@@ -17,8 +17,13 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">date_range</i>
-        <input id="input_year" name="game_year" type="text" data-length="4" class="validate" >
-        <label for="input_year">Year</label>
+        <select name="game_year">
+            <option value="" disabled selected></option>
+            {% for y in years %}
+              <option id="myoption" value="{{y.game_year}}">{{y.game_year}}</option>
+             {% endfor %}
+          </select>
+        <label>Choose a year</label>
       </div>
     </div>
 
@@ -42,7 +47,7 @@
       <div class="input-field col s11 developer_section">
         <i class="material-icons prefix">filter_list</i>
         <select id="developer_menu" name="developer_name" multiple>
-            <option value="" disabled selected>Choose developers</option>
+            <option value="" disabled selected></option>
             {% for developer in developers %}
               <option id="myoption" value="{{developer.developer_name}}">{{developer.developer_name}}</option>
              {% endfor %}
@@ -61,7 +66,7 @@
       <div class="file-field input-field col s12">
         <i class="material-icons prefix">image</i>
         <label for="cover-input_text-path">Screenshot</label>
-        <div class="file-path-wrapper col s11" >
+        <div class="file-path-wrapper col s11">
           <input class="file-path validate" type="text">
         </div>
         <div class="btn-small col s1">
@@ -75,16 +80,16 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <textarea id="textarea2" name="description" class="materialize-textarea" ></textarea>
+        <textarea id="textarea2" name="description" class="materialize-textarea"></textarea>
         <label for="textarea2">Description</label>
       </div>
-    </div>  
+    </div>
 
     <!--BUTTONS-->
     <div class="row">
       <div class="right">
-      <button class="btn waves-effect waves-light red" type="reset" onclick="goBack()" value="Cancel">Cancel</button>
-      <button class="btn waves-effect waves-light" type="submit" onclick="displayToast('Please','wait...')">Save</button>
+        <button class="btn waves-effect waves-light red" type="reset" onclick="goBack()" value="Cancel">Cancel</button>
+        <button class="btn waves-effect waves-light" type="submit" onclick="displayToast('Please','wait...')">Save</button>
       </div>
     </div>
   </form>
