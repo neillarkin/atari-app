@@ -1,126 +1,110 @@
 {% extends 'base.html' %} {% block content %}
 
-<h5>Edit Recipe</h5>
+<h5>Edit Game</h5>
 <div class="row">
-  <form action="{{ url_for('create_recipe') }}" method="POST" class="col s12">
-  <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12" enctype="multipart/form-data">
+  <!--<form action="{{ url_for('create_game') }}" method="POST" class="col s12">-->
+  <form action="{{ url_for('update_game', game_id=game._id) }}" method="POST" class="col s12" enctype="multipart/form-data">
+
+    <!--TITLE-->
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input id="input_text" name="recipe_name" type="text" data-length="50" class="validate" value="{{recipe.recipe_name}}" autofocus>
+        <input id="input_text" name="game_title" type="text" data-length="50" class="validate" value="{{game.game_title}}" autofocus>
         <label for="input_text">Title</label>
       </div>
-
     </div>
+
+    <!--YEAR-->
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input id="input_text" name="description" type="text" data-length="100" class="validate" value="{{recipe.description}}">
-        <label for="input_text">Short Description</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">filter_list</i>
-        <select id="category" name="category_name">
-              <option value="" disabled selected>Choose dish type</option>
-              {% for cat in categories %}
-                    {% if cat.category_name == recipe.category_name%}
-                    <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
-                    {% else %}
-                    <option value="{{cat.category_name}}" >{{cat.category_name}}</option>
-                {% endif %}
-              {% endfor %}
-            </select>
-        <label>Choose dish type</label>
+        <input id="input_year" name="game_year" type="text" data-length="4" class="validate" value="{{game.game_year}}">
+        <label for="input_year">Year</label>
       </div>
     </div>
 
-    <div class="row">
-      <div class="input-field col s11 mysection">
-        <i class="material-icons prefix">filter_list</i>
-        <select id="ingredient_menu" name="ingredient_name" multiple>
-          <option value="" disabled selected>Choose ingredients</option>
-          {% for item in ingredients %}
-            <option id="myoption" value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
-           {% endfor %}
-        </select>
-        <label>Choose Ingredients</label>
-      </div>
-
-      <div class="input-field col s1">
-        <a href="#ingredient_modal" onclick="getFocus()" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="top" data-tooltip="Add new ingredient">
-        <i class="material-icons">add</i></a>
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">filter_list</i>
-        <select id="ingredient" name="ingredient_name" multiple>
-          <option value="" disabled selected>Choose ingedients</option>
-          {% for item in ingredients %}
-              {% if item.ingredient_name in recipe.ingredient_name %}
-                <option value="{{item.ingredient_name}}" selected>{{item.ingredient_name}}</option>
-                {% else %}
-                <option value="{{item.ingredient_name}}">{{item.ingredient_name}}</option>
-                {% endif %}
-           {% endfor %}
-        </select>
-        <label>Choose Ingredients</label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">create</i>
-        <input id="input_text" name="method" type="text" data-length="500" class="validate" value="{{recipe.method}}">
-        <label for="input_text">Method</label>
-      </div>
-    </div>
-
-    <img src="{{ url_for('file', filename=recipe.image_name) }}" class="recipe_photo" width="100px"> </span><br> {{recipe.image_name}}
-
+    <!--COVER IMAGE UPLOAD-->
     <div class="row">
       <div class="file-field input-field col s12">
-        <div class="row">
-          <div class="col s11">
-            <i class="material-icons prefix">image</i>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
-            </div>
-          </div>
-          <div class="btn col s1">
-            <span>File</span>
-            <input type="file" name="recipe_image">
-          </div>
+        <i class="material-icons prefix">image</i>
+        <label for="cover-input_text-path">Cover image</label>
+        <div class="file-path-wrapper col s11">
+          <input class="file-path validate" type="text">
+        </div>
+        <div class="btn-small col s1">
+          <span>File</span>
+          <input type="file" name="cover_image">
         </div>
       </div>
     </div>
-    
-    
+
+    <!--DEVELOPERS SELECT LIST-->
+    <div class="row">
+      <div class="input-field col s11 developer_section">
+        <i class="material-icons prefix">filter_list</i>
+        <select id="developer_menu" name="developer_name" multiple>
+            <option value="" disabled selected>Choose developers</option>
+            {% for developer in developers %}
+              <option id="myoption" value="{{developer.developer_name}}">{{developer.developer_name}}</option>
+             {% endfor %}
+          </select>
+        <label>Choose a developer</label>
+      </div>
+
+      <div class="input-field col s1">
+        <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-medium waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add a developer">
+          <i class="material-icons">add</i></a>
+      </div>
+    </div>
+
+    <!--SCREENSHOT IMAGE UPLOAD-->
+    <div class="row">
+      <div class="file-field input-field col s12">
+        <i class="material-icons prefix">image</i>
+        <label for="cover-input_text-path">Screenshot</label>
+        <div class="file-path-wrapper col s11">
+          <input class="file-path validate" type="text">
+        </div>
+        <div class="btn-small col s1">
+          <span>File</span>
+          <input type="file" name="screenshot">
+        </div>
+      </div>
+    </div>
+
+    <!--DESCRIPTION-->
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">create</i>
+        <textarea id="textarea2" name="description" class="materialize-textarea" ></textarea>
+        <label for="textarea2">Description</label>
+      </div>
+    </div>  
+
+    <img src="{{ url_for('file', filename=game.game_title) }}" class="game_photo" width="100px"> </span><br> {{game.cover_image}}
+
+    <!--BUTTONS-->
     <div class="row">
       <button class="btn waves-effect waves-light blue" type="reset" onclick="goBack()" value="Cancel">Cancel</button>
-      <button class="btn waves-effect waves-light red" type="submit" onclick="displayToast('Recipe','Saved!')">Save</button>
+      <button class="btn waves-effect waves-light red" type="submit" onclick="displayToast('Game','Saving...!')">Save</button>
     </div>
   </form>
 
-  <div id="ingredient_modal" class="modal">
+    <div id="developer_modal" class="modal">
     <div class="modal-content">
-      <h6>Enter ingredient:</h6>
+      <h6>Enter developer:</h6>
       <div class="input-field col s9">
         <i class="material-icons prefix">create</i>
-        <input id="ingredient_field_modal" name="ingredient_name" type="text" data-length="50" class="validate">
-        <label for="ingredient_field_modal">Ingredient</label>
+        <input id="developer_field_modal" name="developer_name" type="text" data-length="50" class="validate">
+        <label for="developer_field_modal">Developer</label>
       </div>
     </div>
     <div class="modal-footer">
       <div class="row">
-        <button class="modal-close btn waves-effect waves-light" type="submit" onclick="refreshList()">Submit</button>
+        <button class="modal-close btn waves-effect waves-light" type="submit">Cancel</button>
+        <button class="modal-close btn waves-effect waves-light red" type="submit" onclick="reloadList()">Save</button>
       </div>
     </div>
   </div>
-
 </div>
 {% endblock %}

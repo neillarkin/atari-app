@@ -12,7 +12,8 @@ app.config['MONGO_URI'] = 'mongodb+srv://root:r00tUser@myfirstcluster-tbkzy.mong
 mongo = PyMongo(app) #constructor method
 
 
-# GAME PAGES
+# GAME PAGES ################
+
 @app.route('/')
 @app.route('/get_games')
 def get_games():
@@ -22,12 +23,10 @@ def get_games():
 def new_game():
     return render_template('new_game.html', developers=mongo.db.developers.find())
 
-# @app.route('/create_game', methods=['POST'])
-# def create_game():
-#     games = mongo.db.games
-#     games.insert_one(request.form.to_dict())
-#     return redirect(url_for('get_games')) 
-  
+
+# Create a Game in to the games docuemnt. Then create a screenshot in to the files document. 
+# Next create a cover image in to the files documnet with the screenshots ID as attribute
+# Then use the screenshot ID to find the cover image. Finally add the required attributs of the cover image in to the game document
   
 @app.route('/create_game', methods=['POST'])
 def create_game():
@@ -42,9 +41,9 @@ def create_game():
     mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id = ObjectId(game_id) )
     this_screenshot_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id)})
     this_screenshot_image_id = this_screenshot_image['_id']
-    this_screenshot_name = this_screenshot_image['filename']
+    this_screenshot_image = this_screenshot_image['filename']
     cover_image = request.files['cover_image']
-    mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id = ObjectId(game_id), screenshot_id = this_screenshot_image_id, screenshot_name = this_screenshot_name )
+    mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id = ObjectId(game_id), screenshot_id = this_screenshot_image_id, screenshot_image = this_screenshot_image )
     this_image = mongo.db.fs.files.find_one({"screenshot_id": ObjectId(this_screenshot_image_id)})
     games.update( {'_id': ObjectId(game_id)},
     {
@@ -52,7 +51,7 @@ def create_game():
             'cover_id' : this_image.get('_id'),
             'cover_image' : this_image.get('filename'),
             'screenshot_id' : this_image.get('screenshot_id'),
-            'screenshot_name' : this_image.get('screenshot_name'),
+            'screenshot_image' : this_image.get('screenshot_image'),
             }
      }) 
     return redirect(url_for('get_games')) 
@@ -74,8 +73,38 @@ def modal_create_developer():
     developers.insert_one(request.form.to_dict())
     return render_template("list_section.html", developers=mongo.db.developers.find())
 
+@app.route('/edit_game/<game_id>')
+def edit_game(game_id):
+    this_game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
+    all_developers = mongo.db.developers.find()
+    return render_template('edit_game.html', game=this_game, developers=all_developers)
 
-# DEVELOPERS PAGES
+
+@app.route('/update_game/<game_id>', methods=["POST"])
+def update_game(game_id):
+    mongo.db.fs.files.remove({'game_id': ObjectId(game_id)})
+    screenshot = request.files['screenshot']
+    mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id = ObjectId(game_id) )
+    new_screenshot_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id)})
+    cover_image = request.files['cover_image']
+    mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id = ObjectId(game_id), screenshot_id = new_screenshot_image['_id'], screenshot_image = new_screenshot_image['filename'] )
+    new_image = mongo.db.fs.files.find_one({"screenshot_id": ObjectId(new_screenshot_image['_id'])})
+    games = mongo.db.games
+    games.update( {'_id': ObjectId(game_id)},
+    {
+        'game_title':request.form.get('game_title'),
+        'game_year':request.form.get('game_year'),
+        'developer_name': request.form.getlist('developer_name'),
+        'description': request.form.get('description'),
+        'cover_id' : new_image.get('_id'),
+        'cover_image' : new_image.get('filename'),
+        'screenshot_id' : new_image.get('screenshot_id'),
+        'screenshot_image' : new_image.get('screenshot_image')
+     })
+    return redirect(url_for('get_games'))
+
+
+# DEVELOPERS PAGES ##################
 
 @app.route('/get_developers')
 def get_developers():
