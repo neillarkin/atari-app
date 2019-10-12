@@ -52,8 +52,6 @@
 }
 
 
-
-
 /* ############################# ##################################### */
 
 .nav_atari_title{
@@ -95,33 +93,6 @@ nav .brand-logo .atari_logo {
     font-size: larger;
 }
 
-
-
-
-/* ############################################################################ */
-
-/* ############################################################################ */
-
-/* ############################################################################ */
-
-/* ############################################################################ */
-
-.ingredient-list a {
-    display: block;
-    height: 100%;
-    width: 100%;
-}
-
-.ingredient-list a:hover {
-    font-size: larger;
-}
-
-.btn_add_ingredient {
-    margin-top: 10px;
-}
-
-
-
 .file-field .file-path-wrapper {
     padding-left: 40px;
 }
@@ -132,28 +103,6 @@ nav .brand-logo .atari_logo {
     /*float: right;*/
 }
 
-.btn_my_modal {}
-
-.recipe_photo {
-    /*height: 400px;*/
-    /*width:600px;*/
-}
-
-.sub-button {
-    /*width: auto;*/
-    /*margin-top: 15px;*/
-    /*font-size: 11px;*/
-}
-
-.modal {}
-
-/*.recipe_header{*/
-
-/*    margin-top: 5px;*/
-
-/*      background-color: yellow !important*/
-
-/*}*/
 
 #toast-container {
     min-width: 10%;
