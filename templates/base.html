@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
-
+    <title>Atari 2600</title>
 </head>
 
 <body>
@@ -14,30 +14,20 @@
         <nav>
             <div class="nav-wrapper">
                 <div class="row">
+
                     <a href="{{url_for('get_games')}}" class="brand-logo">
                     <span class="atari_logo"><i class="icon-atari_flaicon"></i></span>
                     <span class="nav_atari_title">Atari 2600</span>
                     </a>
 
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
-
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="{{url_for('new_recipe')}}">New Recipe</a></li>
-                        <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-                        <li><a href="{{url_for('get_ingredients')}}">Ingredients</a></li>
-                        <li><strong><a href="">|</a></li></strong>
                             <li><a href="{{url_for('new_game')}}">New Game</a></li>
                             <li><a href="{{url_for('get_games')}}">Games</a></li>
                             <li><a href="{{url_for('get_developers')}}">Developers</a></li>
 
                     </ul>
                     <ul class="sidenav" id="mobile-demo">
-                        <li><a href="{{url_for('new_recipe')}}">New Recipe</a></li>
-                        <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-                        <li><a href="{{url_for('get_ingredients')}}">Ingredients</a></li>
-
-                        <li><strong><a href="">*****</a></li></strong>
                             <li><a href="{{url_for('new_game')}}">New Game</a></li>
                             <li><a href="{{url_for('get_games')}}">Games</a></li>
                             <li><a href="{{url_for('get_developers')}}">Developers</a></li>
@@ -62,12 +52,12 @@
             $('.sidenav').sidenav();
             $('.modal').modal();
             $('.tooltipped').tooltip();
-            $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy',
-                selectMonths: false, // Creates a dropdown to control month
-                selectYears: false // Creates a dropdown of 15 years to control year
+            // $('.datepicker').datepicker({
+            //     format: 'dd/mm/yyyy',
+            //     selectMonths: false, // Creates a dropdown to control month
+            //     selectYears: false // Creates a dropdown of 15 years to control year
 
-            });
+            // });
             //   $('select').material_select();
 
         });
@@ -76,7 +66,7 @@
 
         function getFocus() {
             setTimeout(function() {
-                $('#input_text').focus();
+                $('#developer_field_modal').focus();
             }, 500);
         }
 
@@ -99,6 +89,10 @@
             var str = myString;
             var str2 = myString2
             M.toast({ html: str.valueOf() + ' ' + str2.valueOf(), displayLength: 5000 })
+        }
+
+        function goBack() {
+            window.history.back();
         }
 
         function deleteGame(id) {
@@ -138,13 +132,11 @@
                 $(this).data('clicked', true);
                 displaySpinner();
                 deleteGame(id);
-
             });
 
             $("#delete_developer_btn").click(function() {
                 $(this).data('clicked', true);
                 deleteDeveloper(id)
-
             });
         }
 
@@ -165,127 +157,10 @@
             });
         };
 
-
-
-        // *********************************************************************************************
-        // *********************************************************************************************
-        // *********************************************************************************************
-        // *********************************************************************************************
-        // *********************************************************************************************
-        // *********************************************************************************************
-
-        function refreshList() {
-            request = $.ajax({
-                url: "/modal_create_ingredient",
-                type: "POST",
-                data: $("#ingredient_field_modal"),
-            });
-
-            request.done(function(data) {
-                $('.mysection').css("background-color", "#FFFF9C").effect("pulsate", { times: 6 }, 2000).animate({ backgroundColor: "#FFFFFF" }, 6500);
-                $('.mysection').html(data)
-                $('select').formSelect();
-                displayToast("Ingredient", "Added!");
-            });
-        };
-
-        function callModal() {
-            $.ajax({
-                url: "/get_ingredients",
-                type: "GET",
-                data: "ingredient_id",
-            });
-        }
-
-        function goBack() {
-            window.history.back();
-        }
-
-        function promptUser(id, name) {
-            $("#myDeleteModal").modal('open');
-            $("#delete_name").empty();
-            $("#delete_name").append(name);
-
-            $("#delete_recipe_btn").click(function() {
-                $(this).data('clicked', true);
-                displaySpinner();
-                deleteRecipe(id);
-                // myFunction()
-                // setTimeout(displayToast("Recipe", "Deleted!"), 3000);
-            });
-
-            $("#delete_ingredient_btn").click(function() {
-                $(this).data('clicked', true);
-                deleteIngredient(id);
-
-            });
-        }
-
-        function deleteRecipe(id) {
-            request = $.ajax({
-                url: "/delete_recipe" + "/" + id,
-                type: "GET",
-                data: $('#myDeleteModal').modal('close'),
-                complete: function() {
-                    setTimeout(function() { // use this way
-                        myFunction();
-                    }, 3000);
-                }
-                // success:myFunction()
-                // success: setTimeout(displayToast("Recipe", "Deleted!"), 3000)
-                // complete: displaySpinner(),
-                // success: function(html) {
-                //     console.log("setTimeout")
-                //     setTimeout(function() {
-                //         M.toast({ html: "Its deleted!!"})
-                //         // displayToast("Recipe", "Deleted!");
-                //     }, 5000);
-                // }
-
-            });
-            // request.done(
-            //     $.ajax({
-            //         url: "/get_recipes",
-            //         type: "GET",
-
-            //         // data: "recipe_id",
-            //         // success: setTimeout()
-            //     })
-            // )
-        }
-
-        function deleteIngredient(id) {
-            request = $.ajax({
-                url: "/delete_ingredient" + "/" + id,
-                type: "GET",
-                data: $('#myDeleteModal').modal('close'),
-                complete: displaySpinner()
-            });
-            request.done(
-                $.ajax({
-                    url: "/get_ingredients",
-                    type: "GET",
-                    data: "ingredient_id",
-                    complete: displayToast("Ingredient", "Deleted!")
-                })
-            )
-
-        }
-
-
-        function myFunction() {
-            console.log("myFunction")
-            setTimeout(console.log("my FIRST delay"), 3000)
-            setTimeout(myToast, 3000);
-        }
-
-        function myToast() {
-            M.toast({ html: "its now deleted!" })
-        }
     </script>
-
-    <div>Font made from <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>is licensed by CC BY 3.0</div>
-
+<footer>
+    <div>Font made from <a href="http://www.onlinewebfonts.com">Online Web Fonts</a>is licensed by CC BY 3.0</div>
+</footer>
 </body>
 
 </html>

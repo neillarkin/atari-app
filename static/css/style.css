@@ -5,41 +5,7 @@
 
 /*}*/
 
-/* ############################# ICONMOON ##################################### */
-
-@font-face {
-  font-family: 'icomoon';
-  src:  url('/static/fontz/icomoon.eot?pbuto5');
-  src:  url('/static/fontz/icomoon.eot?pbuto5#iefix') format('embedded-opentype'),
-    url('/static/fontz/icomoon.ttf?pbuto5') format('truetype'),
-    url('/static/fontz/icomoon.woff?pbuto5') format('woff'),
-    url('/static/fontz/icomoon.svg?pbuto5#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-atari_new_font:before {
-  content: "\e900";
-  font-size:60px;
-}
-
-
+/* ############################# BRAND LOGO ICON FONT ##################################### */
 
 @font-face {
   font-family: 'atari-logo';
@@ -70,11 +36,10 @@
 
 .icon-atari_flaicon:before {
   content: "\e900";
-   font-size:60px;
+   font-size:50px;
 }
 
-
-
+/* #################### NAVBAR FONT #################### */
 
 @font-face {
   font-family: 'AtarianSystem';
@@ -89,13 +54,14 @@
 
 
 
-/* ############################# END ICONMOON ##################################### */
+/* ############################# ##################################### */
 
 .nav_atari_title{
   font-family: 'AtarianSystem', Fallback, sans-serif;
   font-weight: normal;
-  font-size: 70px;
+  /*font-size: 70px;*/
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .card-title {
