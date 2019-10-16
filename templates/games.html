@@ -20,10 +20,11 @@
             </div>
             <div class="card-reveal style='height: auto;">
                 <div id="myloader"></div>
-                <span class="card-title grey-text text-darken-4">{{game.game_title}}<i class="material-icons right">close</i></span>
-                <span>({{game.game_year}})</span>
-                <span><img src="{{ url_for('file', filename=game.screenshot_image) }}" width="200px"> </span><br>
-                <strong>Artists: </strong>{{game.developer_name}}
+                <span class="card-title grey-text text-darken-4">{{game.game_title}}<span>&nbsp&nbsp({{game.game_year}})</span><i class="material-icons right">close</i></span>
+                
+                <span><strong>Artists: </strong>{{game.developer_name}}</span><br>
+                <span><img src="{{ url_for('file', filename=game.screenshot_image) }}" width="300px"> </span><br>
+      
                 <span><p>{{game.description}}</p></span>
 
                 <!--BUTTONS-->

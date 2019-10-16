@@ -32,19 +32,24 @@
       </div>
     </div>
 
+  
+
     <!--COVER IMAGE UPLOAD-->
     <div class="row">
       <div class="file-field input-field col s12 m6">
         <i class="material-icons prefix">image</i>
         <div class="file-path-wrapper col s10">
           <label>Cover image</label>
+    
           <input class="file-path validate" type="text" value="{{game.cover_image}}">
+
         </div>
         <div class="btn-small col s2">
           <span>File</span>
           <input type="file" name="cover_image">
         </div>
       </div>
+        <img src="{{ url_for('file', filename=game.cover_image) }}" style="width:100px; height:100px"/>
     </div>
 
     <!--DEVELOPERS SELECT LIST-->
@@ -64,8 +69,15 @@
         <label>Select an artist</label>
       </div>
       <div class="input-field col s2">
-        <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-medium waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add an new artist to database">
+        <div class="row">
+
+          <span class="col s12 ">
+          <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-small waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add a new artist to database">
           <i class="material-icons">add</i></a>
+           <label><span class="right-align hide-on-small-only">Add new artist</span></label>
+          </span>
+         
+        </div>
       </div>
     </div>
 
@@ -82,6 +94,7 @@
           <input type="file" name="screenshot">
         </div>
       </div>
+        <img src="{{ url_for('file', filename=game.screenshot_image) }}" style="width:100px; height:100px"/>
     </div>
 
     <!--DESCRIPTION-->
@@ -102,11 +115,11 @@
 
   <div id="developer_modal" class="modal">
     <div class="modal-content">
-      <h6>Enter developer:</h6>
+      <h6>Enter new artist in to the database:</h6>
       <div class="input-field col s9">
         <i class="material-icons prefix">create</i>
         <input id="developer_field_modal" name="developer_name" type="text" data-length="50" class="validate">
-        <label for="developer_field_modal">Developer</label>
+        <!--<label for="developer_field_modal">Artist</label>-->
       </div>
     </div>
     <div class="modal-footer">

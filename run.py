@@ -78,7 +78,8 @@ def edit_game(game_id):
     this_game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
     all_developers = mongo.db.developers.find()
     all_years = mongo.db.years.find()
-    return render_template('edit_game.html', game=this_game, years=all_years, developers=all_developers)
+    all_files =  mongo.db.fs.files.find()
+    return render_template('edit_game.html', files=all_files, game=this_game, years=all_years, developers=all_developers)
 
 
 @app.route('/update_game/<game_id>', methods=["POST"])
