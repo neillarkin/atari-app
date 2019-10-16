@@ -17,11 +17,11 @@
     <div class="row">
       <div class="input-field col s6 m2">
         <i class="material-icons prefix">date_range</i>
-        <select name="game_year">
+        <select id="year_menu" name="game_year">
             <option value="" disabled selected></option>
             {% for y in years %}
-              <option id="myoption" value="{{y.game_year}}">{{y.game_year}}</option>
-             {% endfor %}
+              <option id="myoption" value="{{y.year_date}}">{{y.year_date}}</option>
+            {% endfor %}
           </select>
         <label>Choose a year</label>
       </div>
@@ -56,7 +56,7 @@
       </div>
 
       <div class="input-field col s2">
-        <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-medium waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add a developer">
+        <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-medium waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add a new artist to database">
           <i class="material-icons">add</i></a>
       </div>
     </div>

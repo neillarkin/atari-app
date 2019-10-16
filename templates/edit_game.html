@@ -18,11 +18,15 @@
     <div class="row">
       <div class="input-field col s6 m2">
         <i class="material-icons prefix">date_range</i>
-        <select name="game_year">
+        <select id="year_menu" name="game_year">
             <option value="" disabled selected></option>
-            {% for y in years %}
-              <option id="myoption" value="{{y.game_year}}">{{y.game_year}}</option>
-             {% endfor %}
+            {% for year in years %}
+              {% if year.year_date in game.game_year %}
+                <option value="{{year.year_date}}" selected>{{year.year_date}}</option>
+                {% else %}
+                <option value="{{year.year_date}}">{{year.year_date}}</option>
+              {% endif %}
+            {% endfor %}
           </select>
         <label>Choose a year</label>
       </div>
@@ -32,9 +36,9 @@
     <div class="row">
       <div class="file-field input-field col s12 m6">
         <i class="material-icons prefix">image</i>
-        <label for="cover-input_text-path">Cover image</label>
         <div class="file-path-wrapper col s10">
-          <input class="file-path validate" type="text">
+          <label>Cover image</label>
+          <input class="file-path validate" type="text" value="{{game.cover_image}}">
         </div>
         <div class="btn-small col s2">
           <span>File</span>
@@ -48,15 +52,19 @@
       <div class="input-field col s10 developer_section">
         <i class="material-icons prefix">filter_list</i>
         <select id="developer_menu" name="developer_name" multiple>
-            <option value="" disabled selected>Choose developers</option>
+            <option value="" disabled selected></option>
             {% for developer in developers %}
-              <option id="myoption" value="{{developer.developer_name}}">{{developer.developer_name}}</option>
+              {% if developer.developer_name in game.developer_name %}
+                <option value="{{developer.developer_name}}" selected>{{developer.developer_name}}</option>
+                {% else %}
+                <option value="{{developer.developer_name}}">{{developer.developer_name}}</option>
+                {% endif %}
              {% endfor %}
           </select>
-        <label>Choose a developer</label>
+        <label>Select an artist</label>
       </div>
       <div class="input-field col s2">
-        <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-medium waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add a developer">
+        <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-medium waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add an new artist to database">
           <i class="material-icons">add</i></a>
       </div>
     </div>
@@ -65,9 +73,9 @@
     <div class="row">
       <div class="file-field input-field col s12 m6">
         <i class="material-icons prefix">image</i>
-        <label for="cover-input_text-path">Screenshot</label>
         <div class="file-path-wrapper col s10">
-          <input class="file-path validate" type="text">
+          <label>Screenshot</label>
+          <input class="file-path validate" type="text" value="{{game.screenshot_image}}">
         </div>
         <div class="btn-small col s2">
           <span>File</span>
@@ -80,10 +88,10 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <textarea id="textarea2" name="description" class="materialize-textarea" ></textarea>
+        <textarea id="textarea2" name="description" class="materialize-textarea" value="{{game.description}}">{{game.description}}</textarea>
         <label for="textarea2">Description</label>
       </div>
-    </div>  
+    </div>
 
     <!--BUTTONS-->
     <div class="row right">
@@ -92,7 +100,7 @@
     </div>
   </form>
 
-    <div id="developer_modal" class="modal">
+  <div id="developer_modal" class="modal">
     <div class="modal-content">
       <h6>Enter developer:</h6>
       <div class="input-field col s9">
