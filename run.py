@@ -19,6 +19,12 @@ mongo = PyMongo(app) #constructor method
 def get_games():
     return render_template("games.html", games=mongo.db.games.find())
 
+
+@app.route('/get_artist/<names>')
+def get_artist(names):
+    for name in names:
+        print(names[name])
+        
 @app.route('/new_game')
 def new_game():
     return render_template('new_game.html', years=mongo.db.years.find(), developers=mongo.db.developers.find())

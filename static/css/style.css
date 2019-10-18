@@ -1,8 +1,15 @@
-/*body{*/
+@import "../compass/css3";
 
-/*     background-color: blue;*/
-
-/*}*/
+body {
+    /*background-image: url('/static/images/atari_background02.png');*/
+    /*background-image: url('https://i.imgur.com/G3uShPM.jpg');*/
+    /*background-image: url('https://i.pinimg.com/originals/2b/d2/50/2bd2505cafd0c58f07fa18d3a2e7c836.jpg');*/
+    background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+    /*background-attachment: fixed;*/
+    background-position: center;
+}
 
 /* ############################# BRAND LOGO ICON FONT ##################################### */
 
@@ -129,3 +136,16 @@ nav .brand-logo .atari_logo {
     right: 50%;
     transform: translateX(50%) translateY(50%);
 }
+
+
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+
+
+
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */

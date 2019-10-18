@@ -5,36 +5,39 @@
 <!--        <i class="material-icons right"></i>Add</a>-->
 <!--</div>-->
 <div class="row">
-{% for game in games %}
+    {% for game in games %}
 
-    <div class="col">
-        <div class="card medium hoverable" style='height: 100%; width: 100%; object-fit: contain'/>
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{{ url_for('file', filename=game.cover_image) }}" >
-                <!--<span class="card-title activator white-text text-darken-4"></span>-->
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4"><h3>{{game.game_title}}</h3><i class="material-icons right">more_vert</i></span>
-                <span><h5>({{game.game_year}})</h5></span>
-                <p><a href="https://store.steampowered.com/app/400020/Atari_Vault/">Play Now!</a></p>
-            </div>
-            <div class="card-reveal style='height: auto;">
-                <div id="myloader"></div>
-                <span class="card-title grey-text text-darken-4">{{game.game_title}}<span>&nbsp&nbsp({{game.game_year}})</span><i class="material-icons right">close</i></span>
-                
-                <span><strong>Artists: </strong>{{game.developer_name}}</span><br>
-                <span><img src="{{ url_for('file', filename=game.screenshot_image) }}" width="300px"> </span><br>
-      
-                <span><p>{{game.description}}</p></span>
+    <div class="col 12">
+        <div class="card medium hoverable" style='height: 100%; width: 100%; object-fit: contain' />
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="{{ url_for('file', filename=game.cover_image) }}">
+            <!--<span class="card-title activator white-text text-darken-4"></span>-->
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><h3>{{game.game_title}}</h3><i class="material-icons right">more_vert</i></span>
+            <span><h5>({{game.game_year}})</h5></span>
+            <p ><a class="btn-floating btn-small cyan pulse" href="https://store.steampowered.com/app/400020/Atari_Vault/" class="pulse">Play Now!</a></p>
+        </div>
+        <div class="card-reveal style='height: auto;">
+            <div id="myloader"></div>
+            
+            <span class="card-title grey-text text-darken-4">{{game.game_title}}<span>&nbsp&nbsp({{game.game_year}})</span><i class="material-icons right">close</i></span>
 
-                <!--BUTTONS-->
-                <div class="row col s12 ">
-                    <a href="#myDeleteModal" onclick="userPrompt('{{game._id}}', '{{game.game_title}}')" class="waves-effect waves-light btn btn_small red modal-trigger">Delete</a>
-                    <a href="{{url_for('edit_game', game_id=game._id)}}" class="waves-effect waves-light btn btn_small ">Edit</a>
-                </div>
+            <span  class="flow-text left-align"><strong>Artists: </strong><a href="url_for('get_artist', names=game.developer_name) }}">{{game.developer_name|join(', ')}}</a></span>
+           
+            
+            <span class="right-align"><img src="{{ url_for('file', filename=game.screenshot_image) }}" width="300px"> </span>
+
+            <span class=""><p class ="flow-text left-align" style="word-wrap: break-word;">{{game.description}}</p></span>
+
+            <!--BUTTONS-->
+            <div class="row col s12 ">
+                <a href="#myDeleteModal" onclick="userPrompt('{{game._id}}', '{{game.game_title}}')" class="waves-effect waves-light btn btn_small red modal-trigger">Delete</a>
+                <a href="{{url_for('edit_game', game_id=game._id)}}" class="waves-effect waves-light btn btn_small ">Edit</a>
             </div>
         </div>
     </div>
+</div>
 
 <!--DELELTE MODAL-->
 <div id="myDeleteModal" class="modal">
@@ -47,7 +50,7 @@
     </div>
 </div>
 
-{% endfor %} 
+{% endfor %}
 </div>
 
 
