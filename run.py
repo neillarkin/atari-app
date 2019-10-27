@@ -23,8 +23,8 @@ def get_games():
 @app.route('/get_artist/<names>')
 def get_artist(names):
     for name in names:
-        print(names[name])
-        
+        return names[name]
+
 @app.route('/new_game')
 def new_game():
     return render_template('new_game.html', years=mongo.db.years.find(), developers=mongo.db.developers.find())
@@ -37,12 +37,14 @@ def new_game():
 @app.route('/create_game', methods=['POST'])
 def create_game():
     games = mongo.db.games
+    developers = mongo.db.developers
     game_title = request.form.get('game_title') 
     game_year = request.form.get('game_year') 
     description= request.form.get('description')	
     developer_list = request.form.getlist('developer_name')
     this_game = games.insert_one({'game_title': game_title, 'game_year': game_year, 'developer_name' : developer_list, 'description': description, })
     game_id = this_game.inserted_id
+    last_inserted_game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
     screenshot = request.files['screenshot']
     mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id = ObjectId(game_id) )
     this_screenshot_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id)})
@@ -114,9 +116,26 @@ def update_game(game_id):
 
 # DEVELOPERS PAGES ##################
 
+#  xx:xx Fri 25/10/2019
+
 @app.route('/get_developers')
 def get_developers():
-    return render_template("developers.html", developers=mongo.db.developers.find())
+    games=mongo.db.games.find()
+    developers=mongo.db.developers.find()
+    developers_list = list(developers)
+    games_developers = mongo.db.games.find({},{"game_title", "developer_name"})
+    games_developers_list = list(games_developers)
+    mydevs = []
+    devgames = []
+    for item in developers_list:
+        mydevs.append(item['developer_name'])
+        print (' ')
+        print (item['developer_name'].upper())
+        for obj in games_developers_list:
+            if item['developer_name'] in obj['developer_name']:
+                devgames.append(obj['game_title'])
+                print (obj['game_title'])   
+    return render_template("developers.html", games=games, developers=developers, mydevs=mydevs, devgames=devgames, games_developers_list=games_developers_list, developers_list=developers_list)
 
 @app.route('/create_developer', methods=['POST'])
 def create_developer():
