@@ -54,6 +54,9 @@ body {
     font-size: 50px;
 }
 
+.glitch{
+    font-size: 50px !important;
+}
 /* #################### NAVBAR FONT #################### */
 
 @font-face {
@@ -80,7 +83,11 @@ body {
     border-radius: 12px;
     padding: 40px
 }
-
+#dev_wrapper{
+    background-color: #ffffff;
+    border-radius: 12px;
+     padding: 10px
+}
 #page_title{
     color:#ffffff;
 }
@@ -190,10 +197,11 @@ nav .brand-logo .atari_logo {
 }
 
 .sidenav{
-    background-color: #000000;
+    /*background-color: #000000;*/
 }
-.sidenav li{
-    color:#ffffff !important;
+.sidenav li>a{
+    color:#ffffff;
+    /*color:#ffffff;*/
     
 }
 nav ul {
