@@ -1,7 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 
-<h5>Edit Game</h5>
+<h5 id="page_title">Edit Game</h5>
 <div class="row">
+  <div class="col s12" id="wrapper">
   <!--<form action="{{ url_for('create_game') }}" method="POST" class="col s12">-->
   <form action="{{ url_for('update_game', game_id=game._id) }}" method="POST" class="col s12" enctype="multipart/form-data">
 
@@ -112,7 +113,7 @@
       <button class="btn waves-effect waves-light red" type="submit" onclick="displayToast('Game','saving...')">Save</button>
     </div>
   </form>
-
+</div>
   <div id="developer_modal" class="modal">
     <div class="modal-content">
       <h6>Enter new artist in to the database:</h6>

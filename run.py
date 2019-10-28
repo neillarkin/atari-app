@@ -68,6 +68,7 @@ def create_game():
 def file(filename):
     return mongo.send_file(filename)
 
+
 @app.route('/delete_game/<game_id>')
 def delete_game(game_id):
     mongo.db.games.remove({"_id": ObjectId(game_id)})
@@ -123,10 +124,11 @@ def get_developers():
     games=mongo.db.games.find()
     developers=mongo.db.developers.find()
     developers_list = list(developers)
-    games_developers = mongo.db.games.find({},{"game_title", "developer_name"})
+    games_developers = mongo.db.games.find({},{"game_title", "developer_name", "cover_image"})
     games_developers_list = list(games_developers)
     mydevs = []
     devgames = []
+#### This IF Statement is a prototype of the same Jinga statement in developers.html. 
     for item in developers_list:
         mydevs.append(item['developer_name'])
         print (' ')
@@ -134,7 +136,8 @@ def get_developers():
         for obj in games_developers_list:
             if item['developer_name'] in obj['developer_name']:
                 devgames.append(obj['game_title'])
-                print (obj['game_title'])   
+                print (obj['game_title'])
+##### End Prototype
     return render_template("developers.html", games=games, developers=developers, mydevs=mydevs, devgames=devgames, games_developers_list=games_developers_list, developers_list=developers_list)
 
 @app.route('/create_developer', methods=['POST'])

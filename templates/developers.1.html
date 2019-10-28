@@ -1,15 +1,15 @@
 {% extends 'base.html'%} {% block content %}
-    <!--<strong>DevList: </strong><br>-->
-    <!--{{developers_list}}-->
-    <!--<br>-->
-    <!--<strong>GameDevList: </strong><br>-->
-    <!--{{games_developers_list}}-->
-    <!--<br>-->
+    <strong>DevList: </strong><br>
+    {{developers_list}}
+    <br>
+    <strong>GameDevList: </strong><br>
+    {{games_developers_list}}
+    <br>
 <div class="row">
 <!--ADD BUTTTON-->
     <div class="row">
         <div class="col s10">
-            <h5 id="page_title">Artists</h5>
+            <h5>Artists</h5>
             <div id="myloader"></div>
         </div>
         <div class="col s2">
@@ -39,7 +39,7 @@
     <div class="row">
         <ul class="collapsible" data-collapsible="accordion">
             {% for dev in developers_list %}
-            {% set count = namespace(a=0) %}
+
                 <li>
                     <div class="collapsible-header">
                         <div class="col s12">
@@ -49,12 +49,12 @@
                                         <i class="material-icons">expand_more</i>
                                     </div>
                                     <div class="col s7 m9">
-                                        <!--<a href="{{url_for('edit_developer', developer_id=dev._id)}}">-->
-                                        <strong>{{dev.developer_name}}</strong>
-                                        <!--</a>-->
-                                        
-                                        <div class ="destination"></div>
-                                        <span class="new badge" data-badge-caption=" games">{{ count.a }}</span>
+                                    <!--<a href="{{url_for('edit_developer', developer_id=dev._id)}}">-->
+                                    <strong>{{dev.developer_name}}</strong>
+                                    <!--</a>-->
+                                    {% set count = namespace(a=0) %}
+                                    <div class ="destination"></div>
+                                    <span class="new badge" id="destination" data-badge-caption=" games"></span>
                                     </div>
                                     <!--MODAL CALL-->
                                     <div class="col s4 m2">
@@ -69,27 +69,25 @@
                             <!--</div>-->
                         </div>
                     </div>
-             
+                      
                     <div class="collapsible-body">
                             <div class="row">
                                  <div class="col s1 m1">
                                 </div>
-                                <div class="col s12 m4">
+                                <div class="col s12 m7">
+                                    <span class = "dev_game_images">
+                                   
                                     {% for game in games_developers_list %}
                                         {% if dev.developer_name in game.developer_name %}
-                                        {% set count.a = count.a + 1 %}  
-                                    
-                                 <div class="card small">
-                                     <div class="card-image">
-                                          <img src="{{ url_for('file', filename=game.cover_image) }}" >
-                                          <span class="card-title" id="mycard_title">{{game.game_title}}</span>
-                                    </div>
-                                </div>
+                                        {% set count.a = count.a + 1 %}
+                                        <br>
+                                        {{game.game_title}}<br>
+                                        <img class="responsive-img" src="{{ url_for('file', filename=game.cover_image) }}" >
                                         {% endif %}
                                     {% endfor %}
-                                   
+                                    </span>
                                        <p>{{dev.developer_name}} worked on {{ count.a }} game(s).</p>
-                                       
+                                       <div id="source">{{ count.a }}</div>
                                  </div>
 
                             </div>

@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    </div>
+    
+    
     <header>
         <nav>
             <div class="nav-wrapper black">
@@ -38,8 +39,17 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
-        {% block content %} {% endblock %}
+        <!--<div class="parallax-container">-->
+        <!--     <div class="parallax"><img src="{{url_for('static', filename='images/background_grid_pink.png')}}">-->
+        <!--     </div>-->
+        <!--</div>-->
+    {% block content %}                 
+
+
+    {% endblock %}
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -48,13 +58,16 @@
     <!--<script src="assets/js/parallax.min.js"></script>-->
     <script>
         $(document).ready(function() {
-
+            $('.parallax').parallax(); 
             $('.collapsible').collapsible();
             $('input#input_text, textarea#textarea2').characterCounter();
             $('select').formSelect();
             $('.sidenav').sidenav();
             $('.modal').modal();
             $('.tooltipped').tooltip();
+
+            //   $("#source").appendTo("#destination");
+              
             // $('.datepicker').datepicker({
             //     format: 'dd/mm/yyyy',
             //     selectMonths: false, // Creates a dropdown to control month
@@ -168,9 +181,13 @@
         
         
     </script>
+    
+
     <footer>
         <div>Font made from <a href="http://www.onlinewebfonts.com">Online Web Fonts</a>is licensed by CC BY 3.0</div>
     </footer>
+    
+
 </body>
 
 </html>
