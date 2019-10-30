@@ -166,10 +166,14 @@ nav .nav-wrapper {
     
     height: 115% !important;
 }
+
+img{
+    border: solid 1px white;
+}
 .card {
      height: 100% !important;
     width: 100% !important;
-    border: 1px solid white;
+    /*border: 1px solid white;*/
     
     /*border-radius: 12px;*/
     /*float:left;*/
