@@ -25,6 +25,11 @@ def get_artist(names):
     for name in names:
         return names[name]
 
+@app.route('/get_artist_games/<games>')
+def get_artist_games(games):
+    for game in games:
+        return games[game]
+        
 @app.route('/new_game')
 def new_game():
     return render_template('new_game.html', years=mongo.db.years.find(), developers=mongo.db.developers.find())

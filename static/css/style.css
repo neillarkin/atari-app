@@ -1,23 +1,66 @@
 @import "../compass/css3";
 
+body, html {
+  height: 100%;
+}
 body {
 
     /*background: url('https://i.pinimg.com/originals/2b/d2/50/2bd2505cafd0c58f07fa18d3a2e7c836.jpg') no-repeat center center fixed;*/
+    
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
   background-attachment: fixed;
   
+  background-color:black;
 
     /*width: 100%;*/
     /*height: 100%;*/
     background-image: url('/static/images/background01.png');
+    
+    
         /*background-image: url('/static/images/background_grid_pink.png');*/
     /*background-image: url('/static/images/atari_background02.png');*/
     /*background-image: url('https://i.imgur.com/G3uShPM.jpg');*/
     /*background-image: url('https://i.pinimg.com/originals/2b/d2/50/2bd2505cafd0c58f07fa18d3a2e7c836.jpg');*/
 }
+.container{
+        margin-top: 50px;
+          /*height:100%;*/
+}
+
+
+/*.parallax {*/
+ 
+/*  background-image: url("/static/images/background01.png");*/
+
+   
+/*  height:100%;*/
+/*min-height: 5000px;*/
+
+/*  background-attachment: fixed;*/
+/*  background-position: center;*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: cover;*/
+/*}*/
+
+/*.parallax-main {*/
+ /*background-image: url("/static/images/background01.png");*/
+
+   
+/*  height:100%;*/
+/*min-height: 5000px;*/
+
+/*  background-attachment: fixed;*/
+/*  background-position: center;*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: cover;*/
+  /*min-height: 1000px;*/
+  /*background: transparent;*/
+/*}*/
+
+
 
 /* ############################# BRAND LOGO ICON FONT ##################################### */
 
@@ -73,9 +116,6 @@ body {
 
 
 /* ############################# ##################################### */
-.container{
-        margin-top: 50px;
-}
 
 
 #wrapper{
@@ -97,6 +137,7 @@ body {
 }
 
 .card-image.img {
+     
     /*max-width: 100%;*/
     /*max-height: 100%;*/
     /*  display: -webkit-flex;*/
@@ -104,7 +145,15 @@ body {
     /*display: flex;*/
 }
 
+.card .card-image{
 
+  
+   
+   
+        /*border-top: solid 1px white;*/
+        /*border-left: solid 2px white;*/
+        /*border-right: solid 2px white;*/
+}
 .card-title,
 .nav_atari_title {
     font-family: 'AtarianSystem', Fallback, sans-serif !important;
@@ -113,19 +162,28 @@ body {
     text-transform: uppercase;
     white-space: nowrap;
 }
-
+nav .nav-wrapper {
+    
+    height: 115% !important;
+}
 .card {
-    border-radius: 12px;
-    float:left;
-    clear:left;
-    height: 100% !important;
+     height: 100% !important;
     width: 100% !important;
+    border: 1px solid white;
+    
+    /*border-radius: 12px;*/
+    /*float:left;*/
+    /*clear:left;*/
+   
     /*object-fit: contain !important;*/
     /*height: 100%; width: 100%; object-fit: contain;*/
 }
 
-.card-reveal {
-    /*height: auto;*/
+.card-reveal{
+     height: auto;
+}
+.card-reveal .col .row{
+   margin-bottom: 5px;
 }
 
 .card-title#mycard_title{
@@ -139,14 +197,23 @@ body {
     background-color: #0000006b
 }
 
+
 .screenshot {
+    width:300px;
     float: right;
+    margin-top: 8px;
+    margin-left:5px;
+    margin-bottom:5px;
+    margin-right:0px;
 }
 
 .artistnames {
     float: left
 }
 
+.card.card-reveal.description{
+    margin-top:50px;
+}
 .close_card_icon {
     /*font-size: 4rem;*/
     background-color: #c10808;
@@ -168,7 +235,7 @@ nav .brand-logo .atari_logo {
 }
 
 .btn_add_developer {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .developer-list a {
@@ -181,6 +248,15 @@ nav .brand-logo .atari_logo {
     font-size: larger;
 }
 
+.collapsible span.badge {
+    margin-left: 8px !important;
+    margin-top: 5px;
+}
+
+nav ul a{
+        font-size: 1.25rem;
+}
+
 .file-field .file-path-wrapper {
     padding-left: 40px;
 }
@@ -191,13 +267,14 @@ nav .brand-logo .atari_logo {
     /*float: right;*/
 }
 
+
 .dev_game_images{
     float:left;
     
 }
 
 .sidenav{
-    /*background-color: #000000;*/
+    background-color: #000000;
 }
 .sidenav li>a{
     color:#ffffff;
@@ -220,6 +297,46 @@ nav ul {
     right: 50%;
     transform: translateX(50%) translateY(50%);
 }
+
+
+footer {
+  text-align: center;
+  letter-spacing: 0px;
+}
+
+footer p {
+  margin-top: 20px;
+  color: #84979e !important;
+
+}
+
+/*MEDIA QUERIES*/
+
+@media(max-width: 575px) {
+    /*.screenshot{*/
+    /*width:"100px";*/
+    /*}*/
+}
+
+
+
+@media only screen and (min-width: 0){
+html {
+    /*font-size: 13px;*/
+}
+/*   .icon-atari_flaicon:before {*/
+/*    content: "\e400";*/
+/*    font-size: 20px;*/
+/*} */
+
+    
+}
+
+
+@media only screen and (min-width: 1200px){
+html {
+    /*font-size: 14px;*/
+}}
 
 
 /* ################################################################ */

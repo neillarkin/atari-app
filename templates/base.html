@@ -11,8 +11,9 @@
 </head>
 
 <body>
-    
-    
+    <!--<div class="parallax">-->
+    <!--<div class="parallax-main" data-parallax="scroll" data-z-index="-2" data-image-src="{{ url_for('static', filename='images/background01.png') }}">-->
+      <!--<div class="parallax-main" data-parallax="scroll" data-z-index="1" data-image-src="/static/images/background01.png">-->
     <header>
         <nav>
             <div class="nav-wrapper black">
@@ -50,24 +51,27 @@
     </header>
 
     <div class="container">
+        
         <!--<div class="parallax-container">-->
         <!--     <div class="parallax"><img src="{{url_for('static', filename='images/background_grid_pink.png')}}">-->
         <!--     </div>-->
         <!--</div>-->
     {% block content %}                 
 
+    
 
     {% endblock %}
 
     </div>
 
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!--<script src="assets/js/parallax.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.parallax').parallax(); 
+            // $('.parallax').parallax(); 
             $('.collapsible').collapsible();
             $('input#input_text, textarea#textarea2').characterCounter();
             $('select').formSelect();
@@ -193,10 +197,11 @@
     
 
     <footer>
-        <div>Font made from <a href="http://www.onlinewebfonts.com">Online Web Fonts</a>is licensed by CC BY 3.0</div>
+        <p class="inline-block center">Font made from <a href="http://www.onlinewebfonts.com">Online Web Fonts</a> is licensed by CC BY 3.0</p>
+       <p class="inline-block center">Site developed by Neil Larkin ©2019</p>
     </footer>
     
-
+<!--</div>-->
 </body>
 
 </html>
