@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <!--DEVELOPERS SELECT LIST-->
+    <!--ARTISTS SELECT LIST-->
     <div class="row">
       <div class="input-field col s10 developer_section">
         <i class="material-icons prefix">filter_list</i>
@@ -100,15 +100,14 @@
       </div>
     </div>
   </form>
+  
   <!-- MODAL developers list-->
-  <!--<form id="myForm" action="{{ url_for('modal_create_developer') }}" method="POST" class="col s12">-->
   <div id="developer_modal" class="modal">
     <div class="modal-content">
       <h6>Enter new artist in to the database:</h6>
       <div class="input-field col s9">
         <i class="material-icons prefix">create</i>
         <input id="developer_field_modal" name="developer_name" type="text" data-length="50" class="validate">
-        <!--<label for="developer_field_modal">New artist name</label>-->
       </div>
     </div>
     <div class="modal-footer">
@@ -118,7 +117,6 @@
       </div>
     </div>
   </div>
-  <!--</form>-->
   </div>
 </div>
 {% endblock %}

@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from byotest import *
 
 app = Flask(__name__)
 
@@ -12,7 +13,9 @@ app.config['MONGO_URI'] = 'mongodb+srv://root:r00tUser@myfirstcluster-tbkzy.mong
 mongo = PyMongo(app) #constructor method
 
 
-# GAME PAGES ################
+################################
+# GAME VIEWS  ##################
+################################
 
 @app.route('/')
 @app.route('/get_games')
@@ -20,25 +23,15 @@ def get_games():
     return render_template("games.html", games=mongo.db.games.find())
 
 
-@app.route('/get_artist/<names>')
-def get_artist(names):
-    for name in names:
-        return names[name]
-
-@app.route('/get_artist_games/<games>')
-def get_artist_games(games):
-    for game in games:
-        return games[game]
-        
 @app.route('/new_game')
 def new_game():
     return render_template('new_game.html', years=mongo.db.years.find(), developers=mongo.db.developers.find())
 
 
-# Create a Game in to the games docuemnt. Then create a screenshot in to the files document. 
-# Next create a cover image in to the files documnet with the screenshots ID as attribute
-# Then use the screenshot ID to find the cover image. Finally add the required attributs of the cover image in to the game document
-  
+# Create a Game in to the games document. Then create a screenshot in to the files document. 
+# Next create a cover image in to the files documnet with the screenshots ID as an attribute
+# Then use the screenshot ID to find the cover image. 
+# Finally add the required attibutes of the cover image in to the game document
 @app.route('/create_game', methods=['POST'])
 def create_game():
     games = mongo.db.games
@@ -120,30 +113,26 @@ def update_game(game_id):
     return redirect(url_for('get_games'))
 
 
-# DEVELOPERS PAGES ##################
-
-#  xx:xx Fri 25/10/2019
+#################################
+# ARTIST VIEWS ##################
+#################################
+#Note: 'artists' are referred to as 'developers'
 
 @app.route('/get_developers')
 def get_developers():
-    games=mongo.db.games.find()
     developers=mongo.db.developers.find()
     developers_list = list(developers)
     games_developers = mongo.db.games.find({},{"game_title", "developer_name", "cover_image"})
     games_developers_list = list(games_developers)
-    mydevs = []
-    devgames = []
-#### This IF Statement is a prototype of the same Jinga statement in developers.html. 
-    for item in developers_list:
-        mydevs.append(item['developer_name'])
-        print (' ')
-        print (item['developer_name'].upper())
-        for obj in games_developers_list:
-            if item['developer_name'] in obj['developer_name']:
-                devgames.append(obj['game_title'])
-                print (obj['game_title'])
+#### This neted loop is a prototype of the same Jinga statement in developers.html. 
+    # for item in developers_list:
+    #     print (' ')
+    #     print (item['developer_name'].upper())
+    #     for obj in games_developers_list:
+    #         if item['developer_name'] in obj['developer_name']:
+    #             print (obj['game_title'])
 ##### End Prototype
-    return render_template("developers.html", games=games, developers=developers, mydevs=mydevs, devgames=devgames, games_developers_list=games_developers_list, developers_list=developers_list)
+    return render_template("developers.html", games_developers_list=games_developers_list, developers_list=developers_list)
 
 @app.route('/create_developer', methods=['POST'])
 def create_developer():
@@ -172,155 +161,29 @@ def update_developer(developer_id):
     return redirect(url_for('get_developers')) 
 
 
-# YEARS
+#################################
+# TESTS ################## George Opperman
+#################################
 
+# def test_get_developers(collection, name):
+#     developers=mongo.db.developers.find('developer_name')
+#     collection = list(developers)
+#     item = name
+#     return collection, item
 
+developer = mongo.db.developers.find_one({},{"developer_name"})
+mylist = mongo.db.developers.find({},{"developer_name"})
 
-# ###########################################################################################
-# ###########################################################################################
-# ###########################################################################################
-# ###########################################################################################
-# ###########################################################################################
-# ###########################################################################################
+collection = list(mylist)
+item = developer['developer_name']
 
-# ###########################################################################################
-# ###########################################################################################
-# ###########################################################################################
+print(collection)
 
-
-#route decorator is a URL that redirects to a Python function
-
-@app.route('/get_recipes')
-def get_recipes():
-    return render_template("recipes.html", recipes=mongo.db.recipes.find(), files=mongo.db.fs.files.find())
-
-
-@app.route('/new_recipe')
-def new_recipe():
-    return render_template('new_recipe.html', ingredients=mongo.db.ingredients.find(), categories=mongo.db.categories.find())
-    
-
-@app.route('/create_recipe', methods=['POST'])
-def create_recipe():
-    recipes = mongo.db.recipes
-    recipe_name = request.form.get('recipe_name') 
-    description= request.form.get('description')	
-    category_name = request.form.get('category_name')	
-    ingredient_list = request.form.getlist('ingredient_name')	
-    method = request.form.get('method')	
-    this_recipe = recipes.insert_one({'recipe_name': recipe_name, 'description': description, 'category_name': category_name, 'ingredient_name' : ingredient_list,	'method' : method})
-    recipe_id = this_recipe.inserted_id
-    recipe_image = request.files['recipe_image']
-    mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = ObjectId(recipe_id) )
-    this_image = mongo.db.fs.files.find_one({"recipe_id": ObjectId(recipe_id)})
-    recipes.update( {'_id': ObjectId(recipe_id)},
-    {
-        "$set":{
-            'image_id' :this_image.get('_id'),
-            'image_name' : this_image.get('filename')
-            }
-     }) 
-    return redirect(url_for('get_recipes')) 
-
-
-@app.route('/edit_recipe/<recipe_id>')
-def edit_recipe(recipe_id):
-    this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    all_ingredients = mongo.db.ingredients.find()
-    all_categories = mongo.db.categories.find()
-    return render_template('edit_recipe.html', recipe=this_recipe, ingredients=all_ingredients, categories=all_categories)
-
-
-@app.route('/delete_recipe/<recipe_id>')
-def delete_recipe(recipe_id):
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    mongo.db.fs.files.remove({"recipe_id": ObjectId(recipe_id)})
-    # return redirect(url_for('get_recipes')) 
-    # return redirect(url_for('get_recipes')) 
-
-
-@app.route('/update_recipe/<recipe_id>', methods=["POST"])
-def update_recipe(recipe_id):
-    mongo.db.fs.files.remove({'recipe_id': ObjectId(recipe_id)})
-    recipe_image = request.files['recipe_image']
-    mongo.save_file(recipe_image.filename, recipe_image, base='fs', content_type = 'image', recipe_id = ObjectId(recipe_id) )
-    new_image = mongo.db.fs.files.find_one({"recipe_id": ObjectId(recipe_id)})
-    recipes = mongo.db.recipes
-    recipes.update( {'_id': ObjectId(recipe_id)},
-    {
-        'recipe_name':request.form.get('recipe_name'),
-        'description':request.form.get('description'),
-        'category_name':request.form.get('category_name'),
-        'ingredient_name': request.form.getlist('ingredient_name'),
-        'method': request.form.get('method'),
-        'image_id' : new_image.get('_id'),
-        'image_name' : new_image.get('filename')
-     })
-    return redirect(url_for('get_recipes')) 
-    # return render_template("recipes.html", recipes=mongo.db.recipes.find())
-    # return redirect(url_for('get_recipes'))
-
-
-
-
-@app.route('/get_ingredients')
-def get_ingredients():
-    return render_template("ingredients.html", ingredients=mongo.db.ingredients.find())
-    
-@app.route('/create_ingredient', methods=['POST'])
-def create_ingredient():
-    ingredients = mongo.db.ingredients
-    print (ingredients)
-    ingredients.insert_one(request.form.to_dict())
-    return redirect(url_for('get_ingredients')) 
-
-@app.route('/modal_create_ingredient', methods=['POST'])
-def modal_create_ingredient():
-    ingredients = mongo.db.ingredients
-    ingredients.insert_one(request.form.to_dict())
-    return render_template("section.html", ingredients=mongo.db.ingredients.find())
-
-# @app.route('/call_modal')
-# def call_modal():
-#     return ('#myDeleteModal')
-
-# @app.route('/get_this_recipe/<recipe_id>')
-# def get_this_recipe(recipe_id):
-#     this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-#     return this_recipe.recipe_id
-    
-#     # return render_template('recipes.html' + '#myDeleteModal', recipe=this_recipe)
-    
-
-#  return redirect(url_for('get_recipes') + '#myDeleteModal')
-#   return render_template('recipes.html', recipe=this_recipe, submission_successful=submission_successful)
-    # return render_template(url_for('get_recipes') + '#myDeleteModal', recipe=this_recipe)
-    # redirect(url_for('index') + '#myModal')
-
-
-@app.route('/delete_ingredient/<ingredient_id>')
-def delete_ingredient(ingredient_id):
-    mongo.db.ingredients.remove({"_id": ObjectId(ingredient_id)})
-    return redirect(url_for('get_ingredients')) 
-
-@app.route('/edit_ingredient/<ingredient_id>')
-def edit_ingredient(ingredient_id):
-    this_ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(ingredient_id)})
-    all_ingredients = mongo.db.ingredients.find()
-    return render_template('edit_ingredient.html', ingredient=this_ingredient, ingredients=all_ingredients)
-
-@app.route('/update_ingredient/<ingredient_id>', methods=["POST"])
-def update_ingredient(ingredient_id):
-    ingredients = mongo.db.ingredients
-    ingredients.update( {'_id': ObjectId(ingredient_id)},
-    {
-        'ingredient_name':request.form.get('ingredient_name')
-    })
-    return redirect(url_for('get_ingredients')) 
-
+test_is_in(collection[0], item)
+# print(fruit['kiwi'])
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)
             

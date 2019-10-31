@@ -169,6 +169,8 @@ nav .nav-wrapper {
 
 img{
     border: solid 1px white;
+    margin:0;
+    padding:0;
 }
 .card {
      height: 100% !important;
