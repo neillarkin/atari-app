@@ -114,7 +114,7 @@ def update_game(game_id):
 
 
 #################################
-# ARTIST VIEWS ##################
+# ARTIST/DEVELOPER VIEWS ##################
 #################################
 #Note: 'artists' are referred to as 'developers'
 
@@ -162,7 +162,7 @@ def update_developer(developer_id):
 
 
 #################################
-# TESTS ################## George Opperman
+# TESTS ################## George Opperman Cliff Spohn
 #################################
 
 # def test_get_developers(collection, name):
@@ -171,16 +171,53 @@ def update_developer(developer_id):
 #     item = name
 #     return collection, item
 
-developer = mongo.db.developers.find_one({},{"developer_name"})
-mylist = mongo.db.developers.find({},{"developer_name"})
+# pass the collection and item vars, devloeprs, george opperman
+# find both of them
+# return them
+# test function then checks
 
-collection = list(mylist)
-item = developer['developer_name']
+def get_developers_test(name):
+    developers = mongo.db.developers.find()
+    for x in developers:
+        if name in x['developer_name']:
+            return x['developer_name']
 
-print(collection)
+test_are_equal(get_developers_test('George Opperman'),'George Opperman' )
+test_not_equal(get_developers_test('Fake Name'),'George Opperman' )
 
-test_is_in(collection[0], item)
+
+def get_developers_collection_test():
+    developers = mongo.db.developers.find()
+    collection = []
+    for x in developers:
+        collection.append(x['developer_name'])
+    return collection
+
+test_is_in(get_developers_collection_test(),'George Opperman')
+test_not_in(get_developers_collection_test(),'Fake Name')
+
+
+# def years_limit_test():
+#      years = mongo.db.years.find()
+#      lower_limit = 0
+#      upper_limit = 0
+#      for year in years:
+         
 # print(fruit['kiwi'])
+
+    # developer = mongo.db.developers.find_one({},{"developer_name"})
+    # item = developer['developer_name']
+    # mylist = mongo.db.developers.find({},{"developer_name"})
+    # collection = list(mylist)
+    # return collection, item
+
+
+    # developer = mongo.db.developers.find_one({},{"developer_name"})
+    # item = developer['developer_name']
+    # mylist = mongo.db.developers.find({},{"developer_name"})
+    # collection = list(mylist)
+
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
