@@ -124,15 +124,18 @@ def get_developers():
     developers_list = list(developers)
     games_developers = mongo.db.games.find({},{"game_title", "developer_name", "cover_image"})
     games_developers_list = list(games_developers)
-#### This neted loop is a prototype of the same Jinga statement in developers.html. 
-    # for item in developers_list:
-    #     print (' ')
-    #     print (item['developer_name'].upper())
-    #     for obj in games_developers_list:
-    #         if item['developer_name'] in obj['developer_name']:
-    #             print (obj['game_title'])
-##### End Prototype
-    return render_template("developers.html", games_developers_list=games_developers_list, developers_list=developers_list)
+    badge_list = []
+    for item in developers_list:
+        count = 0;
+        for obj in games_developers_list:
+            if item['developer_name'] in obj['developer_name']:
+                count = count + 1
+                badges = dict(
+                  developer_name = item['developer_name'],
+                  game_count = count,
+                )
+        badge_list.append(badges) 
+    return render_template("developers.html", games_developers_list=games_developers_list, developers_list=developers_list, badge_list=badge_list)
 
 @app.route('/create_developer', methods=['POST'])
 def create_developer():
