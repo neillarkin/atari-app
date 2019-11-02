@@ -191,6 +191,13 @@ nav .nav-wrapper {
     /*height: 115% !important;*/
 }
 
+nav ul a:hover {
+    font-size: 1.30rem;
+    color: #26a69a;
+    /*#26a69a;*/
+}
+
+
 img{
     border: solid 1px white;
     margin:0;

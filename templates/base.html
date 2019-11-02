@@ -32,16 +32,21 @@
                              <div class="col s9">
                             <span class="nav_atari_title glitch" data-text="Art of Atari">Art of Atari</span>
                             </div>
+                            
                         </a>
+                        
                         </div>
                    </div>
                   <div class = "s2">
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         <ul class="right hide-on-med-and-down">
-                            <li><a href="{{url_for('new_game')}}">New Game</a></li>
-                            <li><a href="{{url_for('get_games')}}">Games</a></li>
-                            <li><a href="{{url_for('get_developers')}}">Artists</a></li>
-    
+                            <!--<li><a href="{{url_for('new_game')}}" class="btn-floating btn-large halfway-fab waves-effect waves-light teal">-->
+                            <!--            <i class="material-icons">add</i>-->
+                            <!--          </a></li>-->
+                            <li><a href="{{url_for('new_game')}}" class="waves-effect waves-light">New Game</a></li>
+                            <li><a href="{{url_for('get_games')}}" class="waves-effect waves-light">Games</a></li>
+                            <li><a href="{{url_for('get_developers')}}" class="waves-effect waves-light">Artists</a></li>
+                        
                         </ul>
                         <ul class="sidenav" id="mobile-demo">
                             <li><a href="{{url_for('new_game')}}">New Game</a></li>
