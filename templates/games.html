@@ -6,7 +6,7 @@
  
     {% for game in games %}
 
-    <div class=" col s12 m6">
+    <div class="col s12 m6">
         <div class="card medium hoverable" >
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ url_for('file', filename=game.cover_image) }}">
@@ -26,7 +26,7 @@
                         
                         </div>
                     </div>
-                <span class="screenshot"><img src="{{ url_for('file', filename=game.screenshot_image) }}" width="300px"> </span>
+                <span class="screenshot"><img src="{{ url_for('file', filename=game.screenshot_image) }}"> </span>
     
                 <span class="description"><p class ="left-align " style="word-wrap: break-word;">{{game.description}}</p></span>
     

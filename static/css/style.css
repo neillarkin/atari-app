@@ -235,8 +235,9 @@ img{
 }
 
 
-.screenshot {
-    width:300px;
+.screenshot img{
+    width:200px;
+    /*height:150px;*/
     float: right;
     margin-top: 8px;
     margin-left:5px;
@@ -353,11 +354,16 @@ footer p {
 
 @media(max-width: 575px) {
     
-   .icon-atari_flaicon:before {display: none;visibility:hidden;}
-    
-    /*.screenshot{*/
-    /*width:"100px";*/
-    /*}*/
+ #wrapper {
+
+    padding: 15px;
+}
+
+.screenshot img{
+ width: 240px;
+}
+
+
 }
 
 
