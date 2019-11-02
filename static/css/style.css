@@ -1,23 +1,23 @@
 @import "../compass/css3";
 
 body, html {
-  height: 100%;
+  
 }
 body {
 
     /*background: url('https://i.pinimg.com/originals/2b/d2/50/2bd2505cafd0c58f07fa18d3a2e7c836.jpg') no-repeat center center fixed;*/
     
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  background-attachment: fixed;
+    /*-moz-background-size: cover;*/
+    /*-webkit-background-size: cover;*/
+    /*-o-background-size: cover;*/
+  /*  background-size: cover;*/
+  /*background-attachment: fixed;*/
   
-  background-color:#00000;
+  background-color:#000000;
 
     /*width: 100%;*/
-    /*height: 100%;*/
-    background-image: url('/static/images/background01.png');
+    
+    /*background-image: url('/static/images/background01.png');*/
     
     
         /*background-image: url('/static/images/background_grid_pink.png');*/
@@ -26,10 +26,23 @@ body {
     /*background-image: url('https://i.pinimg.com/originals/2b/d2/50/2bd2505cafd0c58f07fa18d3a2e7c836.jpg');*/
 }
 .container{
+     /*margin:50px 50px 0px 50px;*/
         margin-top: 50px;
-          /*height:100%;*/
+          height:100%;
 }
 
+.main_wrapper{
+     /*margin:0px 50px 0px 50px;*/
+    /*width:100%;*/
+    /*height:100%;*/
+}
+
+.parallax-window {
+    /*margin:0px 30px 0px 30px;*/
+    /*min-height:560px;*/
+    /*height:560px;*/
+    background: transparent;
+}
 
 /*.parallax {*/
  
@@ -100,6 +113,13 @@ body {
 .glitch{
     font-size: 50px !important;
 }
+.glitch:after{
+    /*background-color:transparent !important;*/
+}
+
+.glitch:before{
+    /*background-color:transparent !important;*/
+}
 /* #################### NAVBAR FONT #################### */
 
 @font-face {
@@ -162,9 +182,13 @@ body {
     text-transform: uppercase;
     white-space: nowrap;
 }
+
+nav{
+    background-color: transparent !important;
+}
 nav .nav-wrapper {
     
-    height: 115% !important;
+    /*height: 115% !important;*/
 }
 
 img{
@@ -306,12 +330,14 @@ nav ul {
 
 
 footer {
+  /*margin-top: -15px;*/
+    background-color: #000000;
   text-align: center;
   letter-spacing: 0px;
 }
 
 footer p {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   color: #84979e !important;
 
 }
@@ -319,6 +345,9 @@ footer p {
 /*MEDIA QUERIES*/
 
 @media(max-width: 575px) {
+    
+   .icon-atari_flaicon:before {display: none;visibility:hidden;}
+    
     /*.screenshot{*/
     /*width:"100px";*/
     /*}*/
@@ -327,36 +356,11 @@ footer p {
 
 
 @media only screen and (min-width: 0){
-html {
-    /*font-size: 13px;*/
-}
-/*   .icon-atari_flaicon:before {*/
-/*    content: "\e400";*/
-/*    font-size: 20px;*/
-/*} */
 
-    
+
 }
 
 
 @media only screen and (min-width: 1200px){
-html {
-    /*font-size: 14px;*/
-}}
+}
 
-
-/* ################################################################ */
-
-/* ################################################################ */
-
-/* ################################################################ */
-
-/* ################################################################ */
-
-/* ################################################################ */
-
-/* ################################################################ */
-
-/* ################################################################ */
-
-/* ################################################################ */

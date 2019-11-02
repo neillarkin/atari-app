@@ -225,5 +225,5 @@ test_not_in(get_developers_collection_test(),'Fake Name')
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=False)
+            debug=True)
             
