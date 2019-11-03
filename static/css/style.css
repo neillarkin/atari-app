@@ -197,6 +197,10 @@ nav ul a:hover {
     /*#26a69a;*/
 }
 
+nav ul{
+ transform: translateY(-30%);
+  webkit-transform: translateY(-30%);
+}
 
 img{
     border: solid 1px white;
@@ -232,6 +236,11 @@ img{
     /*max-width: 100%;*/
     /*padding: 24px;*/
     background-color: #0000006b
+}
+
+.collapsible-header i {
+     font-size: 2rem;
+
 }
 
 
@@ -272,9 +281,11 @@ nav .brand-logo .atari_logo {
     padding: 0 0.5em;
 }
 
-.btn_add_developer {
-    margin-top: 15px;
+
+.btn-floating.btn_add_artist{
+   margin-top: 15px;
 }
+
 
 .developer-list a {
     /*display: block;*/
@@ -285,6 +296,21 @@ nav .brand-logo .atari_logo {
 .developer-list a:hover {
     font-size: larger;
 }
+
+#btn_edit_artist, #btn_edit_artist.i{
+    padding:0px;
+    margin-right: 40px;
+    margin-bottom: 15px;
+    /*margin-top: 12px;*/
+
+}
+
+#btn_delete_artist, #btn_delete_artist.i{
+    padding:0px;
+    margin-right:20px;
+    margin-bottom:0px;
+}
+
 
 .collapsible span.badge {
     margin-left: 8px !important;
@@ -354,14 +380,40 @@ footer p {
 
 @media(max-width: 575px) {
     
- #wrapper {
-
-    padding: 15px;
+    #wrapper {
+    
+        padding: 15px;
+    }
+    
+    .screenshot img{
+     width: 240px;
+    }
+    
+    ul.collapsible-header{
+        padding-left:0px;
+    }
+    
+    .collapsible-header i {
+         font-size: 1.6rem;
+    
+    }
+    
+    h5#page_title {
+    /*margin-top: 30px*/
+    }
+    
+ .btn-floating.btn_add_artist{
+    margin-top: -2px;
 }
 
-.screenshot img{
- width: 240px;
+nav.sidenav-trigger>i.material-icons {
+
+    margin-top: -20px !important;
 }
+
+/*nav.sidenav-trigger, nav.sidenav-trigger.i.material-icons {*/
+/*    margin-top: -20px !important;*/
+/*}*/
 
 
 }
