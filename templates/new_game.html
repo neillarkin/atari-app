@@ -59,7 +59,7 @@
         <div class="row">
 
           <span class="col s12 ">
-          <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-small waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add a new artist to database">
+          <a href="#developer_modal" onclick="getFocus()" class="btn-floating btn-small waves-effect waves-light red tooltipped modal-trigger" data-position="top" data-tooltip="Add new artist to collection">
           <i class="material-icons">add</i></a>
            <label><span class="right-align hide-on-small-only">Add new artist</span></label>
           </span>
@@ -101,11 +101,14 @@
     </div>
   </form>
   
-  <!-- MODAL developers list-->
-  <div id="developer_modal" class="modal">
+ 
+
+  </div>
+   <!-- MODAL developers list-->
+    <div id="developer_modal" class="modal">
     <div class="modal-content">
       <h6>Enter new artist in to the database:</h6>
-      <div class="input-field col s9">
+      <div class="input-field">
         <i class="material-icons prefix">create</i>
         <input id="developer_field_modal" name="developer_name" type="text" data-length="50" class="validate">
       </div>
@@ -116,7 +119,6 @@
         <button class="modal-close btn waves-effect waves-light red" type="submit" onclick="reloadList()">Save</button>
       </div>
     </div>
-  </div>
   </div>
 </div>
 {% endblock %}

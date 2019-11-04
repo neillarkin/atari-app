@@ -1,6 +1,9 @@
 @import "../compass/css3";
 
 body, html {
+    
+
+
   
 }
 body {
@@ -15,7 +18,7 @@ body {
   
   background-color:#000000;
 
-    /*width: 100%;*/
+    /*width: 70%;*/
     
     /*background-image: url('/static/images/background01.png');*/
     
@@ -28,7 +31,7 @@ body {
 .container{
      /*margin:50px 50px 0px 50px;*/
         margin-top: 50px;
-          height:100%;
+          /*height:100%;*/
 }
 
 .main_wrapper{
@@ -38,6 +41,8 @@ body {
 }
 
 .parallax-window {
+    /*height:1080px;*/
+    /*width:1920px;*/
     /*margin:0px 30px 0px 30px;*/
     /*min-height:560px;*/
     /*height:560px;*/
@@ -156,33 +161,6 @@ body {
 	
 }
 
-.card-image.img {
-     
-    /*max-width: 100%;*/
-    /*max-height: 100%;*/
-    /*  display: -webkit-flex;*/
-    /*display: -ms-flexbox;*/
-    /*display: flex;*/
-}
-
-.card .card-image{
-
-  
-   
-   
-        /*border-top: solid 1px white;*/
-        /*border-left: solid 2px white;*/
-        /*border-right: solid 2px white;*/
-}
-.card-title,
-.nav_atari_title {
-    font-family: 'AtarianSystem', Fallback, sans-serif !important;
-    font-weight: normal;
-    /*font-size: 70px;*/
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
 nav{
     background-color: transparent !important;
 }
@@ -198,8 +176,35 @@ nav ul a:hover {
 }
 
 nav ul{
- transform: translateY(-30%);
-  webkit-transform: translateY(-30%);
+ /*transform: translateY(-30%);*/
+ /* webkit-transform: translateY(-30%);*/
+}
+
+.card-title,
+.nav_atari_title {
+    font-family: 'AtarianSystem', Fallback, sans-serif !important;
+    font-weight: normal;
+    /*font-size: 70px;*/
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.card-image.img {
+     
+    /*max-width: 100%;*/
+    /*max-height: 100%;*/
+    /*  display: -webkit-flex;*/
+    /*display: -ms-flexbox;*/
+    /*display: flex;*/
+}
+.img.activator{
+    /*  max-height: none;*/
+    /*object-fit: none;*/
+}
+
+.card .card-image{
+        /*border-top: solid 1px white;*/
+        /*border-left: solid 2px white;*/
+        /*border-right: solid 2px white;*/
 }
 
 img{
@@ -209,7 +214,7 @@ img{
 }
 .card {
      height: 100% !important;
-    width: 100% !important;
+        /*width: 100% !important;*/
     /*border: 1px solid white;*/
     
     /*border-radius: 12px;*/
@@ -385,6 +390,10 @@ footer p {
         padding: 15px;
     }
     
+    .nav_atari_title glitch{
+        /*margin-right: 80px;*/
+    }
+    
     .screenshot img{
      width: 240px;
     }
@@ -408,7 +417,7 @@ footer p {
 
 nav.sidenav-trigger>i.material-icons {
 
-    margin-top: -20px !important;
+    /*margin-top: -20px !important;*/
 }
 
 /*nav.sidenav-trigger, nav.sidenav-trigger.i.material-icons {*/

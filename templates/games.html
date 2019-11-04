@@ -6,13 +6,13 @@
  
     {% for game in games %}
 
-    <div class="col s12 m6">
+    <div class="col s12 m4">
         <div class="card medium hoverable" >
-            <div class="card-image waves-effect waves-block waves-light">
+            <div class="card-image waves-effect waves-block waves-light" >
                 <img class="activator" src="{{ url_for('file', filename=game.cover_image) }}">
            </div>
 
-            <div class="card-reveal ">
+            <div class="card-reveal">
                 <div id="myloader"></div>
                     <div class="col s12 ">   
                         <div class="row">
