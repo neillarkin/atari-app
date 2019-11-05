@@ -11,7 +11,7 @@
         <div class="col s2 ">
             <a href="#dev_modal" onclick="getFocus()" class="btn-floating btn-medium waves-effect waves-light modal-trigger blue right btn_add_artist">
             <i class="material-icons right tooltipped" data-position="top" data-tooltip="Add new artist">add</i></a>
-            <form action="{{ url_for('create_developer')}}" method="POST" class="col s12">
+            <form action="{{ url_for('create_developer')}}" method="POST" >
                 <div id="dev_modal" class="modal">
                     <div class="modal-content">
                         <h6>Enter artist name:</h6>

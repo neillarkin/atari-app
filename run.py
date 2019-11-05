@@ -169,15 +169,8 @@ def update_developer(developer_id):
 
 
 #################################
-# TESTS ################## George Opperman Cliff Spohn
+# TESTS ################## 
 #################################
-
-# def test_get_developers(collection, name):
-#     developers=mongo.db.developers.find('developer_name')
-#     collection = list(developers)
-#     item = name
-#     return collection, item
-
 # pass the collection and item vars, devloeprs, george opperman
 # find both of them
 # return them
@@ -203,27 +196,7 @@ def get_developers_collection_test():
 test_is_in(get_developers_collection_test(),'George Opperman')
 test_not_in(get_developers_collection_test(),'Fake Name')
 
-
-# def years_limit_test():
-#      years = mongo.db.years.find()
-#      lower_limit = 0
-#      upper_limit = 0
-#      for year in years:
-         
-# print(fruit['kiwi'])
-
-    # developer = mongo.db.developers.find_one({},{"developer_name"})
-    # item = developer['developer_name']
-    # mylist = mongo.db.developers.find({},{"developer_name"})
-    # collection = list(mylist)
-    # return collection, item
-
-
-    # developer = mongo.db.developers.find_one({},{"developer_name"})
-    # item = developer['developer_name']
-    # mylist = mongo.db.developers.find({},{"developer_name"})
-    # collection = list(mylist)
-
+# END TESTING #####################
 
 
 if __name__ == '__main__':
