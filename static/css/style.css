@@ -213,6 +213,8 @@ img{
     padding:0;
 }
 .card {
+    /*margin-bottom: 120px;*/
+/*float:left;*/
      height: 100% !important;
         /*width: 100% !important;*/
     /*border: 1px solid white;*/
@@ -223,6 +225,9 @@ img{
    
     /*object-fit: contain !important;*/
     /*height: 100%; width: 100%; object-fit: contain;*/
+}
+.card hover{
+    /*INCREASE SIZE ON HOVER #####################################*/
 }
 
 .card-reveal{

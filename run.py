@@ -5,9 +5,13 @@ from bson.objectid import ObjectId
 from byotest import *
 
 app = Flask(__name__)
+usr = 'root'
+pw = 'r00tUser'
 
 app.config["MONGO_DBNAME"] = 'recipe_db'
-app.config['MONGO_URI'] = 'mongodb+srv://root:r00tUser@myfirstcluster-tbkzy.mongodb.net/recipe_db?retryWrites=true&w=majority'
+app.config['MONGO_URI'] = 'mongodb+srv://' + usr + ':' + pw + '@myfirstcluster-tbkzy.mongodb.net/recipe_db?retryWrites=true&w=majority'
+
+
 
 
 mongo = PyMongo(app) #constructor method
@@ -225,5 +229,5 @@ test_not_in(get_developers_collection_test(),'Fake Name')
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)
             
