@@ -11,10 +11,8 @@ pw = 'r00tUser'
 app.config["MONGO_DBNAME"] = 'recipe_db'
 app.config['MONGO_URI'] = 'mongodb+srv://' + usr + ':' + pw + '@myfirstcluster-tbkzy.mongodb.net/recipe_db?retryWrites=true&w=majority'
 
-
-
-
-mongo = PyMongo(app) #constructor method
+# Constructor method
+mongo = PyMongo(app) 
 
 
 ################################
@@ -32,10 +30,10 @@ def new_game():
     return render_template('new_game.html', years=mongo.db.years.find(), developers=mongo.db.developers.find())
 
 
-# Create a Game in to the games document. Then create a screenshot in to the files document. 
-# Next create a cover image in to the files documnet with the screenshots ID as an attribute
-# Then use the screenshot ID to find the cover image. 
-# Finally add the required attibutes of the cover image in to the game document
+# 1) Create a Game in to the games document. Then create a screenshot in to the files document. 
+# 2) Next create a cover image in to the files documnet with the screenshots ID as an attribute
+# 3) Then use the screenshot ID to find the cover image. 
+# 4) Finally add the required attibutes of the cover image in to the game document
 @app.route('/create_game', methods=['POST'])
 def create_game():
     games = mongo.db.games
@@ -75,7 +73,6 @@ def file(filename):
 def delete_game(game_id):
     mongo.db.games.remove({"_id": ObjectId(game_id)})
     mongo.db.fs.files.remove({"game_id": ObjectId(game_id)})
-    # return redirect(url_for('get_recipes')) 
     # return redirect(url_for('get_recipes'))  
     
 @app.route('/modal_create_developer', methods=['POST'])
@@ -120,6 +117,7 @@ def update_game(game_id):
 #################################
 # ARTIST/DEVELOPER VIEWS ##################
 #################################
+
 #Note: 'artists' are referred to as 'developers'
 
 @app.route('/get_developers')
@@ -171,10 +169,6 @@ def update_developer(developer_id):
 #################################
 # TESTS ################## 
 #################################
-# pass the collection and item vars, devloeprs, george opperman
-# find both of them
-# return them
-# test function then checks
 
 def get_developers_test(name):
     developers = mongo.db.developers.find()

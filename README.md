@@ -8,6 +8,16 @@ A live version of the app is hosted here: https://atari-app-neil.herokuapp.com
 
 Project code is is available here: https://github.com/neillarkin/atari-app 
 
+## WireFrame
+#### Mobile
+https://github.com/neillarkin/atari-app/blob/master/wireframe/mobile-views.JPG
+
+#### Desktop
+https://github.com/neillarkin/atari-app/blob/master/wireframe/desktop-views.JPG
+
+#### Relational Database
+https://github.com/neillarkin/atari-app/blob/master/wireframe/realtion-model.JPG
+
 ## UX
 The primary target user of the application is a potential employer. The application will be used to showcase some of my knowledge of using templates with Python to store and retrieve data on a NoSQL database. It is expected that the employer will only spend a few moments using the application and so it should appear simple and visually appealing. The UI is clean and responsive with no major functional bugs that would give a poor user experience. The secondary target user is a gamer who it curious in old video games and wants to learn more about how they were made; specifically the art and artists involved with developing the games. The app attempts to show the stark contrast between the games box art and the actual 8-bit graphics of the game.
 
@@ -27,6 +37,7 @@ An other future feature will be to create a template for each artist profile the
 The home page displays a row of cards that have different image sizes. A Jinga loop was used to display the cards in a more random but aligned fashion. A future feature would be to create a function that would find the image size then adjust the div sizes to fit comfortably in to place. The function could have a maximum and minimum boundaries and output CSS class names depending on the image size. The image dimensions may need to be stored in the documents fields.
 
 ## Relational database
+
 The app uses MongoDB to store three collections called games, developers and years. GridFS is used to create two more collections (fs.files & fs.chunks) are used to store image files.
 The app uses a one-to-many relationship between games and artists(developers). One game can have many artists. Each artists’ Object ID is intended to be used as a foreign key in each game document.
 

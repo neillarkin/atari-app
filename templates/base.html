@@ -87,6 +87,7 @@
             $('.tooltipped').tooltip();
         });
 
+        // puts the cursor focus on the modals input field for better user experience
         function getFocus() {
             setTimeout(function() {
                 $('#developer_field_modal').focus();
@@ -118,15 +119,17 @@
             window.history.back();
         }
 
+        //called from userPrompt() below. If user agrees to delete then this function calls the Flask delete URL
         function deleteGame(id) {
             request = $.ajax({
                 url: "/delete_game" + "/" + id,
                 type: "GET",
                 data: $('#myDeleteModal').modal('close'),
-                complete: setTimeout(displayToast("Game", "deleting..."), 3000)
+                complete: setTimeout(displayToast("Game", "deleting..."), 3000) //Timeout used for user experience.
             });
         }
-
+        // /same as deleteGame. 
+        // TODO: combine these two functions for one reuseable delete function.
         function deleteDeveloper(id) {
             request = $.ajax({
                 url: "/delete_developer" + "/" + id,
@@ -135,17 +138,8 @@
                 complete: displaySpinner()
 
             });
-            // request.done(
-            //     $.ajax({
-            //         url: "/get_developers",
-            //         type: "GET",
-            //         data: "developer_id",
-            //         complete: displayToast("Developer", "deleted!")
-            //     })
-            // )
-
         }
-
+        
         function userPrompt(id, name) {
             $("#myDeleteModal").modal('open');
             $("#delete_name").empty();
@@ -163,7 +157,7 @@
             });
         }
 
-
+        // Refreshes the artist select drop-down list after a new artist is added.
         function reloadList() {
             request = $.ajax({
                 url: "/modal_create_developer",
@@ -178,7 +172,7 @@
                 displayToast("Developer", "added!");
             });
         };
-
+        // TO DO: create one resuable function for calling modals.
         // function callModal() {
         //     $('p.activator').mouseover(function(e) {
         //         $(this).trigger('#callModal');
@@ -189,8 +183,9 @@
 
 
       <footer>
+        <p class="inline-block center">Site developed by Neil Larkin ©2019</p>
         <p class="inline-block center">Font created from <a href="http://www.onlinewebfonts.com">Online Web Fonts</a> and licensed by CC 3.0</p>
-       <p class="inline-block center">Site developed by Neil Larkin ©2019</p>
+     
     </footer>  
 
 </body>
