@@ -78,4 +78,4 @@ Project source code is available on GitHub: https://github.com/neillarkin/atari-
 - The concept was taken from the book Art of Atari by Tim Lapetino (Dynamite Entertainment (October 25, 2016),  ISBN-13: 978-1524101039)
 - Animated logo code was sourced from: https://codepen.io/lbebber/pen/ypgql
 - The Atari SF font was created from www.onlinewebfonts.com and licensed by CC 3.0
-- The Atari logo SVG was sourced here and then converted to a font. https://www.flaticon.com/free-icon/atari_813422#term=atari&page=1&position=1
+- The Atari logo SVG was sourced here and then converted to a font. https://www.flaticon.com/free-icon/atari_813422

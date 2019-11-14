@@ -41,6 +41,7 @@ body {
 }
 
 .parallax-window {
+    
     /*height:1080px;*/
     /*width:1920px;*/
     /*margin:0px 30px 0px 30px;*/
@@ -49,6 +50,9 @@ body {
     background: transparent;
 }
 
+/*.drag-target {*/
+/*    background-color: black;*/
+/*}*/
 /*.parallax {*/
  
 /*  background-image: url("/static/images/background01.png");*/
@@ -375,7 +379,7 @@ nav ul {
 
 footer {
   /*margin-top: -15px;*/
-    background-color: #000000;
+    /*background-color: #00000042;*/
   text-align: center;
   letter-spacing: 0px;
 }

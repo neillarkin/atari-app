@@ -44,14 +44,18 @@
                                             <i class="large material-icons">expand_more</i>
                                         </div>
                                         <div class="col s8 m9 flow-text left">
-                                            <strong><span class="left">{{dev.developer_name}}</span><br class="hide-on-med-and-up"><span class="new badge left" data-badge-caption=" games">
-                                            {% for badge in badge_list %}    
-                                                {{badge_list[badge]}}
-                                                    {% if dev.developer_name == badge.developer_name %}
-                                                        {{badge.game_count}}
-                                                    {% endif %}
-                                                {% endfor %}                     
-                                            </span></strong>
+                                            <strong>
+                                                <span class="left">{{dev.developer_name}}</span>
+                                                <br class="hide-on-med-and-up">
+                                                <span class="new badge left" data-badge-caption=" games">
+                                                {% for badge in badge_list %}    
+                                                    <!--{{badge_list[badge]}}-->
+                                                        {% if dev.developer_name in badge.developer_name %}
+                                                            {{badge.game_count}}
+                                                        {% endif %}
+                                                    {% endfor %}                     
+                                                </span>
+                                            </strong>
                                         </div>
                                         
                                         <!--MODAL CALL-->

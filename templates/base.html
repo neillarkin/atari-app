@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <!--<link href="static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />-->
+    <link href="{{url_for('static', filename='images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -21,7 +22,8 @@
     
 
 <!--<div class="main_wrapper">-->
-    <div class="parallax-window" data-parallax="scroll" data-image-src="/static/images/background01.png">
+    <div class="parallax-window" data-parallax="scroll" data-image-src="{{url_for('static', filename='images/background01.png')}}">
+    <!--<div class="parallax-window" data-parallax="scroll" data-image-src="/static/images/background01.png">  -->
    <header>
         <nav class="z-depth-0">
             <div class="nav-wrapper">
@@ -69,6 +71,12 @@
         {% endblock %}
         </div>
 
+      <footer>
+        <p class="inline-block center">Site developed by Neil Larkin ©2019</p>
+        <p class="inline-block center">Font created from <a href="http://www.onlinewebfonts.com">Online Web Fonts</a> and licensed by CC 3.0</p>
+     
+    </footer>  
+
     </div>
 <!--</div>-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -112,7 +120,7 @@
         function displayToast(myString, myString2) {
             var str = myString;
             var str2 = myString2
-            M.toast({ html: str.valueOf() + ' ' + str2.valueOf(), displayLength: 5000 })
+            M.toast({ html: str.valueOf() + ' ' + str2.valueOf(), displayLength: 6000 })
         }
 
         function goBack() {
@@ -182,11 +190,7 @@
     </script>
 
 
-      <footer>
-        <p class="inline-block center">Site developed by Neil Larkin ©2019</p>
-        <p class="inline-block center">Font created from <a href="http://www.onlinewebfonts.com">Online Web Fonts</a> and licensed by CC 3.0</p>
-     
-    </footer>  
+
 
 </body>
 

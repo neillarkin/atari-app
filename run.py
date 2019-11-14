@@ -44,22 +44,20 @@ def create_game():
     developer_list = request.form.getlist('developer_name')
     this_game = games.insert_one({'game_title': game_title, 'game_year': game_year, 'developer_name' : developer_list, 'description': description, })
     game_id = this_game.inserted_id
-    last_inserted_game = mongo.db.games.find_one({"_id": ObjectId(game_id)})
-    screenshot = request.files['screenshot']
-    mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id = ObjectId(game_id) )
-    this_screenshot_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id)})
-    this_screenshot_image_id = this_screenshot_image['_id']
-    this_screenshot_image = this_screenshot_image['filename']
+    
     cover_image = request.files['cover_image']
-    mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id = ObjectId(game_id), screenshot_id = this_screenshot_image_id, screenshot_image = this_screenshot_image )
-    this_image = mongo.db.fs.files.find_one({"screenshot_id": ObjectId(this_screenshot_image_id)})
+    mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id_cover = ObjectId(game_id))
+    this_cover = mongo.db.fs.files.find_one({"game_id_cover": ObjectId(game_id)})
+    
+    screenshot = request.files['screenshot']
+    mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id_screenshot = ObjectId(game_id))
+    this_screenshot = mongo.db.fs.files.find_one({"game_id_screenshot": ObjectId(game_id)})  
+    
     games.update( {'_id': ObjectId(game_id)},
     {
         "$set":{
-            'cover_id' : this_image.get('_id'),
-            'cover_image' : this_image.get('filename'),
-            'screenshot_id' : this_image.get('screenshot_id'),
-            'screenshot_image' : this_image.get('screenshot_image'),
+            'cover_image' : this_cover.get('filename'),
+            'screenshot_image' : this_screenshot.get('filename'),
             }
      }) 
     return redirect(url_for('get_games')) 
@@ -72,8 +70,9 @@ def file(filename):
 @app.route('/delete_game/<game_id>')
 def delete_game(game_id):
     mongo.db.games.remove({"_id": ObjectId(game_id)})
-    mongo.db.fs.files.remove({"game_id": ObjectId(game_id)})
-    # return redirect(url_for('get_recipes'))  
+    mongo.db.fs.files.remove({"game_id_cover": ObjectId(game_id)})
+    mongo.db.fs.files.remove({"game_id_screenshot": ObjectId(game_id)})
+
     
 @app.route('/modal_create_developer', methods=['POST'])
 def modal_create_developer():
@@ -92,25 +91,32 @@ def edit_game(game_id):
 
 @app.route('/update_game/<game_id>', methods=["POST"])
 def update_game(game_id):
-    mongo.db.fs.files.remove({'game_id': ObjectId(game_id)})
     screenshot = request.files['screenshot']
-    mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id = ObjectId(game_id) )
-    new_screenshot_image = mongo.db.fs.files.find_one({"game_id": ObjectId(game_id)})
     cover_image = request.files['cover_image']
-    mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id = ObjectId(game_id), screenshot_id = new_screenshot_image['_id'], screenshot_image = new_screenshot_image['filename'] )
-    new_image = mongo.db.fs.files.find_one({"screenshot_id": ObjectId(new_screenshot_image['_id'])})
+    current_cover = mongo.db.fs.files.find_one({"game_id_cover": ObjectId(game_id)})
+    current_screenshot = mongo.db.fs.files.find_one({"game_id_screenshot": ObjectId(game_id)})
     games = mongo.db.games
-    games.update( {'_id': ObjectId(game_id)},
-    {
+    updated_game = {
         'game_title':request.form.get('game_title'),
         'game_year':request.form.get('game_year'),
         'developer_name': request.form.getlist('developer_name'),
         'description': request.form.get('description'),
-        'cover_id' : new_image.get('_id'),
-        'cover_image' : new_image.get('filename'),
-        'screenshot_id' : new_image.get('screenshot_id'),
-        'screenshot_image' : new_image.get('screenshot_image')
-     })
+        'cover_image': current_cover.get('filename'),
+        'screenshot_image': current_screenshot.get('filename'),
+     }
+    if cover_image:
+        mongo.db.fs.files.remove({'game_id_cover': ObjectId(game_id)})
+        mongo.save_file(cover_image.filename, cover_image, base='fs', content_type = 'image', game_id_cover = ObjectId(game_id))
+        new_cover = mongo.db.fs.files.find_one({"game_id_cover": ObjectId(game_id)})
+        updated_game['cover_image'] = new_cover.get('filename')
+
+    if screenshot:
+        mongo.db.fs.files.remove({'game_id_screenshot': ObjectId(game_id)})
+        mongo.save_file(screenshot.filename, screenshot, base='fs', content_type = 'image', game_id_screenshot = ObjectId(game_id))
+        new_screenshot = mongo.db.fs.files.find_one({"game_id_screenshot": ObjectId(game_id)})
+        updated_game['screenshot_image'] = new_screenshot.get('filename')
+
+    games.update( {'_id': ObjectId(game_id)},updated_game)
     return redirect(url_for('get_games'))
 
 
@@ -127,16 +133,14 @@ def get_developers():
     games_developers = mongo.db.games.find({},{"game_title", "developer_name", "cover_image"})
     games_developers_list = list(games_developers)
     badge_list = []
-    for item in developers_list:
+    for dev in developers_list:
         count = 0;
-        for obj in games_developers_list:
-            if item['developer_name'] in obj['developer_name']:
+        badge = dict(developer_name = dev['developer_name'], game_count = count)
+        for game in games_developers_list:
+            if dev['developer_name'] in game['developer_name']:
                 count = count + 1
-                badges = dict(
-                  developer_name = item['developer_name'],
-                  game_count = count,
-                )
-        badge_list.append(badges) 
+                badge["game_count"] = count
+        badge_list.append(badge) 
     return render_template("developers.html", games_developers_list=games_developers_list, developers_list=developers_list, badge_list=badge_list)
 
 @app.route('/create_developer', methods=['POST'])
