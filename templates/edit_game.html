@@ -49,9 +49,10 @@
           <input type="file" name="cover_image">
         </div>
       </div>
-   
-        <img src="{{ url_for('file', filename=game.cover_image) }}" style="width:100px; height:100px" class="tooltipped" data-position="bottom" data-tooltip="Current file: {{game.cover_image}}"/>
+       <div class="img_preview">
+        <img src="{{ url_for('file', filename=game.cover_image) }}" style="width:100px; height:100px" class="tooltipped img_preview" data-position="bottom" data-tooltip="Current file: {{game.cover_image}}"/>
         <!--<span>Current image: {{game.cover_image}}</span>-->
+        </div>
     </div>
 
     <!--DEVELOPERS SELECT LIST-->
@@ -96,7 +97,9 @@
           <input type="file" name="screenshot">
         </div>
       </div>
-        <img src="{{ url_for('file', filename=game.screenshot_image) }}" style="width:100px; height:100px" class="tooltipped" data-position="bottom" data-tooltip="Current file: {{game.screenshot_image}}"/>
+      <div class="img_preview">
+        <img src="{{ url_for('file', filename=game.screenshot_image) }}" class="tooltipped" data-position="bottom" data-tooltip="Current file: {{game.screenshot_image}}"/>
+    </div>
     </div>
 
     <!--DESCRIPTION-->

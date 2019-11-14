@@ -1,87 +1,16 @@
 @import "../compass/css3";
 
-body, html {
-    
-
-
-  
-}
 body {
-
-    /*background: url('https://i.pinimg.com/originals/2b/d2/50/2bd2505cafd0c58f07fa18d3a2e7c836.jpg') no-repeat center center fixed;*/
-    
-    /*-moz-background-size: cover;*/
-    /*-webkit-background-size: cover;*/
-    /*-o-background-size: cover;*/
-  /*  background-size: cover;*/
-  /*background-attachment: fixed;*/
-  
-  background-color:#000000;
-
-    /*width: 70%;*/
-    
-    /*background-image: url('/static/images/background01.png');*/
-    
-    
-        /*background-image: url('/static/images/background_grid_pink.png');*/
-    /*background-image: url('/static/images/atari_background02.png');*/
-    /*background-image: url('https://i.imgur.com/G3uShPM.jpg');*/
-    /*background-image: url('https://i.pinimg.com/originals/2b/d2/50/2bd2505cafd0c58f07fa18d3a2e7c836.jpg');*/
-}
-.container{
-     /*margin:50px 50px 0px 50px;*/
-        margin-top: 50px;
-          /*height:100%;*/
+    background-color: #000000;
 }
 
-.main_wrapper{
-     /*margin:0px 50px 0px 50px;*/
-    /*width:100%;*/
-    /*height:100%;*/
+.container {
+    margin-top: 50px;
 }
 
 .parallax-window {
-    
-    /*height:1080px;*/
-    /*width:1920px;*/
-    /*margin:0px 30px 0px 30px;*/
-    /*min-height:560px;*/
-    /*height:560px;*/
     background: transparent;
 }
-
-/*.drag-target {*/
-/*    background-color: black;*/
-/*}*/
-/*.parallax {*/
- 
-/*  background-image: url("/static/images/background01.png");*/
-
-   
-/*  height:100%;*/
-/*min-height: 5000px;*/
-
-/*  background-attachment: fixed;*/
-/*  background-position: center;*/
-/*  background-repeat: no-repeat;*/
-/*  background-size: cover;*/
-/*}*/
-
-/*.parallax-main {*/
- /*background-image: url("/static/images/background01.png");*/
-
-   
-/*  height:100%;*/
-/*min-height: 5000px;*/
-
-/*  background-attachment: fixed;*/
-/*  background-position: center;*/
-/*  background-repeat: no-repeat;*/
-/*  background-size: cover;*/
-  /*min-height: 1000px;*/
-  /*background: transparent;*/
-/*}*/
-
 
 
 /* ############################# BRAND LOGO ICON FONT ##################################### */
@@ -119,16 +48,10 @@ body {
     font-size: 50px;
 }
 
-.glitch{
+.glitch {
     font-size: 50px !important;
 }
-.glitch:after{
-    /*background-color:transparent !important;*/
-}
 
-.glitch:before{
-    /*background-color:transparent !important;*/
-}
 /* #################### NAVBAR FONT #################### */
 
 @font-face {
@@ -146,31 +69,26 @@ body {
 
 /* ############################# ##################################### */
 
-
-#wrapper{
+#wrapper {
     background-color: #ffffff;
     border-radius: 12px;
     padding: 40px
 }
-#dev_wrapper{
+
+#dev_wrapper {
     background-color: #ffffff;
     border-radius: 12px;
-     padding: 10px
-}
-#page_title{
-    color:#ffffff;
+    padding: 10px
 }
 
-.roundElement{
-	
+#page_title {
+    color: #ffffff;
 }
 
-nav{
+.roundElement {}
+
+nav {
     background-color: transparent !important;
-}
-nav .nav-wrapper {
-    
-    /*height: 115% !important;*/
 }
 
 nav ul a:hover {
@@ -179,10 +97,6 @@ nav ul a:hover {
     /*#26a69a;*/
 }
 
-nav ul{
- /*transform: translateY(-30%);*/
- /* webkit-transform: translateY(-30%);*/
-}
 
 .card-title,
 .nav_atari_title {
@@ -192,91 +106,61 @@ nav ul{
     text-transform: uppercase;
     white-space: nowrap;
 }
-.card-image.img {
-     
-    /*max-width: 100%;*/
-    /*max-height: 100%;*/
-    /*  display: -webkit-flex;*/
-    /*display: -ms-flexbox;*/
-    /*display: flex;*/
-}
-.img.activator{
-    /*  max-height: none;*/
-    /*object-fit: none;*/
-}
 
-.card .card-image{
-        /*border-top: solid 1px white;*/
-        /*border-left: solid 2px white;*/
-        /*border-right: solid 2px white;*/
-}
 
-img{
+img {
     border: solid 1px white;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
+
+.img_preview img {
+   width:100px; 
+   height:100px;
+}
+
 .card {
-    /*margin-bottom: 120px;*/
-/*float:left;*/
-     height: 100% !important;
-        /*width: 100% !important;*/
-    /*border: 1px solid white;*/
-    
-    /*border-radius: 12px;*/
-    /*float:left;*/
-    /*clear:left;*/
-   
-    /*object-fit: contain !important;*/
-    /*height: 100%; width: 100%; object-fit: contain;*/
-}
-.card hover{
-    /*INCREASE SIZE ON HOVER #####################################*/
+    height: 100% !important;
 }
 
-.card-reveal{
-     height: auto;
-}
-.card-reveal .col .row{
-   margin-bottom: 5px;
+.card-reveal {
+    height: auto;
 }
 
-.card-title#mycard_title{
+.card-reveal .col .row {
+    margin-bottom: 5px;
+}
+
+.card-title#mycard_title {
     font-size: 40px;
-    /*color: #fff;*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*max-width: 100%;*/
-    /*padding: 24px;*/
     background-color: #0000006b
 }
 
 .collapsible-header i {
-     font-size: 2rem;
+    font-size: 2rem;
 
 }
 
 
-.screenshot img{
-    width:200px;
+.screenshot img {
+    width: 200px;
     /*height:150px;*/
     float: right;
     margin-top: 8px;
-    margin-left:5px;
-    margin-bottom:5px;
-    margin-right:0px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-right: 0px;
 }
 
 .artistnames {
     float: left
 }
 
-.card.card-reveal.description{
-    margin-top:50px;
+.card.card-reveal.description {
+    margin-top: 50px;
 }
+
 .close_card_icon {
-    /*font-size: 4rem;*/
     background-color: #c10808;
     color: white;
 }
@@ -296,71 +180,57 @@ nav .brand-logo .atari_logo {
 }
 
 
-.btn-floating.btn_add_artist{
-   margin-top: 15px;
+.btn-floating.btn_add_artist {
+    margin-top: 15px;
 }
 
-
-.developer-list a {
-    /*display: block;*/
-    /*height: 100%;*/
-    /*width: 100%;*/
-}
 
 .developer-list a:hover {
     font-size: larger;
 }
 
-#btn_edit_artist, #btn_edit_artist.i{
-    padding:0px;
+#btn_edit_artist,
+#btn_edit_artist.i {
+    padding: 0px;
     margin-right: 40px;
     margin-bottom: 15px;
-    /*margin-top: 12px;*/
 
 }
 
-#btn_delete_artist, #btn_delete_artist.i{
-    padding:0px;
-    margin-right:20px;
-    margin-bottom:0px;
+#btn_delete_artist,
+#btn_delete_artist.i {
+    padding: 0px;
+    margin-right: 20px;
+    margin-bottom: 0px;
 }
-
 
 .collapsible span.badge {
     margin-left: 8px !important;
     margin-top: 5px;
 }
 
-nav ul a{
-        font-size: 1.25rem;
+nav ul a {
+    font-size: 1.25rem;
 }
 
 .file-field .file-path-wrapper {
     padding-left: 40px;
 }
 
-.file-field .btn,
-.file-field .btn-large,
-.file-field .btn-small {
-    /*float: right;*/
+.dev_game_images {
+    float: left;
 }
 
-
-.dev_game_images{
-    float:left;
-    
-}
-
-.sidenav{
+.sidenav {
     background-color: #000000;
 }
-.sidenav li>a{
-    color:#ffffff;
-    /*color:#ffffff;*/
-    
+
+.sidenav li>a {
+    color: #ffffff;
 }
+
 nav ul {
-    color:#ffffff;
+    color: #ffffff;
 }
 
 #toast-container {
@@ -378,72 +248,40 @@ nav ul {
 
 
 footer {
-  /*margin-top: -15px;*/
-    /*background-color: #00000042;*/
-  text-align: center;
-  letter-spacing: 0px;
+    text-align: center;
+    letter-spacing: 0px;
 }
 
 footer p {
-  /*margin-top: 20px;*/
-  color: #84979e !important;
+    color: #84979e !important;
 
 }
 
 /*MEDIA QUERIES*/
 
 @media(max-width: 575px) {
-    
+
     #wrapper {
-    
         padding: 15px;
     }
-    
-    .nav_atari_title glitch{
-        /*margin-right: 80px;*/
+
+    .screenshot img {
+        width: 240px;
     }
-    
-    .screenshot img{
-     width: 240px;
+
+    ul.collapsible-header {
+        padding-left: 0px;
     }
-    
-    ul.collapsible-header{
-        padding-left:0px;
-    }
-    
+
     .collapsible-header i {
-         font-size: 1.6rem;
-    
+        font-size: 1.6rem;
     }
-    
-    h5#page_title {
-    /*margin-top: 30px*/
+
+    .btn-floating.btn_add_artist {
+        margin-top: -2px;
     }
-    
- .btn-floating.btn_add_artist{
-    margin-top: -2px;
-}
-
-nav.sidenav-trigger>i.material-icons {
-
-    /*margin-top: -20px !important;*/
-}
-
-/*nav.sidenav-trigger, nav.sidenav-trigger.i.material-icons {*/
-/*    margin-top: -20px !important;*/
-/*}*/
-
+    .img_preview img {
+        margin-left: 50px;
+    }
 
 }
-
-
-
-@media only screen and (min-width: 0){
-
-
-}
-
-
-@media only screen and (min-width: 1200px){
-}
-

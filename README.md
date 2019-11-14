@@ -34,10 +34,11 @@ This relationship enables a game card to display a list of artists that worked o
 ## Features to implement
 The application stores an array or artist names in each game card. This will lead to a bug if two artist names are the same. The code should be adjusted to store each artist ID then use that unique ID to find the artists name.
 An other future feature will be to create a template for each artist profile then hyperlink to that template from the game card. 
-The home page displays a row of cards that have different image sizes. A Jinga loop was used to display the cards in a more random but aligned fashion. A future feature would be to create a function that would find the image size then adjust the div sizes to fit comfortably in to place. The function could have a maximum and minimum boundaries and output CSS class names depending on the image size. The image dimensions may need to be stored in the documents fields.
+The home pure age displays a row of cards that have different image sizes. A Jinga loop was used to display the cards in a more random but aligned fashion. A future feature would be to create a function that would find the image size then adjust the div sizes to fit comfortably in to place. The function could have a maximum and minimum boundaries and output CSS class names depending on the image size. The image dimensions may need to be stored in the documents fields.
+Some of the JavaScript functions are reusable, e.g. displayToast(). A future plan would be to make more of the functions suchs as calling the modal, reusable.
+Card size depends on original image dimensions. The small card sizes have layout issues that must be addressed such as text wrapping.
 
 ## Relational database
-
 The app uses MongoDB to store three collections called games, developers and years. GridFS is used to create two more collections (fs.files & fs.chunks) are used to store image files.
 The app uses a one-to-many relationship between games and artists(developers). One game can have many artists. Each artists’ Object ID is intended to be used as a foreign key in each game document.
 
@@ -66,8 +67,6 @@ Manual testing was performed with Chrome on Windows, Chrome on Android, and Safa
 
 ### Bugs/Issues
 1) Duplicate artist names may cause errors because a game document stores the actual artist string name rather than the artists unique Object ID. The artist name could then be retrieved by using its ID  using a nested loop.
-
-2) When editing a game card, the user must upload the images before saving.  If not, then the image file paths are lost and the card saves with any images. A function would need to be created to retrieve the images relevant images when clicking the Edit button.
 
 ### Deployment
 The sites was built on the AWS Cloud 9 IDE with GitHub used to backup milestones in development. 
