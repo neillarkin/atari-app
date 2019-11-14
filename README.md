@@ -66,7 +66,7 @@ Manual testing was performed with Chrome on Windows, Chrome on Android, and Safa
     7. Perform steps 1 to 5 with Chrome on Android
 
 ### Bugs/Issues
-1) Duplicate artist names may cause errors because a game document stores the actual artist string name rather than the artists unique Object ID. The artist name could then be retrieved by using its ID  using a nested loop.
+Duplicate artist names may cause errors because a game document stores the actual artist string name rather than the artists unique Object ID as a foreign-key in a typical one-to-many relationship. The artist name could then be retrieved by using its ID  and a nested loop.
 
 ### Deployment
 The sites was built on the AWS Cloud 9 IDE with GitHub used to backup milestones in development. 
