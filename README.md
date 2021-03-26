@@ -5,7 +5,6 @@
 The app is a demonstrates Python capabilities with the Flask framework and Jinga templates by performing CRUD operations on collections of documents stored in the NoSQL environment MongoDB. 
 
 A live version of the app is hosted here:
-*** Please use IE11 for the moment. (Chrome & FF updates have broken the app) ***
  https://atari-app-neil.herokuapp.com 
 
 Project code is is available here: https://github.com/neillarkin/atari-app 
