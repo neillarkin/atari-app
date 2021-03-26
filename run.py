@@ -5,8 +5,7 @@ from bson.objectid import ObjectId
 from byotest import *
 
 app = Flask(__name__)
-usr = 'root'
-pw = 'r00tUser'
+
 
 app.config["MONGO_DBNAME"] = 'recipe_db'
 app.config['MONGO_URI'] = 'mongodb+srv://' + usr + ':' + pw + '@myfirstcluster-tbkzy.mongodb.net/recipe_db?retryWrites=true&w=majority'
