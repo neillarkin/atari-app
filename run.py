@@ -3,12 +3,13 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from byotest import *
+from config import *
 
 app = Flask(__name__)
 
 
-app.config["MONGO_DBNAME"] = 'recipe_db'
-app.config['MONGO_URI'] = 'mongodb+srv://' + usr + ':' + pw + '@myfirstcluster-tbkzy.mongodb.net/recipe_db?retryWrites=true&w=majority'
+app.config["MONGO_DBNAME"] = mongodb
+app.config['MONGO_URI'] = uri
 
 # Constructor method
 mongo = PyMongo(app) 
@@ -133,7 +134,7 @@ def get_developers():
     games_developers_list = list(games_developers)
     badge_list = []
     for dev in developers_list:
-        count = 0;
+        count = 0
         badge = dict(developer_name = dev['developer_name'], game_count = count)
         for game in games_developers_list:
             if dev['developer_name'] in game['developer_name']:
